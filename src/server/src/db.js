@@ -7,9 +7,11 @@ const path = require("path");
 require("dotenv").config();
 
 //obtenemos las variables del env
-const { DB_HOST } = process.env;
+const {
+    DB_USER, DB_PASSWORD, DB_HOST,
+  } = process.env;
 
-const sequelize = new Sequelize(DB_HOST, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/glamify`, {
     logging: false, // oculta la info de cada query que se ejecuta desde postgres
     native: false, // ~30% mejora de rendimiento
 });
@@ -39,6 +41,22 @@ let capsEntries = entries.map((entry) => [
 
 //extraemos los modelos
 sequelize.models = Object.fromEntries(capsEntries);
+
+//Relaciones
+const { Product, User, Testimony, Review, Purchase, Cart, CartItem } =
+    sequelize.models;
+
+// Relación Product - Review
+Product.hasMany(Review);
+Review.belongsTo(Product);
+
+// Relación Product - Purchase
+Product.hasMany(Purchase);
+Purchase.belongsTo(Product);
+
+// Relación Cart - CartItem
+Cart.hasMany(CartItem);
+CartItem.belongsTo(Cart);
 
 module.exports = {
     ...sequelize.models,

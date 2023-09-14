@@ -1,44 +1,47 @@
 const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize) => {
+const CartItem = (sequelize) => {
     sequelize.define(
-        'Product',
+        'cartItem',
         {
             id: {
                 type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4,
                 primaryKey: true,
+            },
+            productId: {
+                type: DataTypes.UUID,
+                allowNull: false,
+            },
+            cartId: {
+                type: DataTypes.UUID,
                 allowNull: false,
             },
             name: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+            },
+            color: {
+                type: DataTypes.STRING,
             },
             description: {
                 type: DataTypes.STRING,
-                allowNull: false
             },
             image: {
                 type: DataTypes.STRING,
-                allowNull: false,
             },
             price: {
                 type: DataTypes.FLOAT,
-                allowNull: false
+                allowNull: false,
             },
-            category: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            stock: {
-                type: DataTypes.INTEGER,
-                defaultValue: 0,
-            },
-            status: {
-                type: DataTypes.BOOLEAN,
-                defaultValue: true
+            sizes: {
+                type: DataTypes.JSONB,
             },
         },
-        { timestamps: false, freezeTableName: true }
-    )
+        {
+            timestamps: false,
+        }
+    );
 };
+
+module.exports = CartItem;
