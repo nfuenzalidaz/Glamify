@@ -1,0 +1,84 @@
+.MainContainer {
+    background-image: url(../../assets/Background-Landing.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+    overflow: hidden;
+    background-attachment: fixed;
+}
+
+.ButtonsContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 60px;
+    padding-right: 225px;
+}
+
+.Button1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 40px;
+    border: 2px solid rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: transparent;
+    margin-right: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    color: black;
+    font-family: 'Red Hat Display', sans-serif;
+}
+.Button1:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.Button2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 40px;
+    border: 2px solid rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    color: black;
+}
+
+.Button2:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.TextContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 310px;
+    padding-right: 230px;
+    font-size: 20px;
+}
+
+.Icon {
+    padding-top: 5px;
+    padding-left: 7px;
+}
+
+.socialsContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 50px;
+    padding-right: 220px;
+}
+
+.socialButtons {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
