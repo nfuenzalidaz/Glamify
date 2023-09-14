@@ -1,0 +1,28 @@
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.navContainer img {
+  margin-left: 1.5rem;
+}
+
+.lista {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+  margin-right: 4rem;
+  text-transform: uppercase;
+}
+
+.lista a {
+  text-decoration: none;
+  color: black;
+}
+
+.lista a:hover {
+  color: rgb(239, 234, 234);
+}
