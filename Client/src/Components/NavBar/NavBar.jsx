@@ -6,8 +6,14 @@ import woman from "../../assets/woman.jpg";
 const NavBar = () => {
   return (
     <div className={styles.NavBarContainer}>
+      
       {/* <img src={woman} alt="woman" className={styles.imageWoman} /> */}
-      <img src={glamify} alt="Glamify Logo" className={styles.logo} />
+
+      <div className={styles.logoContainer}>
+        <NavLink to="/create">
+          <img src={glamify} alt="Glamify Logo" className={styles.logo} title="Glamify"/>
+        </NavLink>
+      </div>
       <NavLink to="/home" className={styles.NavLink} title="HOME">
         HOME
       </NavLink>

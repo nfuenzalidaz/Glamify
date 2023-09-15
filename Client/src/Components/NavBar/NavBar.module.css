@@ -21,14 +21,22 @@
   outline: none;
 }
 
+.logoContainer{
+  max-width: 4%;
+  margin-right: 950px;
+
+}
+
+
 .logo {
   display: flex;
   align-items: flex-start;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   margin-right: 980px;
+  cursor: pointer;
 }
 
 .imageWoman {
-  width: 100%;
+  width: 100px;
 }
