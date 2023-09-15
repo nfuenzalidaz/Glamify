@@ -4,6 +4,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const Cards = ({ id, name, description, image, price, category, stock }) => {
+  
   return (
     <div className={styles.cardContainer}>
       <div className={styles.priceIconsContainer}>
@@ -11,6 +12,15 @@ const Cards = ({ id, name, description, image, price, category, stock }) => {
         <div className={styles.iconsContainer}>
           <BookmarkBorderIcon className={styles.icon} />
           <ShoppingCartOutlinedIcon className={styles.icon} />
+                </div>
+            </div>
+            <div className={styles.imageContainer}>
+                <img src={image} alt="" className={styles.image} />
+            </div>
+
+            <div className={styles.nameContainer}>
+                <h6 className={styles.name} title={name}>{name.toUpperCase()}</h6>
+            </div>
         </div>
       </div>
       <div className={styles.imageContainer}>
