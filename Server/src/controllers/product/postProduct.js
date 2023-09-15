@@ -1,9 +1,9 @@
 const { Product } = require("../../db");
 const postProductValidation = require('../../helpers/postProductValidation');
 
-const postProduct = async (name, description, image, price, category, stock) => {
+const postProduct = async (name, description, image, price, category, gender, stock) => {
     
-    postProductValidation(name, description, image, price, category, stock);
+    postProductValidation(name, description, image, price, category, gender, stock);
 
     const newProduct = await Product.create({
         name,
@@ -11,6 +11,7 @@ const postProduct = async (name, description, image, price, category, stock) => 
         image,
         price,
         category,
+        gender,
         stock
     });
 
