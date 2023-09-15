@@ -1,17 +1,17 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const URL = "/product";
+const URL = '/product';
 
 const initialState = {
   loading: false,
   allProducts: [],
   productosFiltrados: [],
-  error: "",
+  error: '',
 };
 
 export const fetchProducts = createAsyncThunk(
-  "product/fetchProducts",
+  'product/fetchProducts',
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(URL);
@@ -22,10 +22,10 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 export const searchProducts = createAsyncThunk(
-  "product/searchProducts",
+  'product/searchProducts',
   async (searchString, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`${URL}?search=${searchString}`);
+      const { data } = await axios.get(`${URL}?name=${searchString}`);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -34,7 +34,7 @@ export const searchProducts = createAsyncThunk(
 );
 
 export const deleteProduct = createAsyncThunk(
-  "product/deleteProduct",
+  'product/deleteProduct',
   async ({ productId, estado }, { rejectWithValue }) => {
     try {
       await axios.put(`${URL}/${productId}`, { estado: false }); // Asegúrate de pasar estado: false aquí
@@ -46,15 +46,15 @@ export const deleteProduct = createAsyncThunk(
 );
 
 const productSlice = createSlice({
-  name: "product",
+  name: 'product',
   initialState,
   reducers: {
     //Ordenamiento alfabético
     ordenAlfabetico: (state, action) => {
       let productos = [...state.productosFiltrados];
-      if (action.payload === "asc") {
+      if (action.payload === 'asc') {
         productos.sort((a, b) => a.nombre.localeCompare(b.nombre));
-      } else if (action.payload === "desc") {
+      } else if (action.payload === 'desc') {
         productos.sort((a, b) => b.nombre.localeCompare(a.nombre));
       }
       state.productosFiltrados = productos;
@@ -63,9 +63,9 @@ const productSlice = createSlice({
     //Ordenamiento por precio
     ordenPorPrecio: (state, action) => {
       let productos = [...state.productosFiltrados];
-      if (action.payload === "precioMin") {
+      if (action.payload === 'precioMin') {
         productos.sort((a, b) => a.precio - b.precio);
-      } else if (action.payload === "precioMax") {
+      } else if (action.payload === 'precioMax') {
         productos.sort((a, b) => b.precio - a.precio);
       }
       state.productosFiltrados = productos;
@@ -81,7 +81,7 @@ const productSlice = createSlice({
         (producto) => producto.tipo === action.payload
       );
       state.productosFiltrados =
-        action.payload === "todos" ? todoProductosCopia : productos;
+        action.payload === 'todos' ? todoProductosCopia : productos;
     },
   },
 
@@ -93,7 +93,7 @@ const productSlice = createSlice({
       state.loading = false;
       state.allProducts = action.payload;
       state.productosFiltrados = action.payload;
-      state.error = "";
+      state.error = '';
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = false;
@@ -112,27 +112,26 @@ const productSlice = createSlice({
       state.productosFiltrados = state.productosFiltrados.filter(
         (product) => product.id !== action.payload
       );
-      state.error = "";
+      state.error = '';
     });
 
     builder.addCase(deleteProduct.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload.error;
     });
-    
+
     builder.addCase(searchProducts.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(searchProducts.fulfilled, (state, action) => {
       state.loading = false;
-      state.productosFiltrados = action.payload;
-      state.error = "";
+      state.allProducts = action.payload;
+      state.error = '';
     });
     builder.addCase(searchProducts.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload.error;
     });
-    
   },
 });
 
