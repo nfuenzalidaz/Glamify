@@ -2,20 +2,6 @@ const { Product, Purchase } = require('../db');
 const products = require('../data.json');
 const { Op } = require('sequelize');
 
-const saveProductsToDatabase = async () => {
-    try {
-        for (const product of products) {
-            await Product.findOrCreate({
-                where: { id: product.id }, // Verificar si el producto ya existe por su ID
-                defaults: product, // Insertar el producto si no existe
-            });
-        }
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-};
-
 const getAllProducts = async (
     page,
     pageSize,
