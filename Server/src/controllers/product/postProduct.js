@@ -1,17 +1,19 @@
 const { Product } = require("../../db");
 const postProductValidation = require('../../helpers/postProductValidation');
 
-const postProduct = async (name, description, image, price, category, stock) => {
+const postProduct = async (name, description, image, price, stock, category, gender) => {
+    console.log(name, description, image, price, stock, category, gender);
     
-    postProductValidation(name, description, image, price, category, stock);
+    postProductValidation(name, description, image, price, stock, category, gender);
 
     const newProduct = await Product.create({
         name,
         description,
         image,
         price,
+        stock,
         category,
-        stock
+        gender
     });
 
     if (!newProduct) throw new Error(`El producto ${name} no pudo crearse.`);
