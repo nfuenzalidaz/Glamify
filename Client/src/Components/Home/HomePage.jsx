@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <div>
       <Searchbar/>
-      <CardList allProducts={currentProducts} />
+      <CardList allProducts={currentProducts} section='home' />
       <Pagination totalPages={Math.ceil(allProducts.length / itemsPerPage)} currentPage={currentPage} onPageChange={handlePageChange} />
     </div>
   );

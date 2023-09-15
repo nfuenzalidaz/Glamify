@@ -1,12 +1,16 @@
-import React from 'react';
-import styles from './CardList.module.css';
-import Cards from '../Cards/Cards';
+import React from "react";
+import styles from "./CardList.module.css";
+import Cards from "../Cards/Cards";
 
-const CardList = ({ allProducts }) => {
-  // console.log(allProducts);
+const CardList = ({ allProducts, section }) => {
+  const filteredProducts =
+    section === "home"
+      ? allProducts
+      : allProducts.filter((product) => product.gender === section);
+
   return (
     <div className={styles.cards}>
-      {allProducts.map(
+      {filteredProducts.map(
         ({ id, name, description, image, price, category, stock }) => {
           return (
             <Cards

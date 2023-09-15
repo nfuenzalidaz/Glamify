@@ -8,6 +8,7 @@ const getAllProduct = async () => {
       'description',
       'image',
       'price',
+      'gender',
       'category',
       'stock',
       'status',
