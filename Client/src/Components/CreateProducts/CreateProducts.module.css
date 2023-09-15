@@ -12,6 +12,13 @@
   border-radius: 2px;
 }
 
+.iconGoBack{
+  padding-left: 35px;
+  text-decoration: none;
+  outline: none;
+  color: black;
+}
+
 .titituloForm {
   padding: 0px;
   text-align: center;
@@ -179,7 +186,7 @@
   overflow: hidden;
   flex-direction: column;
   background-color: transparent;
-  padding-top: 70px;
+  padding-top: 35px;
 }
 
 
