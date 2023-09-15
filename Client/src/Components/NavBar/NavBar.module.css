@@ -4,14 +4,19 @@
 }
 
 .NavBarContainer {
-  padding-top: 30px;
   display: flex;
-  justify-content: flex-end;
-  padding-right: 150px;
-  gap: 20px;
+  justify-content: space-between;
+  padding: 1rem 0 2rem 15px;
   color: black;
-  padding-bottom: 30px;
   font-family: "Adam-Bold", sans-serif;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-right: 6rem;
 }
 
 .NavLink {
@@ -22,11 +27,9 @@
 }
 
 .logo {
-  display: flex;
-  align-items: flex-start;
   width: 50px;
   height: 50px;
-  margin-right: 980px;
+  margin-left: 10px;
 }
 
 .imageWoman {

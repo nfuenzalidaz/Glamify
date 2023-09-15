@@ -1,33 +1,38 @@
-import { Routes, Route } from "react-router-dom";
-import LandingPage from './Components/LandingPage/LandingPage.jsx'
+import { Routes, Route, useLocation } from "react-router-dom";
+import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import HomePage from "./Components/Home/HomePage.jsx";
 import CreateProducts from "./Components/CreateProducts/CreateProducts.jsx";
-import { fetchProducts } from '../src/Redux/Features/productSlice.js';
+import { fetchProducts } from "../src/Redux/Features/productSlice.js";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
-axios.defaults.baseURL="http://localhost:3001";
+import Hombres from "./Components/Hombres/Hombres.jsx";
+import Mujeres from "./Components/Mujeres/Mujeres.jsx";
+import Accesorios from "./Components/Accesorios/Accesorios.jsx";
+import NavBar from "./Components/NavBar/NavBar.jsx";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
   return (
-    <div>
+    <>
+      {location.pathname !== "/" && <NavBar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/create" element={<CreateProducts />} />
-        <Route path="/hombre" element={<h1>Hombre</h1>} />
-        <Route path="/mujer" element={<h1>Mujer</h1>} />
-        <Route path="/accesorios" element={<h1>Accesorios</h1>} />
+        <Route path="/hombre" element={<Hombres />} />
+        <Route path="/mujer" element={<Mujeres />} />
+        <Route path="/accesorios" element={<Accesorios />} />
       </Routes>
-    </div>
-
-  )
+    </>
+  );
 }
 
-export default App
+export default App;

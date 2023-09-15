@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import Pagination from '../Pagination/Pagination';
 import CardList from '../CardList/CardList';
 import Searchbar from "../searchbar/searchbar";
-import NavBar from '../NavBar/NavBar';
 
 const Home = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
@@ -20,7 +19,6 @@ const Home = () => {
 
   return (
     <div>
-      <NavBar/>
       <Searchbar/>
       <CardList allProducts={currentProducts} />
       <Pagination totalPages={Math.ceil(allProducts.length / itemsPerPage)} currentPage={currentPage} onPageChange={handlePageChange} />
