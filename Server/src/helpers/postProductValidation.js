@@ -22,11 +22,11 @@ const postProductValidation = (name, description, image, price, category, stock)
     //if (!priceRegex.test(price)) throw new Error('El precio debe ser de tipo numérico o decimal para poder crear el producto.');
     //if (price === "") throw new Error('El campo precio del producto no puede estar vacío. Digite un valor poder crear el producto.');
 
-    // category
-    //if (!category || category.length > 50) throw new Error('La categoría del producto es obligatoria y debe tener menos de 50 caracteres.');
+    // categor
+    // if (!category || category.length > 50) throw new Error('La categoría del producto es obligatoria y debe tener menos de 50 caracteres.');
 
     // stock
-    //if (!stockRegex.test(stock)) throw new Error('El stock no es válido para crear el producto.');
+    // if (!stockRegex.test(stock)) throw new Error('El stock no es válido para crear el producto.');
 
 }
 

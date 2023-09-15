@@ -1,15 +1,17 @@
 const postProduct = require('../../controllers/product/postProduct');
 
 const postProductHandler = async (req, res) => {
-  const { name, description, image, price, category, stock } = req.body;
+  const { name, description, image, price, stock, category, gender } = req.body;
+  console.log( name, description, image, price, stock, category, gender);
   try {
     const createdProduct = await postProduct(
       name,
       description,
       image,
       price,
+      stock,
       category,
-      stock
+      gender
     );
     return res.status(201).json({ message: createdProduct });
   } catch (error) {

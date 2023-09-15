@@ -1,0 +1,220 @@
+.FormContainer {}
+
+.form {
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px solid #000000;
+  color: #020202;
+  max-width: 750px;
+  height: 480px;
+  margin: 0 auto;
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+.titituloForm {
+  padding: 0px;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 900;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 200px;
+  height: 22px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  border: 1.5px solid #000000;
+}
+
+.inputGropLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  color: rgba(0, 0, 0, 0.629);
+  margin-bottom: 4px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+
+.buttonDelete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  border: 1.5px solid rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: transparent;
+  margin-right: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: black;
+}
+
+.buttonDelete:disabled {
+  pointer-events: none;
+}
+
+.buttonDelete:hover {
+  background-color: rgb(139, 0, 0);
+  color: white;
+}
+
+
+.buttonCreate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  border: 1.5px solid rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: transparent;
+  margin-right: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: black;
+}
+
+.buttonCreate:disabled {
+  pointer-events: none;
+}
+
+.buttonCreate:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.buttonCreate:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.inputGropLabel {
+  display: flex;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: black;
+  outline: none;
+
+}
+
+.uploadButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.uploadButton:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.customFileInput {
+  display: none;
+}
+
+.previewImage {
+  width: 450px;
+  height: 450px;
+}
+
+.ButtonsContainer {
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-direction: column;
+  background-color: transparent;
+  padding-bottom: 65px;
+
+}
+
+.InputContainer {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-direction: column;
+  background-color: transparent;
+  padding-top: 70px;
+}
+
+
+.leftDiv {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+
+}
+
+.rightDiv {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.bottomButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+};
+
+
+.divImage {
+  height: auto;
+  position: absolute;
+}
