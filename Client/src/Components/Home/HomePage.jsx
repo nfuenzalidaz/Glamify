@@ -1,8 +1,13 @@
+import Searchbar from "../searchbar/searchbar"
 
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+     <Searchbar/>
+
+
+    </div>
   )
 }
 
