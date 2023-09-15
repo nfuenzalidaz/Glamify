@@ -1,8 +1,8 @@
-const getAllProducts = require("../../controllers/products/getAllProducts");
-const getProductById = require("../../controllers/products/getProductById");
-const getProductByName = require("../../controllers/products/getProductByName");
+const getAllProduct = require('../../controllers/product/getAllProduct');
+const getProductById = require('../../controllers/product/getProductById');
+const getProductByName = require('../../controllers/product/getProductByName');
 
-const getAllProductsHandlers = async (req, res) => {
+const getAllProductHandler = async (req, res) => {
   const { name } = req.query;
 
   if (name) {
@@ -16,7 +16,7 @@ const getAllProductsHandlers = async (req, res) => {
   } else {
     // Handler Traer todos los Productos
     try {
-      const products = await getAllProducts();
+      const products = await getAllProduct();
       return res.status(200).json(products);
     } catch (error) {
       return res.status(400).json({ error: error.message });
@@ -35,6 +35,6 @@ const getProductByIdHandler = async (req, res) => {
 };
 
 module.exports = {
-  getAllProductsHandlers,
+  getAllProductHandler,
   getProductByIdHandler,
 };

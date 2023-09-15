@@ -1,14 +1,14 @@
-const { Router } = require("express");
+const { Router } = require('express');
 const {
-    getAllProductsHandlers,
-    getProductByIdHandler
-} = require("../handlers/products/getAllProductsHandler");
-const postProductHandler = require("../handlers/products/postProductHandler");
+  getAllProductHandler,
+  getProductByIdHandler,
+} = require('../handlers/product/getAllProductHandler');
+const postProductHandler = require('../handlers/product/postProductHandler');
 
-const routerProducto = Router();
+const productRouter = Router();
 
-routerProducto.get("/", getAllProductsHandlers);
-routerProducto.get("/:id", getProductByIdHandler);
-routerProducto.post("/", postProductHandler);
+productRouter.get('/', getAllProductHandler);
+productRouter.get('/:id', getProductByIdHandler);
+productRouter.post('/', postProductHandler);
 
-module.exports = routerProducto;
+module.exports = productRouter;
