@@ -1,7 +1,9 @@
-  const HomePage = () => {
+import Searchbar from "../searchbar/searchbar"
+
+const HomePage = () => {
   return (
     <div>
-        HOME
+     <Searchbar/>
     </div>
   )
 }
