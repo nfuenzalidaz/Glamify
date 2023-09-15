@@ -21,6 +21,17 @@ export const fetchProducts = createAsyncThunk(
     }
   }
 );
+export const searchProducts = createAsyncThunk(
+  "product/searchProducts",
+  async (searchString, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`${URL}?search=${searchString}`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const deleteProduct = createAsyncThunk(
   "product/deleteProduct",
@@ -108,6 +119,20 @@ const productSlice = createSlice({
       state.loading = false;
       state.error = action.payload.error;
     });
+    
+    builder.addCase(searchProducts.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(searchProducts.fulfilled, (state, action) => {
+      state.loading = false;
+      state.productosFiltrados = action.payload;
+      state.error = "";
+    });
+    builder.addCase(searchProducts.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
+    
   },
 });
 

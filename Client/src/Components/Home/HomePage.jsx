@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 // import Pagination from '../Pagination/Pagination';
 import CardList from '../CardList/CardList';
+import Searchbar from "../searchbar/searchbar"
 
 const Home = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
@@ -18,6 +19,7 @@ const Home = () => {
 
   return (
     <div>
+      <Searchbar/>
       {/* <Pagination totalPages={Math.ceil(allProducts.length / itemsPerPage)} currentPage={currentPage} onPageChange={handlePageChange} /> */}
       <CardList allProducts={allProducts} />
     </div>
