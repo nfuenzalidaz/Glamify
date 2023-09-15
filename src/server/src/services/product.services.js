@@ -1,4 +1,4 @@
-const { Product, Purchase } = require('../db');
+const { Product, Purchase, Review } = require('../db');
 const { Op } = require('sequelize');
 
 const getAllProducts = async (
@@ -44,23 +44,6 @@ const getAllProducts = async (
             whereCondition.gender = gender;
         }
 
-        if (active !== null) {
-            whereCondition.active = active; // Add active filter condition
-        }
-
-        let order = [];
-
-        if (price === 'asc') {
-            order.push(['price', 'ASC']);
-        } else if (price === 'desc') {
-            order.push(['price', 'DESC']);
-        }
-
-        if (sort === 'asc') {
-            order.push(['name', 'ASC']);
-        } else if (sort === 'desc') {
-            order.push(['name', 'DESC']);
-        }
 
         const savedProducts = await Product.findAndCountAll({
             where: whereCondition,
@@ -72,6 +55,17 @@ const getAllProducts = async (
                 {
                     model: Purchase,
                     attributes: ['id', 'productId', 'userId'],
+                },
+                {
+                    model: Review,
+                    attributes: [
+                        'id',
+                        'rating',
+                        'comment',
+                        'productId',
+                        'userId',
+                        
+                    ],
                 },
             ],
         });
@@ -103,6 +97,19 @@ const getProductsById = async (id) => {
                     model: Purchase,
                     attributes: ['id', 'productId', 'userId'],
                 },
+                {
+                    model: Review,
+                    attributes: [
+                        'id',
+                        'rating',
+                        'comment',
+                        'name',
+                        'image',
+                        'productId',
+                        'userId',
+                        
+                    ],
+                },
             ],
         });
         return product;
@@ -126,7 +133,6 @@ const createProduct = async (productData) => {
         const createdProduct = await Product.create(productData);
         return createdProduct;
     } catch (error) {
-        // Verificar si el error es de llave duplicada
         if (error.name === 'SequelizeUniqueConstraintError') {
             throw new Error('Duplicate product');
         }
@@ -134,8 +140,9 @@ const createProduct = async (productData) => {
     }
 };
 
+
 module.exports = {
-    saveProductsToDatabase,
+
     getAllProducts,
     getProductsById,
     deleteProduct,
