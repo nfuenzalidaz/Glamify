@@ -4,8 +4,7 @@ import { fetchProducts } from "../../Redux/Features/productSlice";
 import styles from "./CreateProducts.module.css";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import axios from "axios";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { NavLink } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 const InitialCreate = {
   name: "",
@@ -18,52 +17,71 @@ const InitialCreate = {
 };
 
 const CreateProduct = () => {
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); //Estado para mostrar mensaje de confirmacion de creacion
-  const [previewImage, setPreviewImage] = useState(""); //Estado para previsualizacion de imagen subida
-  const [input, setInput] = useState(InitialCreate); //Estado para almacenamiento de datos en estado local
-  const [stock, setStock] = useState(1); // Estado para almacenar el  stock de productos a crear
+  const [previewImage, setPreviewImage] = useState("");
+  const [input, setInput] = useState(InitialCreate);
+  const [stock, setStock] = useState(0);
   const [stockDisponible, setStockDisponible] = useState("");
+  const [initialInput, setInitialInput] = useState(InitialCreate); // Estado para almacenar los valores iniciales
   const dispatch = useDispatch();
 
-  // Función para manejar el cambio en el campo de stock
+  const notify = () =>
+    toast.success("Producto creado con éxito", {
+      position: "bottom-center",
+    });
+
+  const notifyErrorCat = () =>
+    toast.error("Seleccione una categoría", {
+      position: "bottom-center",
+    });
+
+  const notifyErrorGen = () =>
+    toast.error("Seleccione un género", {
+      position: "bottom-center",
+    });
+
   const handleStockChange = (event) => {
-    const nuevaStock = parseInt(event.target.value); // Convertir el valor a un número entero
+    const nuevaStock = parseInt(event.target.value);
     setStockDisponible(nuevaStock);
   };
 
-  //Funcion que captura la data de los inputs y la almacena en el estado local
   const handleChange = (event) => {
     setInput({ ...input, [event.target.name]: event.target.value });
   };
 
-  //Funcion que maneja subida de imagenes y previsualizacion
   const handleImageChange = (event) => {
     const imgFile = event.target.files[0];
     setInput({ ...input, [event.target.name]: event.target.value });
     setPreviewImage(URL.createObjectURL(imgFile));
   };
 
-  //Funcion que limpia los datos de imagenes por subir
   const handleRemoveImage = () => {
     const fileInput = document.getElementById("image");
     fileInput.value = "";
-    setPreviewImage(""); //
-    setInput({ ...input, img: "" });
+    setPreviewImage("");
+    setInput({ ...input, image: "" });
   };
 
-  //Funcion para boton de creacion de producto
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (input.category === "") {
+      notifyErrorCat();
+      return;
+    }
+    if (input.gender === "") {
+      notifyErrorGen();
+      return;
+    }
+
     try {
-      const fileName = input.img.split("\\").pop();
+      const fileName = input.image.split("\\").pop();
 
       const formData = new FormData();
       formData.append("name", input.name);
       formData.append("price", input.price);
       formData.append("gender", input.gender);
       formData.append("description", input.description);
-      formData.append("stock", stockDisponible); //  la cantidad al FormData
+      formData.append("stock", stockDisponible);
       formData.append("category", input.category);
       formData.append("image", fileName);
 
@@ -74,40 +92,21 @@ const CreateProduct = () => {
         formDataObject
       );
 
-      //Actualiza el estado global
       dispatch(fetchProducts());
-
-      // Mostrar el mensaje de éxito
       setShowSuccessMessage(true);
-
-      // Actualiza la stock disponible
       setStockDisponible(stock);
+      notify();
 
       setTimeout(() => {
-        setShowSuccessMessage(false);
-        setInput({
-          ...input,
-          name: "",
-          price: "",
-          description: "",
-          gender: "",
-          stock: "",
-          image: "",
-        });
+        setInput(initialInput); // Restablecer los valores iniciales
         setPreviewImage("");
-        setStock(""); // Restablecer la stocka 1 después de la creación
-        setStockDisponible(1); // Restablecer la stock disponible
-        const gender = document.getElementById("gender");
-        gender.value = "";
-        const category = document.getElementById("category");
-        category.value = "";
-      }, 2000);
+        setStock(1); // Restablecer la stock a 1 después de la creación
+        setStockDisponible(1);
+      }, 1000);
     } catch (error) {
       alert(error.response.data.error);
     }
   };
-
-  //FORMULARIO
 
   return (
     <div className={styles.FormContainer}>
@@ -115,9 +114,6 @@ const CreateProduct = () => {
       <div className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.leftDiv}>
           <div className={styles.InputContainer}>
-        <NavLink to="/home">
-          <ArrowBackIosIcon className={styles.iconGoBack} />
-        </NavLink>
             <label className={styles.inputGropLabel} htmlFor="name">
               NOMBRE :
             </label>
@@ -162,7 +158,7 @@ const CreateProduct = () => {
               type="number"
               id="stock"
               name="stock"
-              value={stockDisponible} // Usa stockDisponible para mostrar
+              value={stockDisponible}
               onChange={handleStockChange}
             />
 
@@ -235,8 +231,8 @@ const CreateProduct = () => {
                 className={styles.customFileInput}
                 type="file"
                 id="image"
-                name="img"
-                value={input.img}
+                name="image"
+                value={input.image}
                 onChange={handleImageChange}
               />
               <button
@@ -246,13 +242,21 @@ const CreateProduct = () => {
               >
                 Crear Producto
               </button>
+              <Toaster
+                toastOptions={{
+                  className: "",
+                  style: {
+                    border: "2px solid #000000",
+                    padding: "10px",
+                    color: "#ffffff",
+                    background: "#000000",
+                  },
+                }}
+              />
             </div>
           </div>
         </div>
       </div>
-      {showSuccessMessage && (
-        <div className="success-modal">¡Producto creado exitosamente!</div>
-      )}
     </div>
   );
 };
