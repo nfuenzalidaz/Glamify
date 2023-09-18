@@ -3,6 +3,7 @@ import styles from './CardList.module.css';
 import Cards from '../Cards/Cards';
 
 const CardList = ({ allProducts }) => {
+
   return (
     <div className={styles.cards}>
       {allProducts.map(

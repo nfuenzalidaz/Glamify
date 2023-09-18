@@ -1,92 +1,100 @@
 @font-face {
-    font-family: 'Adam-Bold';
-    src: url('../../assets/fonts/Adam-Bold.ttf') format('truetype');
+  font-family: 'Adam-Bold';
+  src: url('../../assets/fonts/Adam-Bold.ttf') format('truetype');
 }
 
-
 .MainContainer {
-    background-image: url(../../assets/Background-Landing.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:cover;
-    height: 100vh;
-    overflow: hidden;
-    background-attachment: fixed;
+  background-image: url(../../assets/Background-Landing.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-attachment: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.Elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 53%;
+  padding-top: 200px;
 }
 
 .ButtonsContainer {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 60px;
-    padding-right: 225px;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 50px;
+  padding-left: 145px;
 }
 
 .Button1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 180px;
-    height: 40px;
-    border: 2px solid rgb(0, 0, 0);
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: transparent;
-    margin-right: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    text-decoration: none;
-    color: black;
-    font-family: 'Adam-Bold', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 40px;
+  border: 2px solid rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: transparent;
+  margin-right: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: black;
+  font-family: 'Adam-Bold', sans-serif;
 }
 .Button1:hover {
-    background-color: rgb(0, 0, 0);
-    color: white;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
 .Button2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 180px;
-    height: 40px;
-    border: 2px solid rgb(0, 0, 0);
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: transparent;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    text-decoration: none;
-    color: black;
-    font-family: 'Adam-Bold', sans-serif;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 40px;
+  border: 2px solid rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: black;
+  font-family: 'Adam-Bold', sans-serif;
 }
 
 .Button2:hover {
-    background-color: rgb(0, 0, 0);
-    color: white;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
 .TextContainer {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 310px;
-    padding-right: 230px;
-    font-size: 20px;
+  font-size: 20px;
+  text-align: left;
 }
 
 .Icon {
-    padding-top: 5px;
-    padding-left: 7px;
+  padding-top: 5px;
+  padding-left: 7px;
 }
 
 .socialsContainer {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 50px;
-    padding-right: 220px;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 50px;
+  padding-left: 433px;
 }
 
 .socialButtons {
-    display: flex;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+  display: flex;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
