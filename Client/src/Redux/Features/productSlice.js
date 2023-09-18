@@ -7,6 +7,7 @@ const initialState = {
   loading: false,
   allProducts: [],
   productosFiltrados: [],
+  productDetail: [],
   error: '',
 };
 
@@ -26,6 +27,17 @@ export const searchProducts = createAsyncThunk(
   async (searchString, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`${URL}?name=${searchString}`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const searchProductsById = createAsyncThunk(
+  'product/searchProductsById',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`${URL}/${id}`);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -91,6 +103,7 @@ const productSlice = createSlice({
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.loading = false;
+      state.productDetail = [];
       state.allProducts = action.payload;
       state.productosFiltrados = action.payload;
       state.error = '';
@@ -129,6 +142,19 @@ const productSlice = createSlice({
       state.error = '';
     });
     builder.addCase(searchProducts.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
+
+    builder.addCase(searchProductsById.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(searchProductsById.fulfilled, (state, action) => {
+      state.loading = false;
+      state.productDetail = action.payload;
+      state.error = '';
+    });
+    builder.addCase(searchProductsById.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload.error;
     });
