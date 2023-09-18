@@ -5,6 +5,8 @@ import styles from "./CreateProducts.module.css";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { NavLink } from "react-router-dom";
 
 const InitialCreate = {
   name: "",
@@ -114,6 +116,9 @@ const CreateProduct = () => {
         <div className={styles.leftDiv}>
           <div className={styles.InputContainer}>
             <label className={styles.inputGropLabel} htmlFor="name">
+              <NavLink to="/home">
+                <ArrowBackIosIcon className={styles.iconGoBack} />
+              </NavLink>
               NOMBRE :
             </label>
             <input
@@ -171,9 +176,7 @@ const CreateProduct = () => {
               value={input.category}
               onChange={handleChange}
             >
-              <option value="">
-                ESCOGE UNA OPCION
-              </option>
+              <option value="">ESCOGE UNA OPCION</option>
               <option value="camisa">CAMISAS</option>
               <option value="abrigo">ABRIGOS</option>
               <option value="jeans">JEANS</option>
@@ -190,9 +193,7 @@ const CreateProduct = () => {
               value={input.gender}
               onChange={handleChange}
             >
-              <option value="">
-                ESCOGE UNA OPCION
-              </option>
+              <option value="">ESCOGE UNA OPCION</option>
               <option value="man">HOMBRE</option>
               <option value="woman">MUJER</option>
               <option value="unisex">UNISEX</option>
