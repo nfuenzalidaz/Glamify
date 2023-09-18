@@ -21,7 +21,7 @@ const CreateProduct = () => {
   const [input, setInput] = useState(InitialCreate);
   const [stock, setStock] = useState(0);
   const [stockDisponible, setStockDisponible] = useState("");
-  const [initialInput, setInitialInput] = useState(InitialCreate); // Estado para almacenar los valores iniciales
+  const [initialInput, setInitialInput] = useState(InitialCreate); // Estado para restablecer los valores iniciales
   const dispatch = useDispatch();
 
   const notify = () =>
@@ -93,7 +93,6 @@ const CreateProduct = () => {
       );
 
       dispatch(fetchProducts());
-      setShowSuccessMessage(true);
       setStockDisponible(stock);
       notify();
 
@@ -104,7 +103,7 @@ const CreateProduct = () => {
         setStockDisponible(1);
       }, 1000);
     } catch (error) {
-      alert(error.response.data.error);
+      console.log(error.response.data.error);
     }
   };
 
@@ -172,7 +171,7 @@ const CreateProduct = () => {
               value={input.category}
               onChange={handleChange}
             >
-              <option value="" disabled selected>
+              <option value="">
                 ESCOGE UNA OPCION
               </option>
               <option value="camisa">CAMISAS</option>
@@ -191,7 +190,7 @@ const CreateProduct = () => {
               value={input.gender}
               onChange={handleChange}
             >
-              <option value="" disabled selected>
+              <option value="">
                 ESCOGE UNA OPCION
               </option>
               <option value="man">HOMBRE</option>
