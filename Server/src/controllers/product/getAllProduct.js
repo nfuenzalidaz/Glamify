@@ -9,6 +9,7 @@ const getAllProduct = async () => {
       'image',
       'price',
       'category',
+      'gender',
       'stock',
       'status',
     ],
