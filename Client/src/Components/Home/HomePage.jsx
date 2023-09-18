@@ -5,22 +5,23 @@ import CardList from '../CardList/CardList';
 import Searchbar from '../searchbar/searchbar';
 import NavBar from '../NavBar/NavBar';
 import Filters from '../Filters/Filters';
+import styles from './HomePage.module.css';
 
 const Home = () => {
-  const allProducts = useSelector((state) => state.product.allProducts);
-  const itemsPerPage = 6; // Número de elementos por página
-  const [currentPage, setCurrentPage] = useState(1); // Página actual
+	const allProducts = useSelector((state) => state.product.allProducts);
+	const itemsPerPage = 6; // Número de elementos por página
+	const [currentPage, setCurrentPage] = useState(1); // Página actual
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+	const handlePageChange = (page) => {
+		setCurrentPage(page);
+	};
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentProducts = allProducts.slice(indexOfFirstItem, indexOfLastItem);
+	const indexOfLastItem = currentPage * itemsPerPage;
+	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+	const currentProducts = allProducts.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div>
+    <div className={styles.container}>
       <NavBar />
       <Searchbar />
       <Filters />
