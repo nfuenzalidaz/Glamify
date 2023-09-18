@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import Pagination from '../Pagination/Pagination';
-import CardList from '../CardList/CardList';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Pagination from "../Pagination/Pagination";
+import CardList from "../CardList/CardList";
 import Searchbar from "../searchbar/searchbar";
-import NavBar from '../NavBar/NavBar';
-
+import NavBar from "../NavBar/NavBar";
+import styles from "./HomePage.module.css";
 const Home = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
   const itemsPerPage = 6; // Número de elementos por página
@@ -19,11 +19,15 @@ const Home = () => {
   const currentProducts = allProducts.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div>
-      <NavBar/>
-      <Searchbar/>
+    <div className={styles.container}>
+      <NavBar />
+      <Searchbar />
       <CardList allProducts={currentProducts} />
-      <Pagination totalPages={Math.ceil(allProducts.length / itemsPerPage)} currentPage={currentPage} onPageChange={handlePageChange} />
+      <Pagination
+        totalPages={Math.ceil(allProducts.length / itemsPerPage)}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
