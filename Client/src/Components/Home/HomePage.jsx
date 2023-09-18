@@ -4,7 +4,9 @@ import Pagination from '../Pagination/Pagination';
 import CardList from '../CardList/CardList';
 import Searchbar from '../searchbar/searchbar';
 import NavBar from '../NavBar/NavBar';
+import Filters from '../Filters/Filters';
 import styles from './HomePage.module.css';
+
 const Home = () => {
 	const allProducts = useSelector((state) => state.product.allProducts);
 	const itemsPerPage = 6; // Número de elementos por página
@@ -18,18 +20,19 @@ const Home = () => {
 	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 	const currentProducts = allProducts.slice(indexOfFirstItem, indexOfLastItem);
 
-	return (
-		<div className={styles.container}>
-			<NavBar />
-			<Searchbar />
-			<CardList allProducts={currentProducts} />
-			<Pagination
-				totalPages={Math.ceil(allProducts.length / itemsPerPage)}
-				currentPage={currentPage}
-				onPageChange={handlePageChange}
-			/>
-		</div>
-	);
+  return (
+    <div className={styles.container}>
+      <NavBar />
+      <Searchbar />
+      <Filters />
+      <CardList allProducts={currentProducts} />
+      <Pagination
+        totalPages={Math.ceil(allProducts.length / itemsPerPage)}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
+    </div>
+  );
 };
 
 export default Home;

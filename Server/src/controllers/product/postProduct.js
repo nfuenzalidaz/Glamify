@@ -2,7 +2,7 @@ const { Product } = require("../../db");
 const postProductValidation = require('../../helpers/postProductValidation');
 
 const postProduct = async (name, description, image, price, stock, category, gender) => {
-    console.log(name, description, image, price, stock, category, gender);
+
     
     postProductValidation(name, description, image, price, stock, category, gender);
 
