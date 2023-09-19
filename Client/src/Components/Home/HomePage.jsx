@@ -5,6 +5,8 @@ import CardList from '../CardList/CardList';
 import Searchbar from "../searchbar/searchbar";
 import NavBar from '../NavBar/NavBar';
 
+
+
 const Home = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
   const itemsPerPage = 6; // Número de elementos por página

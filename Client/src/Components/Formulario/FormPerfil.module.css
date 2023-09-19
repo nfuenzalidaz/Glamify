@@ -1,0 +1,40 @@
+.propertyImage {
+    height: 180px;
+    width: 210px;
+    border-radius: 16px;
+  }
+
+
+@media (max-width: 576px) {
+    .propertyImage {
+      height: 250px;
+      width: 290px; 
+    }
+  }
+
+
+
+@media (min-width: 1092px) {
+    .propertyImage {
+      height: 370px; /* Ajusta la altura deseada para pantallas grandes */
+      width: 410px; /* Ajusta el ancho deseado para pantallas grandes */
+    }
+  }
+
+
+.userPropertiesItem {
+    @media (max-width: 576px) {
+      flex-direction: column;
+    }
+  }
+
+.perfilUserName  {
+    position: sticky;
+    top: 0;
+  }
+
+  @media (max-width: 767px) {
+    .perfilUserName {
+      position: static;
+    }
+  }

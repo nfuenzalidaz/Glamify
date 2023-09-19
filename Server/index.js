@@ -1,10 +1,10 @@
-const server = require("./src/app");
-const { conn } = require("./src/db");
+const server = require("./src/app.js");
+const { conn } = require("./src/db.js");
+const port = process.env.PORT || 3001;
 
-const PORT = process.env.PORT;
-
-conn.sync({ force: true }).then(() => {
-  server.listen(PORT, "0.0.0.0", () => {
-    console.log("Servidor escuchando en el puerto:", PORT);
+// Syncing all the models at once.
+conn.sync({ alter: true }).then(() => {
+  server.listen(port, () => {
+    console.log(`listening at ${port}`); // eslint-disable-line no-console
   });
 });
