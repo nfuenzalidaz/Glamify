@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from "./FormPerfil.module.css";
+//import styles from "./FormPerfil.module.css";
 
-function PerfilUser () {
+function FormPerfil () {
     const { id } = useParams();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
@@ -111,4 +111,4 @@ function PerfilUser () {
     );
 }
 
-export default PerfilUser;
+export default FormPerfil;

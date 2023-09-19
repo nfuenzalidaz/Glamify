@@ -5,6 +5,8 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { Link } from "react-router-dom";
 
 const Pagination = ({ totalPages, currentPage, onPageChange }) => {
+  if (totalPages < 1) return null;
+
   return (
     <div className={styles.pageCntnr}>
       {currentPage !== 1 && (

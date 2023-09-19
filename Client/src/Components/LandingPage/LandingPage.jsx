@@ -1,12 +1,9 @@
-import styles from "./LandingPage.module.css";
+import styles from './LandingPage.module.css';
 import CallMadeIcon from '@mui/icons-material/CallMade';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Link } from "react-router-dom";
-import React from 'react';
-
-
 
 
 const LandingPage = () => {
@@ -26,7 +23,6 @@ const LandingPage = () => {
       <div className={styles.ButtonsContainer}>
         <Link to="/login" className={styles.Button1}>INICIAR SESION</Link>
         <Link to="/home" className={styles.Button2}> VER CATALOGO <span className={styles.Icon}><CallMadeIcon/></span></Link>
-        <Link to="/formperfil" className={styles.Button3}>Crear Usuario</Link>
       </div>
       <div className={styles.socialsContainer}>
         <button className={styles.socialButtons}> <InstagramIcon/>  </button>
