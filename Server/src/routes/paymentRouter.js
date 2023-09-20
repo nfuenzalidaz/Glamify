@@ -7,7 +7,7 @@ paymentRouter.post('/create-order', createOrder);
 
 // Pago exitoso
 paymentRouter.get('/success', (req, res) => {
-
+    res.redirect("http://localhost:5173/home");
 });
 
 // Pago rechazado
