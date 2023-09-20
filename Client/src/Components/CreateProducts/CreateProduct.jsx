@@ -19,9 +19,8 @@ const InitialCreate = {
 const CreateProduct = () => {
   const [previewImage, setPreviewImage] = useState("");
   const [input, setInput] = useState(InitialCreate);
-  const [stock, setStock] = useState(1);
+  const [stock, setStock] = useState(0);
   const [stockDisponible, setStockDisponible] = useState("");
-  // const [initialInput, setInitialInput] = useState(InitialCreate); // Estado para restablecer los valores iniciales
   const dispatch = useDispatch();
 
   const notify = () =>
@@ -51,7 +50,7 @@ const CreateProduct = () => {
   const handleImageChange = (event) => {
     // if (event.target.name === "image") {
       setInput({ ...input, [event.target.name]: event.target.files[0] });
-      console.log(event.target.files[0]);
+
       setPreviewImage(URL.createObjectURL(event.target.files[0]));
     // }
   };
@@ -84,11 +83,8 @@ const CreateProduct = () => {
       formData.append("stock", stockDisponible);
       formData.append("category", input.category);
       formData.append("image", input.image);
-      console.log(input.image);
-
+   
       const formDataObject = Object.fromEntries(formData);
-      console.log(formData);
-      console.log(formDataObject);
 
       const response = await axios.post(
         `http://localhost:3001/product`, formData

@@ -3,8 +3,6 @@ const { Product } = require("../../db");
 
 const postProduct = async (name, description, imagenURL, price, stock, category, gender) => {
 
-    
-    // postProductValidation(name, description, image, price, stock, category, gender);
 
     const newProduct = await Product.create({
         name,
