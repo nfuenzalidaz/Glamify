@@ -5,6 +5,8 @@ import styles from "./CreateProducts.module.css";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { NavLink } from "react-router-dom";
 
 const InitialCreate = {
   name: "",
@@ -121,6 +123,9 @@ const CreateProduct = () => {
         <div className={styles.leftDiv}>
           <div className={styles.InputContainer}>
             <label className={styles.inputGropLabel} htmlFor="name">
+              <NavLink to="/home">
+                <ArrowBackIosIcon className={styles.iconGoBack} />
+              </NavLink>
               NOMBRE :
             </label>
             <input
