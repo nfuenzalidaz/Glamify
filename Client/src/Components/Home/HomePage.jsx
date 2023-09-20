@@ -4,8 +4,10 @@ import Pagination from '../Pagination/Pagination';
 import CardList from '../CardList/CardList';
 import Searchbar from '../searchbar/searchbar';
 import NavBar from '../NavBar/NavBar';
+import Filters from '../Filters/Filters';
 import styles from './HomePage.module.css';
 import usePagination from '../../hooks/usePagination';
+
 const Home = () => {
 	const allProducts = useSelector((state) => state.product.allProducts);
 	
@@ -15,6 +17,7 @@ const Home = () => {
 		<div className={styles.container}>
 			<NavBar />
 			<Searchbar />
+			<Filters />
 			<CardList allProducts={currentItems} />
 			<Pagination
 				totalPages={totalPages}

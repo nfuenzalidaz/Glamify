@@ -226,3 +226,9 @@
   position: absolute;
 }
 
+.iconGoBack{
+  padding-right: 350px;
+  text-decoration: none;
+  outline: none;
+  color: black;
+}
