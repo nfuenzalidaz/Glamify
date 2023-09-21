@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 const purchaseModel = (sequelize) => {
     sequelize.define(
-        'purchase',
+        'Purchase',
         {
             id: {
                 type: DataTypes.UUID,
