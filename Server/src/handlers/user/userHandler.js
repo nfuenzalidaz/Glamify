@@ -3,7 +3,7 @@ const {
     getAllUsersController,
     getUserByIdController,
     deleteUserController,
-} = require('../../controllers/user/userControllers');
+} = require('../../controllers/user/userController');
 
 const createUser = async (req, res) => {
     const { name, email, role } = req.body;
