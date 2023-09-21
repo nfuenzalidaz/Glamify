@@ -10,11 +10,11 @@ module.exports = (sequelize) => {
 				primaryKey: true,
 				allowNull: false,
 			},
-			nombre: {
+			name: {
 				type: DataTypes.STRING,
 				allowNull: false,
 			},
-			telefono: {
+			phone: {
 				type: DataTypes.BIGINT,
 				allowNull: false,
 			},
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
 					},
 				},
 			},
-			estado: {
+			state: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: true,
 			},
