@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 	sequelize.define(
-		'Product',
+		'Cliente',
 		{
 			id: {
 				type: DataTypes.UUID,
@@ -10,41 +10,29 @@ module.exports = (sequelize) => {
 				primaryKey: true,
 				allowNull: false,
 			},
-			name: {
+			nombre: {
 				type: DataTypes.STRING,
 				allowNull: false,
 			},
-			description: {
+			telefono: {
+				type: DataTypes.BIGINT,
+				allowNull: false,
+			},
+			dni: {
 				type: DataTypes.STRING,
 				allowNull: false,
 			},
-			image: {
+			email: {
 				type: DataTypes.STRING,
 				allowNull: false,
+				unique: true,
+				validate: {
+					isEmail: {
+						msg: 'Email invalido',
+					},
+				},
 			},
-			price: {
-				type: DataTypes.FLOAT,
-				allowNull: false,
-			},
-			category: {
-				type: DataTypes.ENUM(
-					'calzado',
-					'jeans',
-					'sudadera',
-					'camisa',
-					'abrigo'
-				),
-				allowNull: false,
-			},
-			gender: {
-				type: DataTypes.ENUM('man', 'woman', 'unisex', 'accesory'),
-				allowNull: false,
-			},
-			stock: {
-				type: DataTypes.INTEGER,
-				defaultValue: 0,
-			},
-			status: {
+			estado: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: true,
 			},
