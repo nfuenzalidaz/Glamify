@@ -5,25 +5,21 @@ import Style from './Searchbar.module.css';
 import SearchIcon from '@mui/icons-material/Search';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const Searchbar = (data) => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
+  const itemQuantity = useSelector((state) => state.cart.itemQuantity);
 
   const searchHandler = (event) => {
     const value = event.target.value;
-    // setSearch(event.target.value);
-    // console.log(search);
     dispatch(searchProducts(value));
   };
 
   const submitHandler = () => {
-    //   console.log(search);
-    //   const searchString = String(search);
-    //   console.log(String(search));
-    //   dispatch(searchProducts(searchString));
   };
-  // console.log(searchProducts);
   return (
     <div className={Style.searchcontainer}>
       <form className={Style.form}>
@@ -32,7 +28,7 @@ export const Searchbar = (data) => {
         </button>
         <input
           className={Style.input}
-          placeholder='BUSCAR...'
+          placeholder='BUSCAR PRODUCTOS...'
           type='text'
           onChange={searchHandler}
         />
@@ -42,7 +38,12 @@ export const Searchbar = (data) => {
           <BookmarkBorderIcon />
         </button>
         <button className={Style.carrito}>
-          <ShoppingCartOutlinedIcon />
+          <Link to='/cart' className={Style.link}>
+            <div>
+            <h1>{itemQuantity}</h1>
+            <ShoppingCartOutlinedIcon />
+            </div>
+          </Link>
         </button>
       </div>
     </div>
