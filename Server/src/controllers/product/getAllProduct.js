@@ -12,8 +12,13 @@ const getAllProduct = async () => {
       'stock',
       'status',
     ],
+    where: {
+      status: 'A', // Solo productos activos
+    }
   });
+
   if (product.length === 0) throw new Error('No hay productos para mostrar.');
+
   return product;
 };
 

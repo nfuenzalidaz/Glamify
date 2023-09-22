@@ -48,6 +48,11 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
+      estado: {
+        type: DataTypes.ENUM('A', 'B'), // A: Activo, B: Borrado
+        allowNull: false,
+        defaultValue: 'A', // Por defecto, un producto se considera activo
+      },
     },
     { timestamps: false, freezeTableName: true }
   );
