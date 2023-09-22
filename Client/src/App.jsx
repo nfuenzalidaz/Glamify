@@ -6,6 +6,8 @@ import { fetchProducts } from '../src/Redux/Features/productSlice.js';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import ProductDetail from "./Components/DetailPage/ProductDetail.jsx";
+import ShoppingCart from "./Components/ShoppingCart/ShoppingCart.jsx";
+import Profile from "./Components/Profile/Profile.jsx";
 import axios from "axios";
 import WomanProduct from "./Components/Woman/WomanProduct.jsx";
 import ManProduct from "./Components/Man/ManProduct.jsx";
@@ -26,6 +28,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/product/:id" element={<ProductDetail />}/>
         <Route path="/create" element={<CreateProducts />} />
         <Route path="/hombre" element={<ManProduct />} />
