@@ -28,7 +28,7 @@ const createOrder = async (req, res) => {
             failure: "http://localhost:3001/payment/failure",
             pending: "http://localhost:3001/payment/pending"
         },
-        notification_url: "https://7ef8-181-12-16-42.ngrok.io/payment/webhook",
+        notification_url: "https://f5ec-181-12-19-2.ngrok.io/payment/webhook",
     };
 
     mercadopago.preferences
@@ -41,28 +41,10 @@ const createOrder = async (req, res) => {
 const webhook = async (req, res) => {
     const payment = req.query;
     try {
-        if (payment.type === 'payment' && payment.status === 'approved') {
+        if (payment.type === 'payment') {
             const data = await mercadopago.payment.findById(payment['data.id']);
             console.log(data);
         }
-
-        // Esta resolucion es cuando se haga las relaciones de Product y user
-        /*
-        // Actualiza el modelo Product (por ejemplo, reduce el stock)
-        const product = await Product.findByPk(payment.productId);
-        if (product) {
-            product.stock -= payment.quantity;
-            await product.save();
-        }
-
-        // Actualiza el modelo User (por ejemplo, registra la compra en el historial)
-        const user = await User.findByPk(payment.userId);
-        if (user) {
-            user.addPurchase(product, { through: { quantity: payment.quantity } });
-        }
-
-        console.log('Compra registrada con éxito');
-        */
 
         res.status(204).send('Procesando pago...');
     } catch (error) {

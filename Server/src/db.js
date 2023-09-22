@@ -40,6 +40,11 @@ let capsEntries = entries.map((entry) => [
 //extraemos los modelos
 sequelize.models = Object.fromEntries(capsEntries);
 
+const { Product, Review } = sequelize.models;
+
+Product.hasMany(Review);
+Review.belongsTo(Product);
+
 module.exports = {
     ...sequelize.models,
     conn: sequelize,

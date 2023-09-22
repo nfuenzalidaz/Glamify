@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { IoClose } from "react-icons/io5";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import styles from "./NavBar.module.css";
 import glamify from "../../assets/Glamify-logo-negro.png";
 import { useState } from "react";
@@ -42,7 +42,7 @@ const NavBar = () => {
       >
         {isOpen && (
           <div className={styles.closeButton} onClick={toggleMenu}>
-            <IoClose className={styles.closeIcon} />
+            <CloseIcon className={styles.closeIcon} fontSize="large"/>
           </div>
         )}
 
@@ -63,7 +63,7 @@ const NavBar = () => {
         </NavLink>
       </div>
       <div className={styles.hamburguerIcon} onClick={toggleMenu}>
-        <GiHamburgerMenu className={styles.menuIcon} />
+        <MenuIcon fontSize="inherit" />
       </div>
       <div className={styles.footerText}>{textSection}</div>
     </div>
