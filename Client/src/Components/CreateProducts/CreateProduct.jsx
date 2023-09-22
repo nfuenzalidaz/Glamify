@@ -110,7 +110,7 @@ const CreateProduct = () => {
         setPreviewImage("");
         setStock(1); // Restablecer la stock a 1 después de la creación
         setStockDisponible(1);
-      }, 1000);
+      }, );
     } catch (error) {
       console.log(error.response.data);
     }
