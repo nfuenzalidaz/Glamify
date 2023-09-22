@@ -1,9 +1,8 @@
-const {
-    createUserController,
-    getAllUsersController,
-    getUserByIdController,
-    deleteUserController,
-} = require('../../controllers/user/userControllers');
+const {createUserController} = require('../../controllers/user/postUser');
+const {getAllUsersController} = require('../../controllers/user/getAllUser');
+const {getUserByIdController} = require('../../controllers/user/getUserById');
+const {deleteUserController} = require('../../controllers/user/deleteUser');
+
 
 const createUser = async (req, res) => {
     const { name, email, role } = req.body;

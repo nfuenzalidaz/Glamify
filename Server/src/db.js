@@ -45,13 +45,21 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Product, User, Purchase } = sequelize.models;
 
-// Relación Product - Purchase//CHEQUEAR LUEGO
-Product.hasMany(Purchase);
-Purchase.belongsTo(Product);
+// Relación User - Review
+User.hasMany(Review);
+Review.belongsTo(User);
 
-// Relación User - Purchase// ESTÁ BIEN
+// Relación Product - Review
+Product.hasMany(Review);
+Review.belongsTo(Product);
+
+// Relación User - Purchase
 User.hasMany(Purchase);
 Purchase.belongsTo(User);
+
+// Relación Product - Purchase
+Product.hasMany(Purchase);
+Purchase.belongsTo(Product);
 
 module.exports = {
     ...sequelize.models,

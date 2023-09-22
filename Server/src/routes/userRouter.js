@@ -5,7 +5,6 @@ const {
     getUserById,
     deleteUser,
 } = require('../handlers/user/userHandlers');
-const postProductHandler = require('../handlers/product/postProductHandler');
 
 const userRouter = Router();
 
