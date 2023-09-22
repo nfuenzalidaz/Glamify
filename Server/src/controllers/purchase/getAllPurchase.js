@@ -1,4 +1,4 @@
-const { Purchase } = require('../db');
+const { Purchase } = require('../../db');
 
 const getPurchaseController = async (id) => {
     try {

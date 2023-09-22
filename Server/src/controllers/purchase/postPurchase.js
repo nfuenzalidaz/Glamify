@@ -1,4 +1,4 @@
-const { Product, User, Purchase } = require('../db');
+const { Product, User, Purchase } = require('../../db');
 
 // Función para crear una compra
 const createPurchaseController = async (purchases) => {
