@@ -3,7 +3,7 @@ const { Product, User, Review } = require('../../db');
 const createReviewController = async (rating, comment, productId, userId) => {
     const user = await User.findByPk(userId);
     const product = await Product.findByPk(productId);
-    if (!user && !product) {
+    if (!user || !product) {
         throw new Error('User not found or product not found')
     }
 
