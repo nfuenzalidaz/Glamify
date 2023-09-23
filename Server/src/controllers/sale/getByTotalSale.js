@@ -1,7 +1,7 @@
 const { Sale } = require('../../db');
 const { Op } = require('sequelize');
 
-const getSaleByTotalSale = async (totalSale) => {
+const getByTotalSale = async (totalSale) => {
   const data = await Sale.findAll({
     where: { total_sale: { [Op.eq]: totalSale } },
   });
@@ -10,4 +10,4 @@ const getSaleByTotalSale = async (totalSale) => {
   return [...data];
 };
 
-module.exports = getSaleByTotalSale;
+module.exports = getByTotalSale;
