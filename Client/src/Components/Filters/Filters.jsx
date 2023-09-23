@@ -61,7 +61,7 @@ const Filters = () => {
         <option value='precioMin'>Menor Precio</option>
       </select>
       <button className={styles.buttonReset} onClick={handleReset}>
-        Restablecer Ordenamiento
+        RESTABLECER FILTROS
       </button>
     </div>
   );
