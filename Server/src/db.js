@@ -43,7 +43,7 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 // Relaciones
 
-const { Product, User, Purchase } = sequelize.models;
+const { Product, User, Purchase, Review } = sequelize.models;
 
 // Relación User - Review
 User.hasMany(Review);

@@ -17,11 +17,11 @@ const Review = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      active: {
+      status: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
-      name: {
+      title: {
         type: DataTypes.STRING,
         allowNull: false,
       },
