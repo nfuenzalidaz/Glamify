@@ -1,11 +1,11 @@
-const { Sail } = require("../../db");
+const { Sale } = require("../../db");
 
-const getAllSail = async () => {
-  const sails = await Sail.findAll({
+const getAllSale = async () => {
+  const sales = await Sale.findAll({
     attributes: ["id", "date", "total_sale", "id_mercado_pago"],
   });
-  if (sails.length === 0) throw new Error("No hay ventas para mostrar.");
-  return sails;
+  if (sales.length === 0) throw new Error("No hay ventas para mostrar.");
+  return sales;
 };
 
-module.exports = getAllSail;
+module.exports = getAllSale;
