@@ -1,13 +1,13 @@
 const { Review } = require('../../db');
 
-const updateReviewController = async (id, raiting, comment) => {
+const updateReviewController = async (id, rating, comment) => {
     const review = await Review.findByPk(id);
 
     if (!review) {
         throw new Error('Review not found');
     }
 
-    review.raiting = raiting;
+    review.rating = rating;
     review.comment = comment;
 
     await review.save();
