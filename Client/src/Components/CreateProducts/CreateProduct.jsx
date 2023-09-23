@@ -23,7 +23,6 @@ const CreateProduct = () => {
   const [input, setInput] = useState(InitialCreate);
   const [stock, setStock] = useState(0);
   const [stockDisponible, setStockDisponible] = useState("");
-  const [initialInput, setInitialInput] = useState(InitialCreate); // Estado para restablecer los valores iniciales
   const dispatch = useDispatch();
 
   const notify = () =>
@@ -51,9 +50,11 @@ const CreateProduct = () => {
   };
 
   const handleImageChange = (event) => {
-    const imgFile = event.target.files[0];
-    setInput({ ...input, [event.target.name]: event.target.value });
-    setPreviewImage(URL.createObjectURL(imgFile));
+    // if (event.target.name === "image") {
+      setInput({ ...input, [event.target.name]: event.target.files[0] });
+
+      setPreviewImage(URL.createObjectURL(event.target.files[0]));
+    // }
   };
 
   const handleRemoveImage = () => {
@@ -76,8 +77,6 @@ const CreateProduct = () => {
     }
 
     try {
-      const fileName = input.image.split("\\").pop();
-
       const formData = new FormData();
       formData.append("name", input.name);
       formData.append("price", input.price);
@@ -85,13 +84,12 @@ const CreateProduct = () => {
       formData.append("description", input.description);
       formData.append("stock", stockDisponible);
       formData.append("category", input.category);
-      formData.append("image", fileName);
-
+      formData.append("image", input.image);
+   
       const formDataObject = Object.fromEntries(formData);
 
       const response = await axios.post(
-        `http://localhost:3001/product`,
-        formDataObject
+        `http://localhost:3001/product`, formData
       );
 
       dispatch(fetchProducts());
@@ -99,13 +97,22 @@ const CreateProduct = () => {
       notify();
 
       setTimeout(() => {
-        setInput(initialInput); // Restablecer los valores iniciales
+        setInput({
+          ...input,
+          name: "",
+          price: "",
+          gender: "",
+          description: "",
+          stock: "",
+          category: "",
+          image: "",
+        }); // Restablecer los valores iniciales
         setPreviewImage("");
         setStock(1); // Restablecer la stock a 1 después de la creación
         setStockDisponible(1);
-      }, 1000);
+      }, );
     } catch (error) {
-      console.log(error.response.data.error);
+      console.log(error.response.data);
     }
   };
 
@@ -232,7 +239,7 @@ const CreateProduct = () => {
                 type="file"
                 id="image"
                 name="image"
-                value={input.image}
+                accept="image/*"
                 onChange={handleImageChange}
               />
               <button

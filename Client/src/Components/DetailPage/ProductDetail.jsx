@@ -29,8 +29,8 @@ const ProductDetail = () => {
       <div className={styles.ImageContainer}>
         <img
           className={styles.imageSize}
-          src={`../${products.image}`}
-          alt="image"
+          src={products.image}
+          alt={products.image}
         />
       </div>
       <div className={styles.DetailsText}>
