@@ -6,7 +6,12 @@ import { fetchProducts } from '../src/Redux/Features/productSlice.js';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import ProductDetail from "./Components/DetailPage/ProductDetail.jsx";
+import ShoppingCart from "./Components/ShoppingCart/ShoppingCart.jsx";
+import Profile from "./Components/Profile/Profile.jsx";
 import axios from "axios";
+import WomanProduct from "./Components/Woman/WomanProduct.jsx";
+import ManProduct from "./Components/Man/ManProduct.jsx";
+import AccesoryProduct from "./Components/Accesories/AccesoryProduct.jsx";
 
 axios.defaults.baseURL="http://localhost:3001";
 
@@ -23,11 +28,13 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/product/:id" element={<ProductDetail />}/>
         <Route path="/create" element={<CreateProducts />} />
-        <Route path="/hombre" element={<h1>Hombre</h1>} />
-        <Route path="/mujer" element={<h1>Mujer</h1>} />
-        <Route path="/accesorios" element={<h1>Accesorios</h1>} />
+        <Route path="/hombre" element={<ManProduct />} />
+        <Route path="/mujer" element={<WomanProduct />} />
+        <Route path="/accesorios" element={<AccesoryProduct />} />
       </Routes>
     </div>
 

@@ -7,12 +7,14 @@ const path = require('path');
 require('dotenv').config();
 
 //obtenemos las variables del env
-const { DB_HOST } = process.env;
-
+const {
+    DB_HOST,
+} = process.env;
+  
 const sequelize = new Sequelize(DB_HOST, {
 	logging: false, // oculta la info de cada query que se ejecuta desde postgres
 	native: false, // ~30% mejora de rendimiento
-});
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -38,6 +40,25 @@ let capsEntries = entries.map((entry) => [
 
 //extraemos los modelos
 sequelize.models = Object.fromEntries(capsEntries);
+// Relaciones
+
+const { Product, User, Purchase, Review } = sequelize.models;
+
+// Relación User - Review
+User.hasMany(Review);
+Review.belongsTo(User);
+
+// Relación Product - Review
+Product.hasMany(Review);
+Review.belongsTo(Product);
+
+// Relación User - Purchase
+User.hasMany(Purchase);
+Purchase.belongsTo(User);
+
+// Relación Product - Purchase
+Product.hasMany(Purchase);
+Purchase.belongsTo(Product);
 
 const { Sale, Customer, Product } = sequelize.models;
 // Importar el modelo Producto
