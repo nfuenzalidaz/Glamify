@@ -1,8 +1,8 @@
-const { Sail } = require('../../db');
+const { Sale } = require('../../db');
 const { Op } = require('sequelize');
 
-const getSailByTotalSail = async (totalSale) => {
-  const data = await Sail.findAll({
+const getSaleByTotalSale = async (totalSale) => {
+  const data = await Sale.findAll({
     where: { total_sale: { [Op.eq]: totalSale } },
   });
   if (data.length === 0) throw new Error(`No se encontraron registros con el total de venta: ${totalSale}.`);
@@ -10,4 +10,4 @@ const getSailByTotalSail = async (totalSale) => {
   return [...data];
 };
 
-module.exports = getSailByTotalSail;
+module.exports = getSaleByTotalSale;
