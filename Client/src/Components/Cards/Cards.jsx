@@ -4,9 +4,13 @@ import styles from "./Cards.module.css";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../../Redux/Features/cartSlice";
 
 const Cards = ({ id, name, description, image, price, category, stock }) => {
-  // console.log(image);
+
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.priceIconsContainer}>
@@ -14,10 +18,11 @@ const Cards = ({ id, name, description, image, price, category, stock }) => {
         <div className={styles.iconsContainer}>
 
           <BookmarkBorderIcon className={styles.icon} titleAccess='Guardar' />
+          <button onClick={() => dispatch(addItemToCart({id, name, price, stock, image, description}))}>
           <ShoppingCartOutlinedIcon
             className={styles.icon}
-            titleAccess='Agregar al carrito'
-          />
+            titleAccess='Agregar al carrito'/>
+            </button>
         </div>
       </div>
       <div className={styles.imageContainer}>

@@ -4,8 +4,10 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const LandingPage = () => {
+  const { loginWithRedirect } = useAuth0();
   return (
     <div className={styles.MainContainer}>
       <div className={styles.Elements}>
@@ -21,12 +23,11 @@ const LandingPage = () => {
           </p>
         </div>
         <div className={styles.ButtonsContainer}>
-          <Link to='/login' className={styles.Button1}>
+          <Link onClick={()=>loginWithRedirect()} to='/login' className={styles.Button1}>
             INICIAR SESION
           </Link>
           <Link to='/home' className={styles.Button2}>
-            {' '}
-            VER CATALOGO{' '}
+            VER CATALOGO
             <span className={styles.Icon}>
               <CallMadeIcon />
             </span>
@@ -34,16 +35,13 @@ const LandingPage = () => {
         </div>
         <div className={styles.socialsContainer}>
           <button className={styles.socialButtons}>
-            {' '}
-            <InstagramIcon />{' '}
+            <InstagramIcon />
           </button>
           <button className={styles.socialButtons}>
-            {' '}
-            <TwitterIcon />{' '}
+            <TwitterIcon />
           </button>
           <button className={styles.socialButtons}>
-            {' '}
-            <FacebookIcon />{' '}
+            <FacebookIcon />
           </button>
         </div>
       </div>
