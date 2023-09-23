@@ -52,9 +52,9 @@ const deleteReview = async (req, res) => {
 };
 const updateReview = async (req, res) => {
     const { id } = req.params
-    const { raiting, comment } = req.body
+    const { rating, comment } = req.body
     try {
-        const review = await updateReviewController(id, raiting, comment);
+        const review = await updateReviewController(id, rating, comment);
         res.status(200).json(review);
     } catch (error) {
         res.status(500).json({ error: error.message });
