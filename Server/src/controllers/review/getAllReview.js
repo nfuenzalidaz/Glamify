@@ -1,4 +1,4 @@
-const { Review } = require('../db');
+const { Review } = require('../../db');
 
 const getAllReviewController = async () => {
     try {
