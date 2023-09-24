@@ -13,7 +13,7 @@ import WomanProduct from "./Components/Woman/WomanProduct.jsx";
 import ManProduct from "./Components/Man/ManProduct.jsx";
 import AccesoryProduct from "./Components/Accesories/AccesoryProduct.jsx";
 
-axios.defaults.baseURL="http://localhost:3001";
+axios.defaults.baseURL=import.meta.env.VITE_BACK_URL;
 
 function App() {
   const dispatch = useDispatch();
