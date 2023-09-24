@@ -1,21 +1,51 @@
-const { Product, User, Review } = require('../../db');
+const { Product, User, Review, Purchase } = require('../../db');
 
 const createReviewController = async (rating, comment, productId, userId) => {
-    const user = await User.findByPk(userId);
+  try {
     const product = await Product.findByPk(productId);
-    if (!user || !product) {
-        throw new Error('User not found or product not found')
+    const user = await User.findByPk(userId);
+
+    if (!product || !user) {
+      throw new Error('The product or user does not exist');
+    }
+
+    const existingReview = await Review.findOne({
+      where: {
+        productId,
+        userId,
+      },
+    });
+
+    if (existingReview) {
+      throw new Error('The user can only send a single review per product');
+    }
+
+    const purchase = await Purchase.findOne({
+      where: {
+        productId,
+        userId,
+      },
+    });
+
+    if (!purchase) {
+      throw new Error('The user must buy the product before making a review');
     }
 
     const review = await Review.create({
-        rating,
-        comment,
-        productId,
-        userId
+      rating,
+      comment,
+      name: user.name,
+      image: user.image,
     });
 
-    await user.addReview(review);
-    await product.addReview(review);
+    await review.setUser(user);
+    await review.setProduct(product);
+
+    return review;
+  } catch (error) {
+    console.log(error);
+  }
+
 };
 
 module.exports = { createReviewController };
