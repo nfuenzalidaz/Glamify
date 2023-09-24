@@ -153,7 +153,6 @@
 .previewImage {
   width: 450px;
   height: 450px;
-  top: 55px;
 }
 
 .ButtonsContainer {
@@ -216,6 +215,7 @@
 .divImage {
   height: auto;
   position: absolute;
+  top: 55px;
 }
 
 .iconGoBack {
