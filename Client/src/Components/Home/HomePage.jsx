@@ -1,11 +1,12 @@
-import { useSelector } from "react-redux";
-import Pagination from "../Pagination/Pagination";
-import CardList from "../CardList/CardList";
-import Searchbar from "../searchbar/searchbar";
-import NavBar from "../NavBar/NavBar";
-import Filters from "../Filters/Filters";
-import styles from "./HomePage.module.css";
-import usePagination from "../../hooks/usePagination";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import Pagination from '../Pagination/Pagination';
+import CardList from '../CardList/CardList';
+import Searchbar from '../Searchbar/Searchbar';
+import NavBar from '../NavBar/NavBar';
+import Filters from '../Filters/Filters';
+import styles from './HomePage.module.css';
+import usePagination from '../../Hooks/usePagination';
 
 const Home = () => {
   const allProducts = useSelector((state) => state.product.allProducts);

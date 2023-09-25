@@ -1,7 +1,7 @@
-import { Routes, Route, useParams } from "react-router-dom";
-import LandingPage from './Components/LandingPage/LandingPage.jsx'
-import HomePage from "./Components/Home/HomePage.jsx";
-import CreateProducts from "./Components/CreateProducts/CreateProduct.jsx";
+import { Routes, Route, useParams } from 'react-router-dom';
+import LandingPage from './Components/LandingPage/LandingPage.jsx';
+import HomePage from './Components/Home/HomePage.jsx';
+import CreateProducts from './Components/CreateProducts/CreateProduct.jsx';
 import { fetchProducts } from '../src/Redux/Features/productSlice.js';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ import ManProduct from "./Components/Man/ManProduct.jsx";
 import AccesoryProduct from "./Components/Accesories/AccesoryProduct.jsx";
 import Logged from "./Components/Logged/Logged.jsx";
 
-axios.defaults.baseURL="http://localhost:3001";
+axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
 
 function App() {
   const dispatch = useDispatch();
@@ -39,8 +39,7 @@ function App() {
         <Route path="/accesorios" element={<AccesoryProduct />} />
       </Routes>
     </div>
-
-  )
+  );
 }
 
-export default App
+export default App;
