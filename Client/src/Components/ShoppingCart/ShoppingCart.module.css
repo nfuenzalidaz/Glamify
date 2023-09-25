@@ -149,3 +149,9 @@
     background-color: rgb(0, 0, 0);
     color: white;
 }
+
+.buttonPay[disabled] {
+    opacity: 0.5;
+    background-color: gray;
+    cursor: not-allowed;
+  }

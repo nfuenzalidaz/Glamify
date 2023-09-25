@@ -19,7 +19,7 @@ const ShoppingCart = () => {
     event.preventDefault();
 
     if (cartItems.length === 0) {
-
+      return;
     }
 
     const response = axios.post('/payment/create-order', cart).then((res) => {
@@ -67,7 +67,7 @@ const ShoppingCart = () => {
       ))}
       <div className={styles.total}>
         <h2>TOTAL ${cart.totalPrice}</h2>
-      <button className={styles.buttonPay}onClick={handlePay}>PAGAR</button>
+      <button className={styles.buttonPay}onClick={handlePay} disabled={cartItems.length === 0} >PAGAR</button>
       </div>
     </div>
   );
