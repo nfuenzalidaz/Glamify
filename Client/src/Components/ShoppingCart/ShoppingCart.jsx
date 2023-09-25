@@ -6,6 +6,9 @@ import {
   clearCart,
 } from '../../Redux/Features/cartSlice';
 import styles from './ShoppingCart.module.css';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios';
@@ -14,6 +17,7 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
   const cart = useSelector((state) => state.cart);
+  const { user, isAuthenticated } = useAuth0();
 
   const handlePay = () => {
     event.preventDefault();
@@ -22,10 +26,10 @@ const ShoppingCart = () => {
       return;
     }
 
-    const response = axios.post('/payment/create-order', cart).then((res) => {
-      window.location.href = res.data.init_point;
-    });
-  };
+    const response = axios
+      .post('/payment/create-order', { user, cart })
+      .then((res) => (window.location.href = res.data.init_point));
+    };
 
   return (
     <div className={styles.items}>
