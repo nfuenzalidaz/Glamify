@@ -89,7 +89,7 @@ const CreateProduct = () => {
       const formDataObject = Object.fromEntries(formData);
 
       const response = await axios.post(
-        `http://localhost:3001/product`,
+        `/product`,
         formData
       );
 

@@ -54,6 +54,6 @@ module.exports = (sequelize) => {
         defaultValue: 'A', // Por defecto, un producto se considera activo
       },
     },
-    { timestamps: false, freezeTableName: true }
+    { timestamps: false }
   );
 };
