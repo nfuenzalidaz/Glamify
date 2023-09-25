@@ -7,7 +7,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const youtubeVideoLink = 'https://www.youtube.com/watch?v=aVPMBw3rsuQ&rel=0';
+const youtubeVideoLink = 'https://youtu.be/kf3yVHJ4WVw';
 const facebookPageLink = 'https://www.facebook.com/?locale=es_LA';
 const twitterLoginLink = 'https://twitter.com/iniciarsesion?lang=es';
 const instagramLoginLink = 'https://www.instagram.com/accounts/login/';
