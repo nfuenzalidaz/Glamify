@@ -7,10 +7,6 @@ const purchaseModel = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    userId: {
-      type: DataTypes.UUID,
-      allowNull: false,
-    },
     mpId: {
       type: DataTypes.STRING,
       allowNull: false,

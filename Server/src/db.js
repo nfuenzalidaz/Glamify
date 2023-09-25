@@ -43,15 +43,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Product, User, Purchase, Review } = sequelize.models;
 
 // Relación User - Review
-User.hasMany(Review, { foreignKey: 'userId' });
+User.hasMany(Review);
 Review.belongsTo(User);
 
 // Relación Product - Review
-Product.hasMany(Review, { foreignKey: 'productId' });
+Product.hasMany(Review);
 Review.belongsTo(Product);
 
 // Relación User - Purchase
-User.hasMany(Purchase, { foreignKey: 'userId' });
+User.hasMany(Purchase);
 Purchase.belongsTo(User);
 
 // Relación Product - Purchase
