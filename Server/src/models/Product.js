@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
           'sudadera',
           'camisa',
           'abrigo',
-          'accesory'
+          'accesorio'
         ),
         allowNull: false,
       },
