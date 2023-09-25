@@ -5,7 +5,7 @@ import Searchbar from "../Searchbar/Searchbar";
 import NavBar from "../NavBar/NavBar";
 import Filters from "../Filters/Filters";
 import styles from "./ManProduct.module.css";
-import usePagination from "../../hooks/usePagination";
+import usePagination from "../../Hooks/usePagination";
 
 const Man = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
