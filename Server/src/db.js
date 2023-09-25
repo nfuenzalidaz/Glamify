@@ -43,21 +43,21 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Product, User, Purchase, Review } = sequelize.models;
 
 // Relación User - Review
-User.hasMany(Review);
+User.hasMany(Review, { foreignKey: 'userId' });
 Review.belongsTo(User);
 
 // Relación Product - Review
-Product.hasMany(Review);
+Product.hasMany(Review, { foreignKey: 'productId' });
 Review.belongsTo(Product);
 
 // Relación User - Purchase
-User.hasMany(Purchase);
+User.hasMany(Purchase, { foreignKey: 'userId' });
 Purchase.belongsTo(User);
 
 // Relación Product - Purchase
 const Purchase_Detail = sequelize.define(
   'Purchase_Detail',
-  { cantidad: DataTypes.INTEGER },
+  { quantity: DataTypes.INTEGER },
   { timestamps: false }
 );
 

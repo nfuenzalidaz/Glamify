@@ -1,11 +1,16 @@
 const mercadopago = require('mercadopago');
+const { Purchase, Product, User, Purchase_Detail } = require('../../db');
 require('dotenv').config();
 const { FRONT_HOST, BACK_HOST, MP_ACCESS_TOKEN, ENV } = process.env;
 let products = {};
+let loggedUser = {};
 
 const createOrder = async (req, res) => {
-  const cart = req.body;
+  const { user, cart } = req.body;
+
   products = cart;
+  loggedUser = user;
+
   mercadopago.configure({
     access_token: MP_ACCESS_TOKEN,
   });
@@ -21,24 +26,52 @@ const createOrder = async (req, res) => {
     ],
     back_urls: {
       success: `${FRONT_HOST}/home`,
-      failure: `${FRONT_HOST}/failure`,
+      failure: `${FRONT_HOST}/home`,
       pending: `${FRONT_HOST}/payment/pending`,
     },
-    notification_url: `${(ENV = 'dev'
-      ? 'https://b628-186-105-68-105.ngrok.io/payment/webhook'
-      : `${BACK_HOST}/payment/webhook`)}`,
+    notification_url: `${
+      ENV === 'dev'
+        ? 'https://649f-186-105-68-105.ngrok.io/payment/webhook'
+        : `${BACK_HOST}/payment/webhook`
+    }`,
   });
   res.send(result.body);
 };
 
 const receiveWebhook = async (req, res) => {
   const payment = req.query;
-  console.log(products);
+
   try {
     if (payment.type === 'payment') {
       const data = await mercadopago.payment.findById(payment['data.id']);
-      console.log(data.response);
-      //aqui va lo que se guarda para la db
+
+      if (products) {
+        let user = await User.findOne({ where: { email: loggedUser.email } });
+        if (!user) {
+          user = User.create({
+            name: loggedUser.name,
+            email: loggedUser.email,
+          });
+        }
+        const purchase = await Purchase.create({
+          mpId: data.response.id,
+          total: products.totalPrice,
+        });
+        console.log(user.id);
+        await purchase.setUser(user.id);
+
+        products.cart.forEach(async (product) => {
+          const productDB = await Product.findByPk(product.id);
+          productDB.stock -= product.quantity;
+          await productDB.save();
+
+          const purchaseDetail = await Purchase_Detail.create({
+            PurchaseId: purchase.id,
+            ProductId: product.id,
+            quantity: product.quantity,
+          });
+        });
+      }
     }
     res.sendStatus(200);
   } catch (error) {

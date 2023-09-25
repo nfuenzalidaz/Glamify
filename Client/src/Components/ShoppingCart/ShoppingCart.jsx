@@ -8,12 +8,14 @@ import {
 import styles from './ShoppingCart.module.css';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
   const cart = useSelector((state) => state.cart);
+  const { user, isAuthenticated } = useAuth0();
 
   const handlePay = () => {
     event.preventDefault();
@@ -22,7 +24,7 @@ const ShoppingCart = () => {
     }
 
     const response = axios
-      .post('/payment/create-order', cart)
+      .post('/payment/create-order', { user, cart })
       .then((res) => (window.location.href = res.data.init_point));
   };
 
