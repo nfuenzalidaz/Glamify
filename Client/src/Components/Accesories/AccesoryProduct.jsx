@@ -5,7 +5,7 @@ import Searchbar from "../Searchbar/Searchbar";
 import NavBar from "../NavBar/NavBar";
 import Filters from "../Filters/Filters";
 import styles from "./AccesoryProduct.module.css";
-import usePagination from "../../hooks/usePagination";
+import usePagination from "../../Hooks/usePagination";
 
 const Home = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
