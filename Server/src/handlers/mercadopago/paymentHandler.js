@@ -1,14 +1,13 @@
 const mercadopago = require('mercadopago');
 require('dotenv').config();
-const { FRONT_HOST, BACK_HOST, ENV } = process.env;
+const { FRONT_HOST, BACK_HOST, MP_ACCESS_TOKEN, ENV } = process.env;
 let products = {};
 
 const createOrder = async (req, res) => {
   const cart = req.body;
   products = cart;
   mercadopago.configure({
-    access_token:
-      'TEST-4800261384804714-092302-e32006eb8b68edfe9583c0b1783aa13f-1489059158',
+    access_token: MP_ACCESS_TOKEN,
   });
 
   const result = await mercadopago.preferences.create({
