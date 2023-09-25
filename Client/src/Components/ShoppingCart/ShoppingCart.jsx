@@ -5,8 +5,7 @@ import {
   decreaseItemQuantity,
 } from '../../Redux/Features/cartSlice';
 import styles from './ShoppingCart.module.css';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { Link } from 'react-router-dom';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -21,36 +20,34 @@ const ShoppingCart = () => {
   };
 
   return (
-    <div>
-      <div>
-        <Link to='/home' className={styles.link}>
-          <ArrowBackIosIcon />
-        </Link>
-      </div>
-      <h1>CARRITO DE COMPRAS</h1>
+      <div className={styles.items}>
       {cartItems.map((item) => (
-        <div key={item.id}>
+        <div className= {styles.idKey}key={item.id}>
+          <div className={styles.ShoppingCartMain}>
           <img className={styles.Image} src={item.image} alt={item.name} />
-          <div className={styles.textContainer}>
-            <h3>{item.name}</h3>
-            <h3>$ {item.price}</h3>
-            <h3>STOCK: {item.stock}</h3>
-            <div>
-              <button onClick={() => dispatch(removeItemFromCart(item.id))}>
-                ELIMINAR
+            <div className={styles.buttonsContainer}>
+              <button className={styles.deleteButtom}onClick={() => dispatch(removeItemFromCart(item.id))}>
+              <DeleteOutlineIcon/>
               </button>
-              <button onClick={() => dispatch(decreaseItemQuantity(item.id))}>
+              <button className={styles.decre} onClick={() => dispatch(decreaseItemQuantity(item.id))}>
                 -
               </button>
               <span>{item.quantity}</span>
-              <button onClick={() => dispatch(increaseItemQuantity(item.id))}>
+              <button className={styles.incre} onClick={() => dispatch(increaseItemQuantity(item.id))}>
                 +
               </button>
             </div>
           </div>
+          <div className={styles.textContainer}>
+            <h3>{item.name}</h3>
+            <h3>PRECIO : $ {item.price}</h3>
+            <h3>STOCK: {item.stock}</h3>
+        </div>
         </div>
       ))}
+      <div className={styles.total}>
       <h2>TOTAL: $ {calculateTotal()}</h2>
+      </div>
     </div>
   );
 };

@@ -215,11 +215,20 @@
 .divImage {
   height: auto;
   position: absolute;
+  top: 55px;
 }
 
 .iconGoBack {
-  padding-right: 350px;
   text-decoration: none;
   outline: none;
   color: black;
+}
+
+.iconGoBack:hover {
+  color: rgb(255, 255, 255);
+}
+
+.goBackContainer {
+  display: flex;
+  left: 150px;
 }

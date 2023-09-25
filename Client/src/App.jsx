@@ -12,6 +12,7 @@ import axios from "axios";
 import WomanProduct from "./Components/Woman/WomanProduct.jsx";
 import ManProduct from "./Components/Man/ManProduct.jsx";
 import AccesoryProduct from "./Components/Accesories/AccesoryProduct.jsx";
+import Logged from "./Components/Logged/Logged.jsx";
 
 axios.defaults.baseURL="http://localhost:3001";
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/logged" element={<Logged />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/product/:id" element={<ProductDetail />}/>
         <Route path="/create" element={<CreateProducts />} />

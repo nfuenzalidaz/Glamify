@@ -123,10 +123,12 @@ const CreateProduct = () => {
       <div className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.leftDiv}>
           <div className={styles.InputContainer}>
-            <label className={styles.inputGropLabel} htmlFor='name'>
+              <div className={styles.goBackContainer}>
               <NavLink to='/home'>
                 <ArrowBackIosIcon className={styles.iconGoBack} />
               </NavLink>
+              </div>
+            <label className={styles.inputGropLabel} htmlFor='name'>
               NOMBRE :
             </label>
             <input

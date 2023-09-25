@@ -1,36 +1,98 @@
-.searchcontainer{
-border: 2px solid #000;
-display: flex;
-justify-content: space-between
+.searchcontainer {
+    border: 2px solid #000;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
-.form{
+
+.form {
     display: flex;
     justify-content: flex-start;
 }
-.input{
-border: none;
-background-color: transparent;
-float: left;
-width: 40vh;
-outline: none;
+
+.input {
+    border: none;
+    background-color: transparent;
+    float: left;
+    width: 40vh;
+    outline: none;
 }
-.lupa{
-border: none;
-background-color: transparent;
-cursor: pointer;
-}
-.carrito{
-border: none;
-background-color: transparent;
-cursor: pointer;
-}
-.guardado{
+
+.lupa {
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
-.link{
+.carrito {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.guardado {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.link {
     text-decoration: none;
     color: #000;
 }
+
+.iconsNavbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shoppingCartContainer {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+}
+
+.numberContainer {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    font-size: 7px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 5px;
+    margin-right: 4px;
+    z-index: -1;
+}
+
+
+.closeModal {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.closeModal:hover {
+    color: rgb(94, 94, 94);
+}
+
+@keyframes slideIn {
+    from {
+      right: -50%; /* Desde la posición fuera de la pantalla */
+    }
+    to {
+      right: 0; /* Hasta la posición en pantalla completa */
+    }
+  }
