@@ -1,13 +1,27 @@
-import React from 'react';
+import { useState } from 'react';
 import styles from './Cards.module.css';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../../Redux/Features/cartSlice';
 
 const Cards = ({ id, name, description, image, price, category, stock }) => {
   const dispatch = useDispatch();
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const addToCart = () => {
+    dispatch(addItemToCart({ id, name, price, stock, image, description }));
+  };
 
   return (
     <div className={styles.cardContainer}>
@@ -17,13 +31,15 @@ const Cards = ({ id, name, description, image, price, category, stock }) => {
           <BookmarkBorderIcon className={styles.icon} titleAccess='Guardar' />
           <button
             className={styles.cardButtons}
-            onClick={() =>
-              dispatch(
-                addItemToCart({ id, name, price, stock, image, description })
-              )
-            }
+            onClick={addToCart}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            <ShoppingCartOutlinedIcon titleAccess='Agregar al carrito' />
+            {isHovered ? (
+              <ShoppingCartIcon titleAccess='Agregar al carrito' />
+            ) : (
+              <ShoppingCartOutlinedIcon titleAccess='Agregar al carrito' />
+            )}
           </button>
         </div>
       </div>

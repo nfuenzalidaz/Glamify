@@ -1,31 +1,31 @@
 import { useSelector } from "react-redux";
-import CardList from "../CardList/CardList";
 import Pagination from "../Pagination/Pagination";
-import usePagination from "../../Hooks/usePagination";
+import CardList from "../CardList/CardList";
 import Searchbar from "../Searchbar/Searchbar";
 import NavBar from "../NavBar/NavBar";
+import Filters from "../Filters/Filters";
+import styles from "./AccesoryProduct.module.css";
+import usePagination from "../../Hooks/usePagination";
 
-const AccesoryProduct = () => {
+const Home = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
-  const accesoryProduct = allProducts.filter(
-    (product) => product.gender === "accesory"
-  );
 
-  const { currentItems, currentPage, paginate, totalPages } =
-    usePagination(accesoryProduct);
+  const { totalPages, currentItems, paginate, currentPage } =
+    usePagination(allProducts);
 
   return (
-    <>
+    <div className={styles.container}>
       <NavBar />
       <Searchbar />
+      <Filters />
       <CardList allProducts={currentItems} />
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={paginate}
       />
-    </>
+    </div>
   );
 };
 
-export default AccesoryProduct;
+export default Home;
