@@ -32,12 +32,13 @@ module.exports = (sequelize) => {
           'jeans',
           'sudadera',
           'camisa',
-          'abrigo'
+          'abrigo',
+          'accesory'
         ),
         allowNull: false,
       },
       gender: {
-        type: DataTypes.ENUM('man', 'woman', 'unisex', 'accesory'),
+        type: DataTypes.ENUM('man', 'woman', 'unisex'),
         allowNull: false,
       },
       stock: {
