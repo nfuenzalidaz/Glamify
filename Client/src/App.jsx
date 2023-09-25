@@ -30,6 +30,7 @@ function App() {
 				picture: user.picture,
 			});
 		}
+		console.log(userData);
 	}, [isAuthenticated, user]);
 	const sendWelcomeEmail = async (userData) => {
 		try {

@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const {
-  createOrder,
-  receiveWebhook,
+	createOrder,
+	receiveWebhook,
 } = require('../handlers/mercadopago/paymentHandler');
 
 const paymentRouter = Router();
@@ -10,17 +10,17 @@ paymentRouter.post('/create-order', createOrder);
 
 // Pago exitoso
 paymentRouter.get('/success', (req, res) => {
-  return res.status(200).send('Pago Aprobado');
+	return res.status(200).send('Pago Aprobado');
 });
 
 // Pago rechazado
 paymentRouter.get('/failure', (req, res) => {
-  return res.status(200).send('Pago Rechazado');
+	return res.status(200).send('Pago Rechazado');
 });
 
 // Pago pendiente
 paymentRouter.get('/pending', (req, res) => {
-  return res.status(200).send('Pago pendiente');
+	return res.status(200).send('Pago pendiente');
 });
 
 paymentRouter.post('/webhook', receiveWebhook);
