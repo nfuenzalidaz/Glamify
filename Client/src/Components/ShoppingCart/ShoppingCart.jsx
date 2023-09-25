@@ -7,6 +7,7 @@ import {
 } from '../../Redux/Features/cartSlice';
 import styles from './ShoppingCart.module.css';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios';
 
 const ShoppingCart = () => {
@@ -28,9 +29,12 @@ const ShoppingCart = () => {
 
   return (
     <div className={styles.items}>
-      <h1>CARRITO DE COMPRAS</h1>
+      <div className={styles.flushIcon}>
+      <button className={styles.buttomEmpty}onClick={() => dispatch(clearCart())}><DeleteForeverIcon/></button>
+      </div>
       {cartItems.map((item) => (
-        <div key={item.id} className={styles.ShoppingCartMain}>
+        <div className={styles.idKey} key={item.id} >
+          <div className={styles.ShoppingCartMain}>
           <img className={styles.Image} src={item.image} alt={item.name} />
           <div className={styles.buttonsContainer}>
             <button
@@ -45,13 +49,14 @@ const ShoppingCart = () => {
             >
               -
             </button>
-            <span>{item.quantity}</span>
+            <span className={styles.quantity}>{item.quantity}</span>
             <button
               className={styles.incre}
               onClick={() => dispatch(increaseItemQuantity(item.id))}
             >
               +
             </button>
+          </div>
           </div>
           <div className={styles.textContainer}>
             <h3>{item.name}</h3>
@@ -61,10 +66,9 @@ const ShoppingCart = () => {
         </div>
       ))}
       <div className={styles.total}>
-        <h2>TOTAL: $ {cart.totalPrice}</h2>
+        <h2>TOTAL ${cart.totalPrice}</h2>
+      <button className={styles.buttonPay}onClick={handlePay}>PAGAR</button>
       </div>
-      <button onClick={handlePay}>Ir a Pago</button>
-      <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
     </div>
   );
 };
