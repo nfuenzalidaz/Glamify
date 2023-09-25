@@ -46,6 +46,7 @@ const Filters = () => {
         <option value='sudadera'>SUDADERA</option>
         <option value='camisa'>CAMISA</option>
         <option value='abrigo'>ABRIGO</option>
+        <option value='accesorio'>ACCESORIO</option>
       </select>
       <select
         className={styles.select}
