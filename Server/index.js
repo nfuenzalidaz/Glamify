@@ -3,7 +3,7 @@ const { conn } = require("./src/db");
 
 const PORT = process.env.PORT;
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(PORT, "0.0.0.0", () => {
     console.log("Servidor escuchando en el puerto:", PORT);
   });
