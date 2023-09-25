@@ -52,7 +52,7 @@ const receiveWebhook = async (req, res) => {
             email: loggedUser.email,
           });
         }
-        console.log(user.id);
+ 
         const purchase = await Purchase.create({
           UserId: user.id,
           mpId: data.response.id,
