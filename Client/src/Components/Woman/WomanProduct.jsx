@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import CardList from "../CardList/CardList";
 import Pagination from "../Pagination/Pagination";
-import usePagination from "../../hooks/usePagination";
-import Searchbar from "../searchbar/searchbar";
+import usePagination from "../../Hooks/usePagination";
+import Searchbar from "../Searchbar/Searchbar";
 import NavBar from "../NavBar/NavBar";
 
 const WomanProduct = () => {
