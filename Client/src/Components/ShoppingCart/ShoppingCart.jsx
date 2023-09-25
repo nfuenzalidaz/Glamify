@@ -3,21 +3,27 @@ import {
   removeItemFromCart,
   increaseItemQuantity,
   decreaseItemQuantity,
+  clearCart,
 } from '../../Redux/Features/cartSlice';
 import styles from './ShoppingCart.module.css';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
+  const cart = useSelector((state) => state.cart);
 
-  const calculateTotal = () => {
-    let total = 0;
-    cartItems.forEach((item) => {
-      total += item.price * item.quantity;
-    });
-    return total;
+  const handlePay = () => {
+    event.preventDefault();
+
+    if (cartItems.length === 0) {
+    }
+
+    const response = axios
+      .post('/payment/create-order', cart)
+      .then((res) => (window.location.href = res.data.init_point));
   };
 
   return (
@@ -28,7 +34,7 @@ const ShoppingCart = () => {
         </Link>
       </div>
       <h1>CARRITO DE COMPRAS</h1>
-      {cartItems.map((item) => (
+      {cartItems?.map((item) => (
         <div key={item.id}>
           <img className={styles.Image} src={item.image} alt={item.name} />
           <div className={styles.textContainer}>
@@ -50,7 +56,9 @@ const ShoppingCart = () => {
           </div>
         </div>
       ))}
-      <h2>TOTAL: $ {calculateTotal()}</h2>
+      <h2>TOTAL: $ {cart.totalPrice}</h2>
+      <button onClick={handlePay}>Ir a Pago</button>
+      <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
     </div>
   );
 };
