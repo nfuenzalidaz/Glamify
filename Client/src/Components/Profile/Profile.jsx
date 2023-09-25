@@ -5,7 +5,7 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div>
+      <div className={styles.loggedContainer}>
         <h1>{user.name}</h1>
         <h2>{user.email}</h2>
         <img src={user.picture} alt={user.name} />
