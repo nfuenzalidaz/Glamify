@@ -34,3 +34,11 @@ cursor: pointer;
     text-decoration: none;
     color: #000;
 }
+
+.mic {
+    float: left; 
+    color: #000;
+    font-size: 1.5rem; 
+  }
+  
+  
