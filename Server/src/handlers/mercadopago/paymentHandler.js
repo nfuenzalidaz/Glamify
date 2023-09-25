@@ -31,7 +31,7 @@ const createOrder = async (req, res) => {
     },
     notification_url: `${
       ENV === 'dev'
-        ? 'https://649f-186-105-68-105.ngrok.io/payment/webhook'
+        ? 'https://4wn2dck5-3001.brs.devtunnels.ms/payment/webhook'
         : `${BACK_HOST}/payment/webhook`
     }`,
   });
@@ -40,7 +40,6 @@ const createOrder = async (req, res) => {
 
 const receiveWebhook = async (req, res) => {
   const payment = req.query;
-
   try {
     if (payment.type === 'payment') {
       const data = await mercadopago.payment.findById(payment['data.id']);
@@ -48,17 +47,17 @@ const receiveWebhook = async (req, res) => {
       if (products) {
         let user = await User.findOne({ where: { email: loggedUser.email } });
         if (!user) {
-          user = User.create({
+          user = await User.create({
             name: loggedUser.name,
             email: loggedUser.email,
           });
         }
+ 
         const purchase = await Purchase.create({
+          UserId: user.id,
           mpId: data.response.id,
           total: products.totalPrice,
         });
-        console.log(user.id);
-        await purchase.setUser(user.id);
 
         products.cart.forEach(async (product) => {
           const productDB = await Product.findByPk(product.id);
