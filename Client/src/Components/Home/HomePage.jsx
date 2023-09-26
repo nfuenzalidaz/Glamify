@@ -9,23 +9,24 @@ import styles from './HomePage.module.css';
 import usePagination from '../../Hooks/usePagination';
 
 const Home = () => {
-	const allProducts = useSelector((state) => state.product.allProducts);
-	
-	const {totalPages, currentItems, paginate, currentPage} = usePagination(allProducts);
+  const allProducts = useSelector((state) => state.product.allProducts);
 
-	return (
-		<div className={styles.container}>
-			<NavBar />
-			<Searchbar />
+  const { totalPages, currentItems, paginate, currentPage } =
+    usePagination(allProducts);
+
+  return (
+    <div className={styles.container}>
+      <NavBar />
+      <Searchbar />
       <Filters />
-			<CardList allProducts={currentItems} />
-			<Pagination
-				totalPages={totalPages}
-				currentPage={currentPage}
-				onPageChange={paginate}
-			/>
-		</div>
-	);
+      <CardList allProducts={currentItems} />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={paginate}
+      />
+    </div>
+  );
 };
 
 export default Home;

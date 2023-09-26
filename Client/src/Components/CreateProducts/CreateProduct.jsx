@@ -123,10 +123,12 @@ const CreateProduct = () => {
       <div className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.leftDiv}>
           <div className={styles.InputContainer}>
-            <label className={styles.inputGropLabel} htmlFor='name'>
+              <div className={styles.goBackContainer}>
               <NavLink to='/home'>
                 <ArrowBackIosIcon className={styles.iconGoBack} />
               </NavLink>
+              </div>
+            <label className={styles.inputGropLabel} htmlFor='name'>
               NOMBRE :
             </label>
             <input
@@ -190,6 +192,7 @@ const CreateProduct = () => {
               <option value='jeans'>JEANS</option>
               <option value='sudadera'>SUDADERAS</option>
               <option value='calzado'>CALZADO</option>
+              <option value='accesorio'>ACCESORIOS</option>
             </select>
             <label className={styles.inputGropLabel} htmlFor='gender'>
               GENERO :
@@ -205,7 +208,6 @@ const CreateProduct = () => {
               <option value='man'>HOMBRE</option>
               <option value='woman'>MUJER</option>
               <option value='unisex'>UNISEX</option>
-              <option value='accesory'>ACCESORIOS</option>
             </select>
           </div>
         </div>

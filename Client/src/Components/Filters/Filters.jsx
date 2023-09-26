@@ -40,12 +40,13 @@ const Filters = () => {
         value={input.type}
         onChange={handleType}
       >
-        <option value=''>SELECCIONE FILTRO:</option>
+        <option value=''>CATEGORIAS</option>
         <option value='calzado'>CALZADO</option>
         <option value='jeans'>JEANS</option>
         <option value='sudadera'>SUDADERA</option>
         <option value='camisa'>CAMISA</option>
         <option value='abrigo'>ABRIGO</option>
+        <option value='accesorio'>ACCESORIO</option>
       </select>
       <select
         className={styles.select}
@@ -54,7 +55,7 @@ const Filters = () => {
         value={input.sort}
         onChange={handleSort}
       >
-        <option value=''>ORDENAR POR:</option>
+        <option value=''>ORDENAR POR</option>
         <option value='asc'>A-Z</option>
         <option value='desc'>Z-A</option>
         <option value='precioMax'>Mayor Precio</option>

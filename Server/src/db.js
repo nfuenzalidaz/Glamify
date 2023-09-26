@@ -57,7 +57,7 @@ Purchase.belongsTo(User);
 // Relación Product - Purchase
 const Purchase_Detail = sequelize.define(
   'Purchase_Detail',
-  { cantidad: DataTypes.INTEGER },
+  { quantity: DataTypes.INTEGER },
   { timestamps: false }
 );
 

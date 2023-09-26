@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import glamify from "../../assets/Glamify-logo-negro.png";
-import LogOut from "../LogOut/LogOut";
+import Logged from "../Logged/Logged";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -36,7 +36,7 @@ const NavBar = () => {
         <NavLink to="/accesorios" className={styles.NavLink} title="ACCESORIOS">
           ACCESORIOS
         </NavLink>
-        { isAuthenticated && <LogOut/> }
+        <Logged />
       </div>
     </div>
   );
