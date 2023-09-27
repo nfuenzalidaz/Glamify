@@ -7,11 +7,13 @@ import Filters from "../Filters/Filters";
 import styles from "./WomanProduct.module.css";
 import usePagination from "../../Hooks/usePagination";
 
-const Home = () => {
+const WomanProducts = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
 
+  const filteredProducts = allProducts.filter(product => product.gender === 'woman');
+
   const { totalPages, currentItems, paginate, currentPage } =
-    usePagination(allProducts);
+    usePagination(filteredProducts);
 
   return (
     <div className={styles.container}>
@@ -28,4 +30,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default WomanProducts;
