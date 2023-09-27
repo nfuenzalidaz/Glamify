@@ -40,7 +40,7 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 // Relaciones
 
-const { Product, User, Purchase, Review } = sequelize.models;
+const { Product, User, Purchase, Review, Favorite } = sequelize.models;
 
 // Relación User - Review
 User.hasMany(Review);
@@ -63,6 +63,14 @@ const Purchase_Detail = sequelize.define(
 
 Product.belongsToMany(Purchase, { through: Purchase_Detail });
 Purchase.belongsToMany(Product, { through: Purchase_Detail });
+
+// Relación User - Favorite
+User.hasMany(Favorite);
+Favorite.belongsTo(User);
+
+// Relación Product - Favorite
+Product.hasMany(Favorite);
+Favorite.belongsTo(Product);
 
 module.exports = {
   ...sequelize.models,
