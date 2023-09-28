@@ -8,28 +8,29 @@ const postFavorite = async (UserId, ProductId) => {
         throw new Error('The product or user does not exist');
     };
 
-    const existingFavorite = await Favorite.findOne({
-        where: { UserId, ProductId }
+    let existingFavorite = await Favorite.findOne({
+        where: { UserId, ProductId },
+        include: Product,
     });
 
     if (existingFavorite) {
-        throw new Error('The product is already in favorites');
-    };
+        if (!existingFavorite.status) {
+            // Si está inactivo, actualízalo a activo
+            await existingFavorite.update({ status: true });
+        } else {
+            throw new Error('The product is already in favorites');
+        }
+    } else {
+        existingFavorite = await Favorite.create({
+            UserId,
+            ProductId,
+        });
 
-    const currentDate = new Date();
+        await user.addFavorite(existingFavorite);
+        await product.addFavorite(existingFavorite);
+    }
 
-    const createFavorite = await Favorite.create({
-        UserId,
-        ProductId,
-        addedAt: currentDate,
-    })
-
-    await user.addFavorite(createFavorite);
-
-    await product.addFavorite(createFavorite);
-
-
-    return createFavorite;
+    return existingFavorite;
 
 };
 

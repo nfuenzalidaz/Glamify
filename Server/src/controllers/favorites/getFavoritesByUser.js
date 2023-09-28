@@ -8,7 +8,7 @@ const getFavoritesByUser = async (id) => {
     };
 
     const favorites = await Favorite.findAll({
-        where: { UserId: id },
+        where: { UserId: id, status: true },
         include: Product
     });
 

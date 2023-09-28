@@ -13,6 +13,7 @@ import WomanProduct from "./Components/Woman/WomanProduct.jsx";
 import ManProduct from "./Components/Man/ManProduct.jsx";
 import AccesoryProduct from "./Components/Accesories/AccesoryProduct.jsx";
 import Logged from "./Components/Logged/Logged.jsx";
+import Favorites from './Components/Favorites/Favorites.jsx';
 
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/hombre" element={<ManProduct />} />
         <Route path="/mujer" element={<WomanProduct />} />
         <Route path="/accesorios" element={<AccesoryProduct />} />
+        <Route path="/favoritos" element={<Favorites />} />
       </Routes>
     </div>
   );

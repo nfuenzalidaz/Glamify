@@ -7,7 +7,7 @@ const deleteFavorite = async (id) => {
         throw new Error('Favorite not found');
     }
 
-    await favorite.update({ active: false });
+    await favorite.update({ status: false });
 
     return "Favorite deleted successfully"
 };

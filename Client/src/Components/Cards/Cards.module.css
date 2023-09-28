@@ -15,6 +15,7 @@
   width: 300px;
   height: 500px;
   position: relative;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .priceIconsContainer {
@@ -22,6 +23,12 @@
   display: flex;
   justify-content: space-evenly;
   /* flex-grow: 1; */
+}
+
+.removing {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .price {
@@ -45,10 +52,6 @@
   width: 150px;
   height: 50px;
   background-color: transparent;
-}
-
-.icon {
-  cursor: pointer;
 }
 
 .imageContainer {
@@ -87,6 +90,7 @@
   font-size: 15px;
   text-align: center;
   margin: 10px;
+  text-transform: uppercase;
 }
 
 .cardLink {
@@ -98,4 +102,15 @@
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
+}
+
+.deleteButton {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.deleteButton:hover {
+  color: red;
 }

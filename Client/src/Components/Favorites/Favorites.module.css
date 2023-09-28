@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'Adam-Bold';
+	src: url('../../assets/fonts/Adam-Bold.ttf') format('truetype');
+}
+
+.container {
+	background-image: url("https://res.cloudinary.com/dwyavlo8d/image/upload/v1695604709/GlamifyApp/boykf1nvsal2g3hcjezg.png");
+	background-size: cover;
+	width: 100%;
+	background-position: center;
+	height: 34vh;
+    font-family: 'Adam-Bold', sans-serif;
+}
+
+.notFavorites {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 7rem 0;
+    text-transform: uppercase;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+}
