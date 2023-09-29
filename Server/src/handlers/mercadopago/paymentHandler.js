@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const mercadopago = require('mercadopago');
 const { Purchase, Product, User, Purchase_Detail } = require('../../db');
 require('dotenv').config();
@@ -38,6 +40,14 @@ const createOrder = async (req, res) => {
   res.send(result.body);
 };
 
+const transporter = nodemailer.createTransport({
+  service: 'outlook',
+  auth: {
+    user: '1489318791',
+    pass: 'rYKk9Gnjm9',
+  },
+});
+
 const receiveWebhook = async (req, res) => {
   const payment = req.query;
   try {
@@ -70,6 +80,14 @@ const receiveWebhook = async (req, res) => {
             quantity: product.quantity,
           });
         });
+
+        // Envía el correo electrónico de pago exitoso
+        await transporter.sendMail({
+          from: 'glamify tienda',
+          to: loggedUser.email,
+          subject: 'Pago Exitoso',
+          text: '¡Tu pago ha sido procesado con éxito!',
+        });
       }
     }
     res.sendStatus(200);
@@ -78,5 +96,7 @@ const receiveWebhook = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+
 
 module.exports = { createOrder, receiveWebhook };
