@@ -1,12 +1,12 @@
-const { User, Purchase } = require('../../db');
+const { User, Purchase, Review } = require('../../db');
 
 const getAllUsersController = async () => {
     try {
         const users = await User.findAll({
-            include: {
-                model: Purchase,
-                attributes: ['id', 'productId', 'userId'],
-            },
+            include: [
+                { model: Purchase },
+                { model: Review },
+              ],
         });
         return users;
     } catch (error) {

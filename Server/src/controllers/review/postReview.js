@@ -1,9 +1,9 @@
 const { Product, User, Review, Purchase } = require('../../db');
 
-const createReviewController = async (rating, comment, productId, userId) => {
+const createReviewController = async (rating, comment, ProductId, UserId) => {
   try {
-    const product = await Product.findByPk(productId);
-    const user = await User.findByPk(userId);
+    const product = await Product.findByPk(ProductId);
+    const user = await User.findByPk(UserId);
 
     if (!product || !user) {
       throw new Error('The product or user does not exist');
@@ -11,8 +11,8 @@ const createReviewController = async (rating, comment, productId, userId) => {
 
     const existingReview = await Review.findOne({
       where: {
-        productId,
-        userId,
+        ProductId,
+        UserId,
       },
     });
 
@@ -22,8 +22,8 @@ const createReviewController = async (rating, comment, productId, userId) => {
 
     const purchase = await Purchase.findOne({
       where: {
-        productId,
-        userId,
+        ProductId,
+        UserId,
       },
     });
 

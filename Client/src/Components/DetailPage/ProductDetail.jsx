@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { searchProductsById } from '../../Redux/Features/productSlice';
 import { addItemToCart } from '../../Redux/Features/cartSlice';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import styles from './ProductDetail.module.css';
 import { Link } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
+import Review from "../Review/Review";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,16 @@ const ProductDetail = () => {
     toast.success('Producto agregado al carrito exitosamente!', {
       position: 'bottom-center',
     });
-
+//////////
+  const [reviews, setReviews] = useState([]);
+  const handleReviewSave = (newReview) => {
+    // Maneja el evento de guardado de revisión
+    setReviews((prevReviews) => [...prevReviews, newReview]);
+    toast.success("Revisión guardada exitosamente!", {
+      position: "bottom-center",
+    });
+  };
+///////////
   const handleAdd = () => {
     const { name, price, stock, image, description } = products;
     dispatch(addItemToCart({ id, name, price, stock, image, description }));
@@ -60,6 +70,18 @@ const ProductDetail = () => {
           <p>PRECIO: $ {products.price}</p>
           <p>STOCK: {products.stock}</p>
         </div>
+      <Review productId={id} onSave={handleReviewSave} className={styles.Review} />
+      <div className="reviews-container">
+        <h3>Comentarios:</h3>
+        <ul>
+          {reviews.map((review) => (
+            <li key={review.id}>
+              <div>Rating: {review.rating}</div>
+              <div>Comment: {review.comment}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
       </div>
       <Toaster
         toastOptions={{
@@ -72,6 +94,7 @@ const ProductDetail = () => {
           },
         }}
       />
+
     </div>
   );
 };
