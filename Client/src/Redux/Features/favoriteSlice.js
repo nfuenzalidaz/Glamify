@@ -68,7 +68,8 @@ const favoriteSlice = createSlice({
         },
         favoriteType: (state, action) => {
             const { favorites } = state;
-            state.filteredFavorites = favorites.filter(fav => fav.Product.category === action.payload);
+            const filteredFavorites = favorites.filter(fav => fav.Product.category === action.payload);
+            state.filteredFavorites = filteredFavorites;
         }
     },
     extraReducers: (builder) => {

@@ -80,7 +80,7 @@ const Cards = ({
     } else {
       dispatch(
         createFavorites({
-          UserId: "6c8d6002-c550-48bd-9fe8-cc8b5321e3be",
+          UserId: "d5328124-4599-4b26-906d-eb90c3c9c77a",
           ProductId: id,
         })
       );
