@@ -29,9 +29,3 @@ const deleteUserController = async (userId) => {
 };
 
 module.exports = { deleteUserController };
-
-
-// const usegr = await auth0ManagementClient.users.update(
-//   { id: userId },
-//   { blocked: true }
-// );
