@@ -17,10 +17,10 @@ const Review = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      status: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
+      // status: {
+      //   type: DataTypes.BOOLEAN,
+      //   defaultValue: true,
+      // },
       title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -29,9 +29,7 @@ const Review = (sequelize) => {
         type: DataTypes.TEXT,
       },
     },
-    {
-      timestamps: false,
-    }
+    { timestamps: false, paranoid: true }
   );
 };
 

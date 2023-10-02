@@ -8,6 +8,7 @@ const initialState = {
   allProducts: [],
   productosFiltrados: [],
   productsCopy: [],
+  productDetail: [],
   error: '',
 };
 
@@ -80,6 +81,13 @@ const productSlice = createSlice({
     resetFilters: (state) => {
       state.allProducts = state.productsCopy;
     },
+    
+    //Resetear detalles de producto
+    resetDetails: (state) => {
+      state.productDetail = [];
+    },
+
+    //Filtrar por tipo de producto
     productType: (state, action) => {
       let todoProductosCopia = [...state.productsCopy];
       let productos = [...state.productsCopy];
@@ -158,4 +166,4 @@ const productSlice = createSlice({
 
 export default productSlice.reducer;
 
-export const { productSort, resetFilters, productType } = productSlice.actions;
+export const { productSort, resetFilters, resetDetails, productType } = productSlice.actions;

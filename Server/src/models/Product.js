@@ -45,11 +45,11 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-      status: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
+      // status: {
+      //   type: DataTypes.BOOLEAN,
+      //   defaultValue: true,
+      // },
     },
-    { timestamps: false }
+    { timestamps: false, paranoid: true }
   );
 };
