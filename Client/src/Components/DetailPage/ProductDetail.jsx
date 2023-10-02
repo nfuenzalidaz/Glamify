@@ -11,12 +11,12 @@ import { Toaster, toast } from 'react-hot-toast';
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const products = useSelector((state) => state.product.productDetail);
 
   useEffect(() => {
     dispatch(searchProductsById(id));
-  }, [dispatch, id]);
+  }, [dispatch]);
 
+  const products = useSelector((state) => state.product.productDetail);
   if (!products) {
     return <h2>No existe ese producto</h2>;
   }
@@ -30,6 +30,10 @@ const ProductDetail = () => {
     const { name, price, stock, image, description } = products;
     dispatch(addItemToCart({ id, name, price, stock, image, description }));
     notify();
+  };
+
+  const resetDetails = () => {
+    dispatch(resetDetails());
   };
 
   return (

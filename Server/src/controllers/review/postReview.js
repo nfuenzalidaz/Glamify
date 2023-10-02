@@ -1,11 +1,12 @@
-const { Product, User, Review, Purchase } = require('../../db');
+const { Product, Review, Purchase } = require('../../db');
+const auth0ManagementClient = require('../../helpers/auth0ManagementClient');
 
 const createReviewController = async (rating, comment, productId, userId) => {
   try {
     const product = await Product.findByPk(productId);
-    const user = await User.findByPk(userId);
+    const user = await auth0ManagementClient.users.get({ id: userId });
 
-    if (!product || !user) {
+    if (!product || !user.data) {
       throw new Error('The product or user does not exist');
     }
 
@@ -38,7 +39,7 @@ const createReviewController = async (rating, comment, productId, userId) => {
       image: user.image,
     });
 
-    await review.setUser(user);
+    await review.setUser(userId);
     await review.setProduct(product);
 
     return review;
