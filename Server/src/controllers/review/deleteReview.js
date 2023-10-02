@@ -5,12 +5,12 @@ const deleteReviewController = async (reviewId) => {
   try {
     const review = await Review.findByPk(reviewId);
     if (!review) {
-      throw new Error('Review not found');
+      throw new Error('Reseña no encontrada');
     }
     await review.update({ active: false });
-    return 'Review deleted successfully';
+    return 'Revisión eliminada exitosamente';
   } catch (error) {
-    throw new Error('Error deleting review');
+    throw new Error('Error al eliminar la reseña');
   }
 };
 

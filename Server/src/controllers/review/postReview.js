@@ -6,7 +6,7 @@ const createReviewController = async (rating, comment, ProductId, UserId) => {
     const user = await User.findByPk(UserId);
 
     if (!product || !user) {
-      throw new Error('The product or user does not exist');
+      throw new Error('El producto o usuario no existe');
     }
 
     const existingReview = await Review.findOne({
@@ -17,7 +17,7 @@ const createReviewController = async (rating, comment, ProductId, UserId) => {
     });
 
     if (existingReview) {
-      throw new Error('The user can only send a single review per product');
+      throw new Error('El usuario sólo puede enviar una única reseña por producto.');
     }
 
     const purchase = await Purchase.findOne({
@@ -28,7 +28,7 @@ const createReviewController = async (rating, comment, ProductId, UserId) => {
     });
 
     if (!purchase) {
-      throw new Error('The user must buy the product before making a review');
+      throw new Error('El usuario debe comprar el producto antes de realizar una reseña.');
     }
 
     const review = await Review.create({

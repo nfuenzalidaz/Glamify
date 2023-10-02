@@ -5,7 +5,7 @@ const getReviewByIdController = async (reviewId) => {
     const review = await Review.findByPk(reviewId);
     return review;
   } catch (error) {
-    throw new Error('Error getting review');
+    throw new Error('Error al obtener la reseña');
   }
 };
 

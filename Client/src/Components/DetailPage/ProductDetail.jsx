@@ -29,7 +29,6 @@ const ProductDetail = () => {
 //////////
   const [reviews, setReviews] = useState([]);
   const handleReviewSave = (newReview) => {
-    // Maneja el evento de guardado de revisión
     setReviews((prevReviews) => [...prevReviews, newReview]);
     toast.success("Revisión guardada exitosamente!", {
       position: "bottom-center",
@@ -70,8 +69,8 @@ const ProductDetail = () => {
           <p>PRECIO: $ {products.price}</p>
           <p>STOCK: {products.stock}</p>
         </div>
-      <Review productId={id} onSave={handleReviewSave} className={styles.Review} />
-      <div className="reviews-container">
+      <Review ProductId={id} onSave={handleReviewSave} className={styles.DetailsTextTwo} />
+      <div className={styles.DetailsTextTwo}>
         <h3>Comentarios:</h3>
         <ul>
           {reviews.map((review) => (
