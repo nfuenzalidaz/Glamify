@@ -31,7 +31,7 @@ const createOrder = async (req, res) => {
     },
     notification_url: `${
       ENV === 'dev'
-        ? 'https://4wn2dck5-3001.brs.devtunnels.ms/payment/webhook'
+        ? 'https://f89bf27t-3001.use2.devtunnels.ms/payment/webhook'
         : `${BACK_HOST}/payment/webhook`
     }`,
   });

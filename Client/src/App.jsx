@@ -1,4 +1,4 @@
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage.jsx';
 import HomePage from './Components/Home/HomePage.jsx';
 import CreateProducts from './Components/CreateProducts/CreateProduct.jsx';
