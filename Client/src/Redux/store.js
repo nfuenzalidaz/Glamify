@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import productReducer from './Features/productSlice';
 import cartReducer from './Features/cartSlice';
+import reviewReducer from './Features/reviewSlice';
 import thunk from 'redux-thunk';
 
 const rootPersistConfig = {
@@ -16,6 +17,7 @@ const rootPersistConfig = {
 const rootReducer = combineReducers({
   product: productReducer,
   cart: cartReducer,
+  review: reviewReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
