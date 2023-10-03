@@ -17,6 +17,10 @@ const purchaseModel = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
+      userId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      }
     },
     { paranoid: true }
   );

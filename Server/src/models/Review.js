@@ -24,6 +24,10 @@ const Review = (sequelize) => {
       image: {
         type: DataTypes.TEXT,
       },
+      userId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     { timestamps: false, paranoid: true }
   );
