@@ -4,26 +4,28 @@ import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import productReducer from './Features/productSlice';
 import cartReducer from './Features/cartSlice';
+import UserReducer from './Features/userSlice';
 import thunk from 'redux-thunk';
 
 const rootPersistConfig = {
-  key: 'root',
-  storage,
-  stateReconciler: autoMergeLevel2,
-  whitelist: ['cart'],
+	key: 'root',
+	storage,
+	stateReconciler: autoMergeLevel2,
+	whitelist: ['cart'],
 };
 
 const rootReducer = combineReducers({
-  product: productReducer,
-  cart: cartReducer,
+	product: productReducer,
+	cart: cartReducer,
+	user: UserReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
-  devTools: process.env.NODE_ENV !== 'production',
-  middleware: [thunk],
+	reducer: persistedReducer,
+	devTools: process.env.NODE_ENV !== 'production',
+	middleware: [thunk],
 });
 
 export const persistor = persistStore(store);
