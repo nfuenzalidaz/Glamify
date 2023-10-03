@@ -16,7 +16,7 @@ import Admin from './Components/Admin/Dashboard/Dashboard.jsx';
 import CreateProduct from './Components/Admin/CreateProducts/CreateProduct.jsx';
 // import ProductDetailadmin from './Components/Admin/DetailPage/ProductDetail.jsx';
 import Productos from './Components/Admin/Productos/Productos.jsx';
-import Adminlogin from './Components/Admin/logAdmin/logAdmin.jsx';
+import Adminlogin from './Components/Admin/LogAdmin/LogAdmin.jsx';
 import Users from './Components/Admin/Users/Users.jsx';
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
 const validEmail = 'elchamakio@gmail.com';
