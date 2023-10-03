@@ -11,7 +11,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 const { VITE_AUTH0_DOMAIN, VITE_AUTH0_CLIENT_ID } = import.meta.env;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Auth0Provider
       domain={VITE_AUTH0_DOMAIN}
       clientId={VITE_AUTH0_CLIENT_ID}
@@ -27,5 +27,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Provider>
       </BrowserRouter>
     </Auth0Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
