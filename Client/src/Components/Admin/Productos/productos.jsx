@@ -7,7 +7,7 @@ import Filters from '../../Filters/Filters';
 import usePagination from '../../../Hooks/usePagination';
 import NavBar from '../NavBar/NavBar';
 
-const productos = () => {
+const Productos = () => {
 	const allProducts = useSelector((state) => state.product.allProducts);
 
 	const { totalPages, currentItems, paginate, currentPage } =
@@ -26,4 +26,4 @@ const productos = () => {
 	);
 };
 
-export default productos;
+export default Productos;
