@@ -11,7 +11,6 @@ const getAllProduct = async () => {
       'category',
       'gender',
       'stock',
-      'status',
     ],
   });
   if (product.length === 0) throw new Error('No hay productos para mostrar.');

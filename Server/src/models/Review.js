@@ -17,10 +17,6 @@ const Review = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      status: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
       title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,10 +24,12 @@ const Review = (sequelize) => {
       image: {
         type: DataTypes.TEXT,
       },
+      userId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
-    {
-      timestamps: false,
-    }
+    { timestamps: false, paranoid: true }
   );
 };
 

@@ -1,13 +1,19 @@
 const mercadopago = require('mercadopago');
-const { Purchase, Product, User, Purchase_Detail } = require('../../db');
+const { Purchase, Product, Purchase_Detail } = require('../../db');
+const auth0ManagementClient = require('../../helpers/auth0ManagementClient');
 require('dotenv').config();
 const { FRONT_HOST, BACK_HOST, MP_ACCESS_TOKEN, ENV } = process.env;
+
 let products = {};
 let loggedUser = {};
 
 const createOrder = async (req, res) => {
   const { user, cart } = req.body;
-
+  try {
+    if (!user) throw new Error('Usuario no Registrado');
+  } catch (error) {
+    console.log(error);
+  }
   products = cart;
   loggedUser = user;
 
@@ -45,16 +51,8 @@ const receiveWebhook = async (req, res) => {
       const data = await mercadopago.payment.findById(payment['data.id']);
 
       if (products) {
-        let user = await User.findOne({ where: { email: loggedUser.email } });
-        if (!user) {
-          user = await User.create({
-            name: loggedUser.name,
-            email: loggedUser.email,
-          });
-        }
- 
         const purchase = await Purchase.create({
-          UserId: user.id,
+          userId: loggedUser.sub,
           mpId: data.response.id,
           total: products.totalPrice,
         });
