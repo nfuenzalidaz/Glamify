@@ -2,14 +2,15 @@ import { NavLink } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import glamify from "../../assets/Glamify-logo-negro.png";
 import Logged from "../Logged/Logged";
+import Loader from "../Loader/Loader";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
-  if (isLoading) return <h1>CARGANDO...</h1>
-
+  if (isLoading) return <div className={styles.LoaderDiv}><Loader/></div>
+  
   return (
     <div className={styles.NavBarContainer}>
       <div className={styles.logoContainer}>
