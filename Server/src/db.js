@@ -40,19 +40,11 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 // Relaciones
 
-const { Product, User, Purchase, Review } = sequelize.models;
-
-// Relación User - Review
-User.hasMany(Review);
-Review.belongsTo(User);
+const { Product, Purchase, Review } = sequelize.models;
 
 // Relación Product - Review
 Product.hasMany(Review);
 Review.belongsTo(Product);
-
-// Relación User - Purchase
-User.hasMany(Purchase);
-Purchase.belongsTo(User);
 
 // Relación Product - Purchase
 const Purchase_Detail = sequelize.define(
