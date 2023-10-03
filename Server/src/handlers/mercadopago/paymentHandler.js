@@ -10,10 +10,9 @@ let loggedUser = {};
 const createOrder = async (req, res) => {
   const { user, cart } = req.body;
   try {
-    console.log(user);
     if (!user) throw new Error('Usuario no Registrado');
   } catch (error) {
-    throw new Error('Error de Usuario');
+    console.log(error);
   }
   products = cart;
   loggedUser = user;
@@ -38,7 +37,7 @@ const createOrder = async (req, res) => {
     },
     notification_url: `${
       ENV === 'dev'
-        ? 'https://8a58-186-105-78-144.ngrok.io/payment/webhook'
+        ? 'https://4wn2dck5-3001.brs.devtunnels.ms/payment/webhook'
         : `${BACK_HOST}/payment/webhook`
     }`,
   });
@@ -53,7 +52,7 @@ const receiveWebhook = async (req, res) => {
 
       if (products) {
         const purchase = await Purchase.create({
-          UserId: loggedUser.sub,
+          userId: loggedUser.sub,
           mpId: data.response.id,
           total: products.totalPrice,
         });
