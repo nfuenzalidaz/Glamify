@@ -19,7 +19,6 @@ import Productos from './Components/Admin/Productos/Productos.jsx';
 import Adminlogin from './Components/Admin/LogAdmin/LogAdmin.jsx';
 import UserList from './Components/Admin/UserList/UserList.jsx';
 // import AdminNavBar from './Components/Admin/AdminNavBar/AdminNavBar.jsx';
-import Users from './Components/Admin/Users/Users.jsx';
 import Favorites from './Components/Favorites/Favorites.jsx';
 
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
