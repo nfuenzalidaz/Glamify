@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Pagination from '../Pagination/Pagination';
-import CardList from '../CardList/CardList';
-import Searchbar from '../Searchbar/Searchbar';
-import NavBar from '../NavBar/NavBar';
-import Filters from '../Filters/Filters';
-import styles from './HomePage.module.css';
-import usePagination from '../../Hooks/usePagination';
-import { resetDetails } from '../../Redux/Features/productSlice';
-import { useSearchParams } from 'react-router-dom';
-import PopUpCart from '../PopUp/PopUpCart';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Pagination from "../Pagination/Pagination";
+import CardList from "../CardList/CardList";
+import Searchbar from "../Searchbar/Searchbar";
+import NavBar from "../NavBar/NavBar";
+import Filters from "../Filters/Filters";
+import styles from "./HomePage.module.css";
+import usePagination from "../../Hooks/usePagination";
+import { resetDetails } from "../../Redux/Features/productSlice";
+import { useSearchParams } from "react-router-dom";
+import PopUpCart from "../PopUp/PopUpCart";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const Home = () => {
   const popUp = searchParams.get('status');
 
   if (popUp === 'approved') {
+
     return (
       <div>
         <PopUpCart />
@@ -35,8 +36,14 @@ const Home = () => {
   } else {
     return (
       <div className={styles.container}>
-        <NavBar />
-        <Searchbar />
+        <div className={styles.searchNavContainer}>
+          <div className={styles.navBar}>
+            <NavBar />
+          </div>
+        </div>
+          <div className={styles.searchBar}>
+            <Searchbar />
+          </div>
         <Filters />
         <CardList allProducts={currentItems} />
         <Pagination

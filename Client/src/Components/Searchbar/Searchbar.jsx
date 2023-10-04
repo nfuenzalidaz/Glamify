@@ -9,6 +9,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector } from 'react-redux';
 import ShoppingCart from '../ShoppingCart/ShoppingCart.jsx';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { NavLink } from 'react-router-dom';
 
 const customModalStyles = {
   content: {
@@ -77,7 +78,9 @@ export const Searchbar = (data) => {
       </form>
       <div className={Style.iconsNavbar}>
         <button className={Style.guardado}>
-          <BookmarkBorderIcon />
+        <NavLink to="/favoritos" className={Style.link}>
+            <BookmarkBorderIcon />
+          </NavLink>
         </button>
         <button className={Style.carrito} onClick={openModal}>
           <div className={Style.shoppingCartContainer}>

@@ -33,7 +33,7 @@ const getReviewById = async (req, res) => {
     try {
         const review = await getReviewByIdController(reviewId);
         if (!review) {
-            return res.status(404).json({ error: 'Review not found' });
+            return res.status(404).json({ error: 'Reseña no encontrada' });
         }
         res.json(review);
     } catch (error) {

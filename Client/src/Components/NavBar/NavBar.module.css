@@ -7,7 +7,6 @@
 	display: flex;
 	padding: 30px;
 	justify-content: space-between;
-	padding-right: 250px;
 	gap: 30px;
 	color: black;
 	font-family: 'Adam-Bold', sans-serif;
@@ -33,16 +32,15 @@
 
 .logoContainer {
 	display: flex;
-	width: 10px;
+	align-items: flex-start;
+	width: 60px;
+	height: 60px;
 }
 
 .logo {
 	display: flex;
-	align-items: flex-start;
 	width: 60px;
 	height: 60px;
-	margin-right: 980px;
-	cursor: pointer;
 }
 
 .imageWoman {
