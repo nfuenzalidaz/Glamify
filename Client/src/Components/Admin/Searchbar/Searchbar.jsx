@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
-import { searchProducts } from '../../Redux/Features/productSlice';
+import { searchProducts } from '../../../Redux/Features/productSlice';
 import Style from './Searchbar.module.css';
 import SearchIcon from '@mui/icons-material/Search';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector } from 'react-redux';
-import ShoppingCart from '../ShoppingCart/ShoppingCart.jsx';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const customModalStyles = {
@@ -59,10 +58,6 @@ export const Searchbar = (data) => {
         <button className={Style.closeModal} onClick={closeModal}>
           <ArrowForwardIosIcon />
         </button>
-        <span className={Style.shoppingTittle}>CARRITO DE COMPRAS</span>
-        <div>
-          <ShoppingCart />
-        </div>
       </Modal>
       <form className={Style.form}>
         <button className={Style.lupa} type='button' onClick={submitHandler}>
@@ -76,17 +71,7 @@ export const Searchbar = (data) => {
         />
       </form>
       <div className={Style.iconsNavbar}>
-        <button className={Style.guardado}>
-          <BookmarkBorderIcon />
-        </button>
-        <button className={Style.carrito} onClick={openModal}>
-          <div className={Style.shoppingCartContainer}>
-            <div className={Style.numberContainer}>
-              <h1>{itemQuantity}</h1>
-            </div>
-            <ShoppingCartOutlinedIcon />
-          </div>
-        </button>
+        <button className={Style.carrito} onClick={openModal}></button>
       </div>
     </div>
   );

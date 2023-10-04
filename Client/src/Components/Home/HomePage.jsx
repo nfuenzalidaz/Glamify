@@ -12,41 +12,41 @@ import { useSearchParams } from 'react-router-dom';
 import PopUpCart from '../PopUp/PopUpCart';
 
 const Home = () => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(resetDetails());
-	}, []);
+  useEffect(() => {
+    dispatch(resetDetails());
+  }, []);
 
-	const allProducts = useSelector((state) => state.product.allProducts);
-	const [searchParams, setSearchParams] = useSearchParams();
+  const allProducts = useSelector((state) => state.product.allProducts);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-	const { totalPages, currentItems, paginate, currentPage } =
-		usePagination(allProducts);
+  const { totalPages, currentItems, paginate, currentPage } =
+    usePagination(allProducts);
 
-	const popUp = searchParams.get('status');
+  const popUp = searchParams.get('status');
 
-	if (popUp === 'approved') {
-		return (
-			<div>
-				<PopUpCart />
-			</div>
-		);
-	} else {
-		return (
-			<div className={styles.container}>
-				<NavBar />
-				<Searchbar />
-				<Filters />
-				<CardList allProducts={currentItems} />
-				<Pagination
-					totalPages={totalPages}
-					currentPage={currentPage}
-					onPageChange={paginate}
-				/>
-			</div>
-		);
-	}
+  if (popUp === 'approved') {
+    return (
+      <div>
+        <PopUpCart />
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.container}>
+        <NavBar />
+        <Searchbar />
+        <Filters />
+        <CardList allProducts={currentItems} />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={paginate}
+        />
+      </div>
+    );
+  }
 };
 
 export default Home;
