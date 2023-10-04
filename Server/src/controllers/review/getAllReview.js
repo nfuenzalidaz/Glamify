@@ -5,7 +5,7 @@ const getAllReviewController = async () => {
     const reviews = await Review.findAll();
     return reviews;
   } catch (error) {
-    throw new Error('Error getting reviews');
+    throw new Error('Error al obtener reseñas');
   }
 };
 

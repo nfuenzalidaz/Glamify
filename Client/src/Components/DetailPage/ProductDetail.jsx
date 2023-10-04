@@ -1,22 +1,24 @@
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { searchProductsById } from '../../Redux/Features/productSlice';
 import { addItemToCart } from '../../Redux/Features/cartSlice';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import styles from './ProductDetail.module.css';
 import { Link } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
+import Review from "../Review/Review";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const products = useSelector((state) => state.product.productDetail);
+  const productReviews = useSelector((state) => state.reviews.productReviews); // Obtén las reseñas del producto desde el estado
 
   useEffect(() => {
     dispatch(searchProductsById(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
-  const products = useSelector((state) => state.product.productDetail);
   if (!products) {
     return <h2>No existe ese producto</h2>;
   }
@@ -30,10 +32,6 @@ const ProductDetail = () => {
     const { name, price, stock, image, description } = products;
     dispatch(addItemToCart({ id, name, price, stock, image, description }));
     notify();
-  };
-
-  const resetDetails = () => {
-    dispatch(resetDetails());
   };
 
   return (
@@ -64,6 +62,19 @@ const ProductDetail = () => {
           <p>PRECIO: $ {products.price}</p>
           <p>STOCK: {products.stock}</p>
         </div>
+      </div>
+      <Review ProductId={id} onSave={handleReviewSave} className={styles.DetailsTextTwo} />
+      {/* Renderiza las reseñas aquí */}
+      <div className={styles.Reviews}>
+        <h3>Reseñas del producto</h3>
+        <ul>
+          {productReviews.map((review) => (
+            <li key={review.id}>
+              <div>Rating: {review.rating}</div>
+              <div>Comment: {review.comment}</div>
+            </li>
+          ))}
+        </ul>
       </div>
       <Toaster
         toastOptions={{
