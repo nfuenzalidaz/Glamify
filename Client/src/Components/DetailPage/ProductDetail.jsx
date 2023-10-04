@@ -1,36 +1,80 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { searchProductsById } from '../../Redux/Features/productSlice';
 import { addItemToCart } from '../../Redux/Features/cartSlice';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import styles from './ProductDetail.module.css';
 import { Link } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
+import Review from "../Review/Review";
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import { fetchFavoritesByUser } from "../../Redux/Features/favoriteSlice";
+
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const favorites = useSelector((state) => state.favorite.favorites);
   const { id } = useParams();
+  const products = useSelector((state) => state.product.productDetail);
+  const productReviews = useSelector((state) => state.reviews.productReviews); // Obtén las reseñas del producto desde el estado
+  const { isAuthenticated, user, loginWithRedirect } = useAuth0();
+
+  // Obtener el ID de usuario del objeto user
+  const userId = isAuthenticated ? user.sub : null;
 
   useEffect(() => {
     dispatch(searchProductsById(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
-  const products = useSelector((state) => state.product.productDetail);
   if (!products) {
     return <h2>No existe ese producto</h2>;
   }
 
-  const notify = () =>
-    toast.success('Producto agregado al carrito exitosamente!', {
-      position: 'bottom-center',
+  const notify = (message) =>
+    toast.success(message, {
+      position: "bottom-center",
     });
 
   const handleAdd = () => {
     const { name, price, stock, image, description } = products;
     dispatch(addItemToCart({ id, name, price, stock, image, description }));
-    notify();
+    notify("Producto agregado al carrito exitosamente!");
   };
+
+  const handleAddFavorite = () => {
+    if (!isAuthenticated) {
+      toast.error("Debes iniciar sesión para agregar a favoritos", {
+        position: "bottom-center",
+      });
+      setTimeout(() => {
+        navigate("/login");
+        loginWithRedirect();
+      }, 2500);
+      return;
+    }
+
+    axios
+      .post("/favorites", {
+        userId: userId,
+        ProductId: id,
+      })
+      .then((response) => {
+        if (response.status === 201) {
+          dispatch(fetchFavoritesByUser(userId));
+          notify("Producto agregado a favoritos exitosamente!");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
+  }
 
   const resetDetails = () => {
     dispatch(resetDetails());
@@ -39,9 +83,9 @@ const ProductDetail = () => {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.goBackContainer}>
-        <Link to='/home' className={styles.linkBack}>
+        <button className={styles.linkBack} onClick={handleGoBack}>
           <ArrowBackIosIcon className={styles.backIcon} />
-        </Link>
+        </button>
       </div>
       <div className={styles.ImageContainer}>
         <img
@@ -57,7 +101,15 @@ const ProductDetail = () => {
             <button className={styles.buttonCart} onClick={handleAdd}>
               AÑADIR AL CARRITO
             </button>
-            <button className={styles.buttonFav}>GUARDAR EN FAVORITOS</button>
+            <button
+              className={styles.buttonFav}
+              onClick={handleAddFavorite}
+              disabled={favorites.some(
+                (favorite) => favorite.Product.id === id
+              )}
+            >
+              GUARDAR EN FAVORITOS
+            </button>
           </div>
           <p>DESCRIPCION: {products.description}</p>
           <p>CATEGORIA: {products.category}</p>
@@ -65,14 +117,27 @@ const ProductDetail = () => {
           <p>STOCK: {products.stock}</p>
         </div>
       </div>
+      <Review ProductId={id} onSave={handleReviewSave} className={styles.DetailsTextTwo} />
+      {/* Renderiza las reseñas aquí */}
+      <div className={styles.Reviews}>
+        <h3>Reseñas del producto</h3>
+        <ul>
+          {productReviews.map((review) => (
+            <li key={review.id}>
+              <div>Rating: {review.rating}</div>
+              <div>Comment: {review.comment}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
       <Toaster
         toastOptions={{
-          className: '',
+          className: "",
           style: {
-            border: '2px solid #000000',
-            padding: '10px',
-            color: '#ffffff',
-            background: '#000000',
+            border: "2px solid #000000",
+            padding: "10px",
+            color: "#ffffff",
+            background: "#000000",
           },
         }}
       />

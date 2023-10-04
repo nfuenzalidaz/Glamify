@@ -19,6 +19,8 @@ import Productos from './Components/Admin/Productos/Productos.jsx';
 import Adminlogin from './Components/Admin/LogAdmin/LogAdmin.jsx';
 import UserList from './Components/Admin/UserList/UserList.jsx';
 // import AdminNavBar from './Components/Admin/AdminNavBar/AdminNavBar.jsx';
+import Users from './Components/Admin/Users/Users.jsx';
+import Favorites from './Components/Favorites/Favorites.jsx';
 
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
 const { VITE_ADMIN_USER, VITE_ADMIN_PASSWORD } = import.meta.env
@@ -52,6 +54,7 @@ function App() {
 				<Route path='/hombre' element={<ManProduct />} />
 				<Route path='/mujer' element={<WomanProduct />} />
 				<Route path='/accesorios' element={<AccesoryProduct />} />
+				<Route path='/favoritos' element={<Favorites />} />
 			</Routes>
 			{access && (
 				<Routes>

@@ -1,35 +1,35 @@
 const { Product, Review, Purchase } = require('../../db');
 const auth0ManagementClient = require('../../helpers/auth0ManagementClient');
 
-const createReviewController = async (rating, comment, productId, userId) => {
+const createReviewController = async (rating, comment, ProductId, userId) => {
   try {
-    const product = await Product.findByPk(productId);
+    const product = await Product.findByPk(ProductId);
     const user = await auth0ManagementClient.users.get({ id: userId });
 
     if (!product || !user.data) {
-      throw new Error('The product or user does not exist');
+      throw new Error('El producto o usuario no existe');
     }
 
     const existingReview = await Review.findOne({
       where: {
-        productId,
+        ProductId,
         userId,
       },
     });
 
     if (existingReview) {
-      throw new Error('The user can only send a single review per product');
+      throw new Error('El usuario sólo puede enviar una única reseña por producto');
     }
 
     const purchase = await Purchase.findOne({
       where: {
-        productId,
+        ProductId,
         userId,
       },
     });
 
     if (!purchase) {
-      throw new Error('The user must buy the product before making a review');
+      throw new Error('El usuario debe comprar el producto antes de realizar una reseña');
     }
 
     const review = await Review.create({
