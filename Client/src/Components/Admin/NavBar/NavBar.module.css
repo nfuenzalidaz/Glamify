@@ -14,6 +14,9 @@
 	padding-inline-end: 30px;
 	align-items: safe;
 	height: 25vh;
+	background-image: url("https://res.cloudinary.com/dwyavlo8d/image/upload/v1696390679/GlamifyApp/wst0184wot4dbuwyp2ie.png");
+	background-size: cover;
+	background-position: center;
 }
 .create {
 	width: 110px;

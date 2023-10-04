@@ -1,0 +1,67 @@
+.container {
+  background: rgb(242, 242, 242);
+  background: linear-gradient(
+    90deg,
+    rgba(242, 242, 242, 1) 11%,
+    rgb(222, 222, 222) 39%,
+    rgb(164, 164, 164) 80%
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.formContainer {
+  border: 2px solid black;
+  padding: 5rem 4rem;
+  margin: 3rem 0;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.766)
+}
+
+.formContainer h2 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.logoContainer {
+	text-align: center;
+    margin-bottom: 1rem;
+}
+
+.logoContainer img {
+    width: 80px;
+	height: 80px;
+}
+
+.passwordContainer {
+  margin: 2rem 0;
+}
+
+.submit {
+  width: 240px;
+  height: 40px;
+  border: 2px solid rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: black;
+  font-family: "Adam-Bold", sans-serif;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+.submit:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.buttonContainer {
+  text-align: center;
+}

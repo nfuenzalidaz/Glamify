@@ -39,13 +39,13 @@ const LandingPage = () => {
 				</div>
 				<div className={styles.socialsContainer}>
 					<button className={styles.socialButtons}>
-						<InstagramIcon />
+						<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className={styles.link}><InstagramIcon /></a>
 					</button>
 					<button className={styles.socialButtons}>
-						<TwitterIcon />
+					<a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className={styles.link}><TwitterIcon /></a>
 					</button>
 					<button className={styles.socialButtons}>
-						<FacebookIcon />
+					<a href="https://es-la.facebook.com/" target="_blank" rel="noopener noreferrer" className={styles.link}><FacebookIcon /></a>
 					</button>
 				</div>
 				<div className={styles.adminLog}>

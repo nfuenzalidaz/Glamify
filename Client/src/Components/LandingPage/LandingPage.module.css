@@ -115,3 +115,8 @@
   justify-content: center;
   padding-left: 318px;
 }
+
+.link {
+  text-decoration: none; /* Elimina el subrayado */
+  color: inherit; /* Utiliza el color heredado del elemento padre (generalmente negro) */
+}
