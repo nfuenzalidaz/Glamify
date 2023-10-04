@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './CardList.module.css';
 import Cards from '../Cards/Cards';
 
-const CardList = ({ allProducts }) => {
+const CardList = ({ allProducts, isFavoritePage }) => {
 
   return (
     <div className={styles.cards}>
@@ -18,6 +18,7 @@ const CardList = ({ allProducts }) => {
               price={price}
               category={category}
               stock={stock}
+              isFavoritePage={isFavoritePage}
             />
           );
         }

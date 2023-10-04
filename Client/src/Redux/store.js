@@ -7,6 +7,7 @@ import cartReducer from './Features/cartSlice';
 import UserReducer from './Features/userSlice';
 import reviewReducer from './Features/reviewSlice';
 import thunk from 'redux-thunk';
+import favoriteReducer from './Features/favoriteSlice';
 
 
 const rootPersistConfig = {
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
 	cart: cartReducer,
 	user: UserReducer,
 	review:reviewReducer,
+	favorite: favoriteReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

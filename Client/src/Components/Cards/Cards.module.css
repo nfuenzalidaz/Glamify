@@ -99,3 +99,14 @@
   border-color: transparent;
   cursor: pointer;
 }
+
+.deleteButton {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.deleteButton:hover {
+  color: red;
+}
