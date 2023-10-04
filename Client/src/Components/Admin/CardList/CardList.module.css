@@ -1,10 +1,37 @@
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 2em;
-    gap: 1em;
-    border-radius: 10em;
-    width: 80%;
-    margin: 0 auto;
+.CardsListcontainer {
+	border: 2px solid #000;
+	padding: 10px;
+}
+
+.cardslisttitles {
+	display: flex;
+	font-weight: bold;
+	padding: 5px;
+}
+
+.cardslisttitles > div {
+	flex: 1;
+	text-align: center;
+}
+
+.CardsUlContainer {
+	list-style: none;
+	padding: 0;
+}
+
+.CardsLiContainer {
+	display: flex;
+	align-items: center;
+	padding: 5px;
+}
+
+.CardsLiContainer > div {
+	flex: 1;
+	text-align: center;
+}
+
+button {
+	background-color: transparent;
+	padding: 5px 10px;
+	cursor: pointer;
 }

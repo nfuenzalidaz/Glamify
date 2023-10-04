@@ -14,10 +14,11 @@ import AccesoryProduct from './Components/Accesories/AccesoryProduct.jsx';
 import Logged from './Components/Logged/Logged.jsx';
 import Admin from './Components/Admin/Dashboard/Dashboard.jsx';
 import CreateProduct from './Components/Admin/CreateProducts/CreateProduct.jsx';
-// import ProductDetailadmin from './Components/Admin/DetailPage/ProductDetail.jsx';
 import Productos from './Components/Admin/Productos/Productos.jsx';
 import Adminlogin from './Components/Admin/LogAdmin/LogAdmin.jsx';
 import Users from './Components/Admin/Users/Users.jsx';
+import Cards from './Components/Admin/Cards/Cards.jsx';
+
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
 const validEmail = 'elchamakio@gmail.com';
 const validPassword = 'niandertal2023';
@@ -56,8 +57,8 @@ function App() {
 					<Route path='/admin' element={<Admin />} />
 					<Route path='/admin/create' element={<CreateProduct />} />
 					<Route path='/admin/productos' element={<Productos />} />
-					{/* <Route path='/admin/productos/:id' element={<ProductDetailadmin />} /> */}
 					<Route path='/admin/usuarios' element={<Users />} />
+					<Route path='/admin/productos' element={<Cards />} />
 				</Routes>
 			)}
 

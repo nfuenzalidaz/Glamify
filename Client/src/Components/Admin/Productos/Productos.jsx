@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
 
-import CardList from '../CardList/CardList';
+import Cards from '../Cards/Cards';
+
 import Pagination from '../../Pagination/Pagination';
 import Filters from '../../Filters/Filters';
 import usePagination from '../../../Hooks/usePagination';
@@ -16,7 +17,7 @@ const Productos = () => {
 		<div>
 			<NavBar />
 			<Filters />
-			<CardList allProducts={currentItems} />
+			<Cards allProducts={currentItems} />
 			<Pagination
 				totalPages={totalPages}
 				currentPage={currentPage}
