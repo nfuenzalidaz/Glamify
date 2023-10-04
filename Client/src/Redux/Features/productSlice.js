@@ -201,3 +201,4 @@ export default productSlice.reducer;
 
 export const { productSort, resetFilters, resetDetails, productType } =
 	productSlice.actions;
+
