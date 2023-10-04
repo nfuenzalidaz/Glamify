@@ -20,8 +20,12 @@ import Adminlogin from './Components/Admin/LogAdmin/LogAdmin.jsx';
 import Users from './Components/Admin/Users/Users.jsx';
 import Favorites from './Components/Favorites/Favorites.jsx';
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
-const validEmail = 'elchamakio@gmail.com';
-const validPassword = 'niandertal2023';
+
+
+const validEmail = 'admin@gmail.com';
+const validPassword = 'admin123';
+
+
 function App() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
