@@ -18,6 +18,7 @@ import CreateProduct from './Components/Admin/CreateProducts/CreateProduct.jsx';
 import Productos from './Components/Admin/Productos/Productos.jsx';
 import Adminlogin from './Components/Admin/LogAdmin/LogAdmin.jsx';
 import Users from './Components/Admin/Users/Users.jsx';
+import Favorites from './Components/Favorites/Favorites.jsx';
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
 
 
@@ -54,6 +55,7 @@ function App() {
 				<Route path='/hombre' element={<ManProduct />} />
 				<Route path='/mujer' element={<WomanProduct />} />
 				<Route path='/accesorios' element={<AccesoryProduct />} />
+				<Route path='/favoritos' element={<Favorites />} />
 			</Routes>
 			{access && (
 				<Routes>
