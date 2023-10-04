@@ -4,7 +4,7 @@ const updateReviewController = async (id, rating, comment) => {
     const review = await Review.findByPk(id);
 
     if (!review) {
-        throw new Error('Review not found');
+        throw new Error('Reseña no encontrada');
     }
 
     review.rating = rating;

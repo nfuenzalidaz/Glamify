@@ -1,21 +1,25 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { searchProductsById } from "../../Redux/Features/productSlice";
-import { addItemToCart } from "../../Redux/Features/cartSlice";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import styles from "./ProductDetail.module.css";
-import { Link } from "react-router-dom";
-import { Toaster, toast } from "react-hot-toast";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { searchProductsById } from '../../Redux/Features/productSlice';
+import { addItemToCart } from '../../Redux/Features/cartSlice';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import styles from './ProductDetail.module.css';
+import { Link } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
+import Review from "../Review/Review";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { fetchFavoritesByUser } from "../../Redux/Features/favoriteSlice";
+
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favorites = useSelector((state) => state.favorite.favorites);
   const { id } = useParams();
+  const products = useSelector((state) => state.product.productDetail);
+  const productReviews = useSelector((state) => state.reviews.productReviews); // Obtén las reseñas del producto desde el estado
   const { isAuthenticated, user, loginWithRedirect } = useAuth0();
 
   // Obtener el ID de usuario del objeto user
@@ -23,9 +27,8 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(searchProductsById(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
-  const products = useSelector((state) => state.product.productDetail);
   if (!products) {
     return <h2>No existe ese producto</h2>;
   }
@@ -113,6 +116,19 @@ const ProductDetail = () => {
           <p>PRECIO: $ {products.price}</p>
           <p>STOCK: {products.stock}</p>
         </div>
+      </div>
+      <Review ProductId={id} onSave={handleReviewSave} className={styles.DetailsTextTwo} />
+      {/* Renderiza las reseñas aquí */}
+      <div className={styles.Reviews}>
+        <h3>Reseñas del producto</h3>
+        <ul>
+          {productReviews.map((review) => (
+            <li key={review.id}>
+              <div>Rating: {review.rating}</div>
+              <div>Comment: {review.comment}</div>
+            </li>
+          ))}
+        </ul>
       </div>
       <Toaster
         toastOptions={{
