@@ -2,7 +2,7 @@
 // import React, { useState, useEffect } from 'react';
 
 // function ProtectedAdmin() {
-//   const envAdminEmail = process.env.REACT_APP_ADMIN_EMAIL;
+//   const envAdminEmail = .env.REACT_APP_ADMIN_EMAIL;
 //   const envAdminPassword = process.env.REACT_APP_ADMIN_PASSWORD;
 
 //   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);

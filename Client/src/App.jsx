@@ -17,10 +17,12 @@ import CreateProduct from './Components/Admin/CreateProducts/CreateProduct.jsx';
 // import ProductDetailadmin from './Components/Admin/DetailPage/ProductDetail.jsx';
 import Productos from './Components/Admin/Productos/Productos.jsx';
 import Adminlogin from './Components/Admin/LogAdmin/LogAdmin.jsx';
-import Users from './Components/Admin/Users/Users.jsx';
+import UserList from './Components/Admin/UserList/UserList.jsx';
+// import AdminNavBar from './Components/Admin/AdminNavBar/AdminNavBar.jsx';
+
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
-const validEmail = 'elchamakio@gmail.com';
-const validPassword = 'niandertal2023';
+const { VITE_ADMIN_USER, VITE_ADMIN_PASSWORD } = import.meta.env
+
 function App() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -28,7 +30,7 @@ function App() {
 	const [access, setAcces] = useState(false);
 
 	const login = (userData) => {
-		if (userData.email === validEmail && userData.password === validPassword) {
+		if (userData.email === VITE_ADMIN_USER && userData.password === VITE_ADMIN_PASSWORD) {
 			setAcces(true);
 			navigate('/admin');
 		}
@@ -57,7 +59,7 @@ function App() {
 					<Route path='/admin/create' element={<CreateProduct />} />
 					<Route path='/admin/productos' element={<Productos />} />
 					{/* <Route path='/admin/productos/:id' element={<ProductDetailadmin />} /> */}
-					<Route path='/admin/usuarios' element={<Users />} />
+					<Route path='/admin/usuarios' element={<UserList />} />
 				</Routes>
 			)}
 

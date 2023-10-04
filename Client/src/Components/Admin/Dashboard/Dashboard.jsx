@@ -1,11 +1,10 @@
-// import { useSelector } from 'react-redux';
-// import React, { useState } from 'react';
+import React from 'react';
+import AdminNavBar from '../AdminNavBar/AdminNavBar';
 
-import NavBar from '../NavBar/NavBar';
 const Dashboard = () => {
 	return (
 		<div>
-			<NavBar />
+			<AdminNavBar />
 		</div>
 	);
 };
