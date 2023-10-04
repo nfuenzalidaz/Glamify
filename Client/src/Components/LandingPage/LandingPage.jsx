@@ -37,14 +37,6 @@ const LandingPage = () => {
 						</span>
 					</Link>
 				</div>
-				<div>
-					<Link to='/admin/login' className={styles.Button2}>
-						INICIA COMO ADMINISTRADOR
-						<span className={styles.Icon}>
-							<CallMadeIcon />
-						</span>
-					</Link>
-				</div>
 				<div className={styles.socialsContainer}>
 					<button className={styles.socialButtons}>
 						<InstagramIcon />
@@ -55,6 +47,11 @@ const LandingPage = () => {
 					<button className={styles.socialButtons}>
 						<FacebookIcon />
 					</button>
+				</div>
+				<div className={styles.adminLog}>
+					<Link to='/admin/login' className={styles.Button3}>
+						INICIA COMO ADMINISTRADOR
+					</Link>
 				</div>
 			</div>
 		</div>

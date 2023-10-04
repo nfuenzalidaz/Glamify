@@ -1,7 +1,18 @@
 .container {
+
+}
+
+.searchNavContainer {
+}
+
+.navBar {
 	background-image: url("https://res.cloudinary.com/dwyavlo8d/image/upload/v1695604709/GlamifyApp/boykf1nvsal2g3hcjezg.png");
 	background-size: cover;
 	width: 100%;
 	background-position: center;
-	height: 34vh;
+	width: 100%;
+}
+
+.searchBar{
+	width: 100%;
 }
