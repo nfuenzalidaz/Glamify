@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createReview } from "../redux/reviewSlice"; 
+import { createReview } from "../../Redux/Features/reviewSlice"; 
 
 function Review({ userId, ProductId, onSave }) {
   const [isOpen, setIsOpen] = useState(false);
