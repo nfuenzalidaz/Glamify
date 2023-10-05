@@ -1,0 +1,46 @@
+@font-face {
+	font-family: 'AGRESSIVE';
+	src: url('../../assets/fonts/AGRESSIVE.otf') format('truetype');
+}
+
+.mainContainer {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+	padding: 2em;
+	gap: 1em;
+	width: 80%;
+	margin: 0 auto;
+	font-family: AGRESSIVE, sans-serif;
+}
+
+.labelContainer {
+	display: flex;
+}
+
+.nameContainer {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 40%;
+	margin-left: 1rem;
+}
+
+.emailContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40%;
+	margin-right: 2rem;
+}
+
+.statusContainer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-direction: row;
+	gap: 1rem;
+	width: 20%;
+	margin-right: 4rem;
+}

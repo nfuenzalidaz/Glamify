@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import styles from './NavBar.module.css';
+import styles from './AdminNavBar.module.css';
 import glamify from '../../../assets/Glamify-logo-negro.png';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-const NavBar = () => {
+const AdminNavBar = () => {
 	const { isAuthenticated, isLoading } = useAuth0();
 
 	if (isLoading) return <h1>CARGANDO...</h1>;
@@ -26,7 +26,7 @@ const NavBar = () => {
 				<NavLink to='/admin' className={styles.NavLink} title='INICIO'>
 					INICIO
 				</NavLink>
-				<NavLink to='/admin/create' className={styles.NavLink} title='HOMBRE'>
+				<NavLink to='/admin/create' className={styles.NavLink} title='CREAR PRODUCTO'>
 					CREAR
 				</NavLink>
 				<NavLink to='/admin/venta' className={styles.NavLink} title='VENTAS'>
@@ -54,4 +54,4 @@ const NavBar = () => {
 	);
 };
 
-export default NavBar;
+export default AdminNavBar;

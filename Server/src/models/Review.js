@@ -17,13 +17,6 @@ const Review = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      image: {
-        type: DataTypes.TEXT,
-      },
       userId: {
         type: DataTypes.STRING,
         allowNull: false,
