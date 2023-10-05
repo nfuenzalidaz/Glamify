@@ -1,16 +1,24 @@
-const { User, Purchase } = require('../../db');
+const auth0ManagementClient = require('../../helpers/auth0ManagementClient');
 
 const getAllUsersController = async () => {
-    try {
-        const users = await User.findAll({
-            include: {
-                model: Purchase,
-                attributes: ['id', 'productId', 'userId'],
-            },
-        });
-        return users;
-    } catch (error) {
-        throw new Error('Error al obtener los usuarios');
-    }
+	try {
+		const users = await auth0ManagementClient.users.getAll();
+
+		let filteredUsers = [];
+		const filter = users.data.forEach((user) => {
+			let blocked = false;
+			if (user.blocked) blocked = user.blocked;
+			filteredUsers.push({
+				id: user.user_id,
+				name: user.name,
+				email: user.email,
+				blocked: blocked,
+			});
+		});
+		return filteredUsers;
+	} catch (error) {
+		throw new Error('Error al obtener los usuarios');
+	}
 };
-module.exports = {getAllUsersController};
+
+module.exports = { getAllUsersController };

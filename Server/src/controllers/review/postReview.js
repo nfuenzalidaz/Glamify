@@ -1,45 +1,57 @@
-const { Product, User, Review, Purchase } = require('../../db');
+const { Product, Review, Purchase, Purchase_Detail } = require('../../db');
+const auth0ManagementClient = require('../../helpers/auth0ManagementClient');
 
-const createReviewController = async (rating, comment, productId, userId) => {
+const createReviewController = async (rating, comment, ProductId, userId) => {
   try {
-    const product = await Product.findByPk(productId);
-    const user = await User.findByPk(userId);
+    const product = await Product.findByPk(ProductId);
+    const user = await auth0ManagementClient.users.get({ id: userId });
 
-    if (!product || !user) {
-      throw new Error('The product or user does not exist');
+    if (!product || !user.data) {
+      throw new Error('El producto o usuario no existe');
     }
 
     const existingReview = await Review.findOne({
       where: {
-        productId,
+        ProductId,
         userId,
       },
     });
 
     if (existingReview) {
-      throw new Error('The user can only send a single review per product');
+      throw new Error('El usuario sólo puede enviar una única reseña por producto');
     }
 
-    const purchase = await Purchase.findOne({
+    const purchase = await Purchase_Detail.findOne({
+      attributes: ["ProductId"],
       where: {
-        productId,
-        userId,
+        ProductId: ProductId
       },
-    });
+      include: [
+        {
+          model: Purchase,
+          attributes: [],
+          where: {
+            userId: userId
+          }
+        }
+      ],
+      group: ["ProductId"]
+    })
+
+    console.log(purchase);
 
     if (!purchase) {
-      throw new Error('The user must buy the product before making a review');
+      throw new Error('El usuario debe comprar el producto antes de realizar una reseña');
     }
 
     const review = await Review.create({
       rating,
       comment,
-      name: user.name,
-      image: user.image,
+      name: user.data.name,
+      userId: userId
     });
 
-    await review.setUser(user);
-    await review.setProduct(product);
+    await review.setProduct(ProductId);
 
     return review;
   } catch (error) {

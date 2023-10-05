@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     addItemToCart: (state, action) => {
@@ -15,15 +15,19 @@ const cartSlice = createSlice({
       const existingItem = state.cart.find((item) => item.id === newItem.id);
 
       if (!existingItem) {
-        state.cart.push({ ...newItem, quantity: 1 });
-        state.itemQuantity += 1;
-        state.totalPrice += newItem.price;
+        if (newItem.stock > 0) {
+          state.cart.push({ ...newItem, quantity: 1 });
+          state.itemQuantity += 1;
+          state.totalPrice += newItem.price;
+        } else {
+          alert("No hay productos en stock");
+        }
       } else if (existingItem.quantity < existingItem.stock) {
         existingItem.quantity += 1;
         state.itemQuantity += 1;
         state.totalPrice += newItem.price;
       } else {
-        alert('No hay productos en stock');
+        alert("No hay productos en stock");
       }
     },
     removeItemFromCart: (state, action) => {

@@ -1,15 +1,19 @@
-const nodemailer = require('nodemailer');
-
 const mercadopago = require('mercadopago');
 const { Purchase, Product, User, Purchase_Detail } = require('../../db');
 require('dotenv').config();
 const { FRONT_HOST, BACK_HOST, MP_ACCESS_TOKEN, ENV } = process.env;
+const { transporter } = require("../../helpers/nodeMailerConfig");
+
 let products = {};
 let loggedUser = {};
 
 const createOrder = async (req, res) => {
   const { user, cart } = req.body;
-
+  try {
+    if (!user) throw new Error("Usuario no Registrado");
+  } catch (error) {
+    console.log(error);
+  }
   products = cart;
   loggedUser = user;
 
@@ -20,9 +24,9 @@ const createOrder = async (req, res) => {
   const result = await mercadopago.preferences.create({
     items: [
       {
-        title: 'Pago Glamify',
+        title: "Pago Glamify",
         unit_price: cart.totalPrice,
-        currency_id: 'ARS',
+        currency_id: "ARS",
         quantity: 1,
       },
     ],
@@ -32,8 +36,8 @@ const createOrder = async (req, res) => {
       pending: `${FRONT_HOST}/payment/pending`,
     },
     notification_url: `${
-      ENV === 'dev'
-        ? 'https://4wn2dck5-3001.brs.devtunnels.ms/payment/webhook'
+      ENV === "dev"
+        ? "https://f89bf27t-3001.use2.devtunnels.ms/payment/webhook"
         : `${BACK_HOST}/payment/webhook`
     }`,
   });
@@ -51,20 +55,12 @@ const transporter = nodemailer.createTransport({
 const receiveWebhook = async (req, res) => {
   const payment = req.query;
   try {
-    if (payment.type === 'payment') {
-      const data = await mercadopago.payment.findById(payment['data.id']);
+    if (payment.type === "payment") {
+      const data = await mercadopago.payment.findById(payment["data.id"]);
 
       if (products) {
-        let user = await User.findOne({ where: { email: loggedUser.email } });
-        if (!user) {
-          user = await User.create({
-            name: loggedUser.name,
-            email: loggedUser.email,
-          });
-        }
- 
         const purchase = await Purchase.create({
-          UserId: user.id,
+          userId: loggedUser.sub,
           mpId: data.response.id,
           total: products.totalPrice,
         });
@@ -79,14 +75,6 @@ const receiveWebhook = async (req, res) => {
             ProductId: product.id,
             quantity: product.quantity,
           });
-        });
-
-        // Envía el correo electrónico de pago exitoso
-        await transporter.sendMail({
-          from: 'glamify tienda',
-          to: loggedUser.email,
-          subject: 'Pago Exitoso',
-          text: '¡Tu pago ha sido procesado con éxito!',
         });
       }
     }

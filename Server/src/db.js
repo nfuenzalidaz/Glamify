@@ -13,6 +13,7 @@ const sequelize = new Sequelize(DB_HOST, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -40,19 +41,11 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 // Relaciones
 
-const { Product, User, Purchase, Review } = sequelize.models;
-
-// Relación User - Review
-User.hasMany(Review);
-Review.belongsTo(User);
+const { Product, Purchase, Review, Favorite } = sequelize.models;
 
 // Relación Product - Review
 Product.hasMany(Review);
 Review.belongsTo(Product);
-
-// Relación User - Purchase
-User.hasMany(Purchase);
-Purchase.belongsTo(User);
 
 // Relación Product - Purchase
 const Purchase_Detail = sequelize.define(
@@ -63,6 +56,14 @@ const Purchase_Detail = sequelize.define(
 
 Product.belongsToMany(Purchase, { through: Purchase_Detail });
 Purchase.belongsToMany(Product, { through: Purchase_Detail });
+Product.hasMany(Purchase_Detail);
+Purchase_Detail.belongsTo(Product);
+Purchase.hasMany(Purchase_Detail);
+Purchase_Detail.belongsTo(Purchase);
+
+// Relación Product - Favorite
+Product.hasMany(Favorite);
+Favorite.belongsTo(Product);
 
 module.exports = {
   ...sequelize.models,

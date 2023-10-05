@@ -1,18 +1,16 @@
 const { Review } = require('../../db');
 
-const deleteReviewController = async (reviewId) => {
+const deleteReviewController = async (id) => {
+    const review = await Review.findByPk(id);
 
-  try {
-    const review = await Review.findByPk(reviewId);
     if (!review) {
-      throw new Error('Review not found');
+        throw new Error('Reseña no encontrado');
     }
-    await review.update({ active: false });
-    return 'Review deleted successfully';
-  } catch (error) {
-    throw new Error('Error deleting review');
-  }
+
+    await review.update({ status: false });
+
+    return "Reseña eliminada exitosamente"
 };
 
-module.exports = { deleteReviewController };
+module.exports = {deleteReviewController};
 

@@ -8,15 +8,15 @@ import App from "./App.jsx";
 import "./index.css";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-const { VITE_AUTH0_DOMAIN, VITE_AUTH0_CLIENT_ID } = import.meta.env;
+const { VITE_AUTH0_DOMAIN, VITE_AUTH0_CLIENT_ID, VITE_FRONT_URL } = import.meta.env;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Auth0Provider
       domain={VITE_AUTH0_DOMAIN}
       clientId={VITE_AUTH0_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: `${import.meta.env.VITE_FRONT_URL}/home`,
+        redirect_uri: `${VITE_FRONT_URL}/home`,
       }}
     >
       <BrowserRouter>
@@ -27,5 +27,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Provider>
       </BrowserRouter>
     </Auth0Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

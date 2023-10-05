@@ -1,0 +1,18 @@
+.form {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.input {
+	border: none;
+	background-color: transparent;
+	float: left;
+	width: 40vh;
+	outline: none;
+}
+
+.lupa {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
