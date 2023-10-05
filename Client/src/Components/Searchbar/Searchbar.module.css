@@ -90,9 +90,9 @@
 
 @keyframes slideIn {
     from {
-      right: -50%; /* Desde la posición fuera de la pantalla */
+      right: -50%; 
     }
     to {
-      right: 0; /* Hasta la posición en pantalla completa */
+      right: 0; 
     }
   }

@@ -1,0 +1,38 @@
+.transcript {
+  margin-top: 10px; /* Puedes ajustar el margen según lo necesites */
+}
+
+.microfonoContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .microfonoContainer button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10%; 
+  }
+  
+  .microfonoContainer button img {
+    height: 30px;
+    width: auto; 
+  }
+  
+  .microfonoContainer input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; 
+  }
+  
+  .bigText {
+    font-size: 20px; 
+  }
+
+  .input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; 
+  }

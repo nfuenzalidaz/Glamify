@@ -3,12 +3,13 @@ import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
 import { searchProducts } from '../../Redux/Features/productSlice';
 import Style from './Searchbar.module.css';
-import SearchIcon from '@mui/icons-material/Search';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector } from 'react-redux';
 import ShoppingCart from '../ShoppingCart/ShoppingCart.jsx';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Microfono from '../../Components/microfono/microfono';
+
 
 const customModalStyles = {
   content: {
@@ -23,20 +24,23 @@ const customModalStyles = {
   },
 };
 
-export const Searchbar = (data) => {
+export const Searchbar = ({onSpeechRecognition}) => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const itemQuantity = useSelector((state) => state.cart.itemQuantity);
-
+  const [transcription, setTranscription] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isTranscriptionActive, setIsTranscriptionActive] = useState(true);
 
-  const searchHandler = (event) => {
-    const value = event.target.value;
-    dispatch(searchProducts(value));
+
+  const handleSpeechRecognition = (transcript) => {
+    if (isTranscriptionActive) {
+      setTranscription(transcript);
+      dispatch(searchProducts(transcript));
+    }
   };
 
-  const submitHandler = () => {
-  };
+
 
   const openModal = () => {
     customModalStyles.content.right = '0';
@@ -61,16 +65,13 @@ export const Searchbar = (data) => {
         <span className={Style.shoppingTittle}>CARRITO DE COMPRAS</span>
         <div><ShoppingCart /></div>
       </Modal>
+
+      <Microfono
+        onSpeechRecognition={handleSpeechRecognition}
+        search={search}
+      />
       <form className={Style.form}>
-        <button className={Style.lupa} type='button' onClick={submitHandler}>
-          <SearchIcon />
-        </button>
-        <input
-          className={Style.input}
-          placeholder='BUSCAR PRODUCTOS...'
-          type='text'
-          onChange={searchHandler}
-        />
+
       </form>
       <div className={Style.iconsNavbar}>
         <button className={Style.guardado}>
@@ -90,4 +91,3 @@ export const Searchbar = (data) => {
 };
 
 export default Searchbar;
-
