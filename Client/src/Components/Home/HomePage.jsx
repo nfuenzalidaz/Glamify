@@ -10,6 +10,7 @@ import usePagination from "../../Hooks/usePagination";
 import { resetDetails } from "../../Redux/Features/productSlice";
 import { useSearchParams } from "react-router-dom";
 import PopUpCart from "../PopUp/PopUpCart";
+import PopUpFail from "../PopUpFail/PopUpFail";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,15 @@ const Home = () => {
     usePagination(allProducts);
 
   const popUp = searchParams.get("status");
+  const popUpFail = searchParams.get("status");
+
+  if (popUpFail === "rejected") {
+    return (
+      <div>
+        <PopUpFail />
+      </div>
+    );
+  }
 
   if (popUp === "approved") {
     return (
