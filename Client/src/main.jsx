@@ -10,7 +10,6 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 const { VITE_AUTH0_DOMAIN, VITE_AUTH0_CLIENT_ID, VITE_FRONT_URL } = import.meta
   .env;
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <Auth0Provider
