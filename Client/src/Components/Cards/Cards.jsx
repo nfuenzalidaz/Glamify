@@ -7,6 +7,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../../Redux/Features/cartSlice";
+
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import { Toaster, toast } from "react-hot-toast";
@@ -26,6 +27,8 @@ const Cards = ({
 }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorite.favorites);
+  const items = useSelector((state) => state.product.allProducts)
+  const cart = useSelector((state) => state.cart.cart)
   const [isCartHovered, setIsCartHovered] = useState(false);
   const [isFavoriteHovered, setIsFavoriteHovered] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
@@ -45,6 +48,11 @@ const Cards = ({
     setIsFavorite(isProductInFavorites);
   }, [isProductInFavorites]);
 
+  const notifyErrorStock = () =>
+  toast.error('Ha seleccionado el maximo de productos en stock', {
+    position: 'bottom-center',
+  });
+
   const handleCartMouseEnter = () => {
     setIsCartHovered(true);
   };
@@ -62,6 +70,9 @@ const Cards = ({
   };
 
   const addToCart = () => {
+    const checkStock = items.find((item) => item.id === id);
+    let checkCart = cart.find((item) => item.id === id);
+    if ((!checkCart && checkStock.stock === 0) || (checkCart?.quantity === checkStock.stock)) return notifyErrorStock();
     dispatch(addItemToCart({ id, name, price, stock, image, description }));
   };
 
