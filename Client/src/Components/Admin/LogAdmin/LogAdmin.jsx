@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './LogAdmin.module.css';
 
 const Login = ({ login }) => {
 	// const [errors, setErrors] = useState({});
@@ -20,10 +21,10 @@ const Login = ({ login }) => {
 	};
 
 	return (
-		<div>
-			<h2>Inicio de Sesión</h2>
-			<form onSubmit={handleSubmit}>
-				<div>
+		<div className={styles.formContainer}>
+			<form onSubmit={handleSubmit} className={styles.form}>
+				<h2 className={styles.logInMsg}>Inicio de Sesión</h2>
+				<div className={styles.emailContainer}>
 					<label htmlFor='email'>Correo Electrónico:</label>
 					<input
 						type='email'
@@ -34,7 +35,7 @@ const Login = ({ login }) => {
 						required
 					/>
 				</div>
-				<div>
+				<div className={styles.passwordContainer}>
 					<label htmlFor='password'>Contraseña:</label>
 					<input
 						type='password'
@@ -45,9 +46,7 @@ const Login = ({ login }) => {
 						required
 					/>
 				</div>
-				<div>
-					<button type='submit'>Iniciar Sesión</button>
-				</div>
+				<button type='submit' className={styles.button}>Iniciar Sesión</button>
 			</form>
 		</div>
 	);

@@ -5,7 +5,7 @@ import CardList from '../CardList/CardList';
 import Pagination from '../../Pagination/Pagination';
 import Filters from '../../Filters/Filters';
 import usePagination from '../../../Hooks/usePagination';
-import NavBar from '../NavBar/NavBar';
+import AdminNavBar from '../AdminNavBar/AdminNavBar';
 
 const Productos = () => {
 	const allProducts = useSelector((state) => state.product.allProducts);
@@ -14,7 +14,7 @@ const Productos = () => {
 		usePagination(allProducts);
 	return (
 		<div>
-			<NavBar />
+			<AdminNavBar />
 			<Filters />
 			<CardList allProducts={currentItems} />
 			<Pagination
