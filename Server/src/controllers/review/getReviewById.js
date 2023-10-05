@@ -10,7 +10,7 @@ const getReviewByIdController = async (id) => {
     }
 
     const reviews = await Review.findAll({
-      where: { userId: id, status: true },
+      where: { userId: id },
       include: Product,
     });
 
@@ -21,5 +21,3 @@ const getReviewByIdController = async (id) => {
 };
 
 module.exports = { getReviewByIdController };
-
-

@@ -2,7 +2,7 @@ const { Product, Review, Purchase, Purchase_Detail } = require('../../db');
 const auth0ManagementClient = require('../../helpers/auth0ManagementClient');
 
 const createReviewController = async (rating, comment, ProductId, userId) => {
-  try {
+
     const product = await Product.findByPk(ProductId);
     const user = await auth0ManagementClient.users.get({ id: userId });
 
@@ -38,8 +38,6 @@ const createReviewController = async (rating, comment, ProductId, userId) => {
       group: ["ProductId"]
     })
 
-    console.log(purchase);
-
     if (!purchase) {
       throw new Error('El usuario debe comprar el producto antes de realizar una reseña');
     }
@@ -52,11 +50,7 @@ const createReviewController = async (rating, comment, ProductId, userId) => {
     });
 
     await review.setProduct(ProductId);
-
     return review;
-  } catch (error) {
-    console.log(error);
-  }
 
 };
 
