@@ -17,8 +17,14 @@ const AccesoriesProducts = () => {
 
   return (
     <div className={styles.container}>
-      <NavBar />
-      <Searchbar />
+    <div className={styles.searchNavContainer}>
+      <div className={styles.navBar}>
+        <NavBar />
+      </div>
+    </div>
+      <div className={styles.searchBar}>
+        <Searchbar />
+      </div>
       <Filters />
       <CardList allProducts={currentItems} />
       <Pagination

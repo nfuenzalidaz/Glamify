@@ -98,3 +98,20 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.Button3 {
+  text-decoration: none;
+  color: black;
+  font-family: 'Adam-Bold', sans-serif;
+  font-size: 15px;
+}
+.Button3:hover {
+  color: rgb(255, 255, 255);
+}
+
+.adminLog {
+  padding-top: 30px;
+  align-items: center;
+  justify-content: center;
+  padding-left: 318px;
+}
