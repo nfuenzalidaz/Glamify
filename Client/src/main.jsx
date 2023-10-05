@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain={VITE_AUTH0_DOMAIN}
       clientId={VITE_AUTH0_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: `${import.meta.env.VITE_FRONT_URL}/home`,
+        redirect_uri: `${VITE_FRONT_URL}/home`,
       }}
     >
       <BrowserRouter>
