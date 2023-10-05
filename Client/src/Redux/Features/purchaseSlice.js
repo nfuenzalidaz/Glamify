@@ -12,24 +12,24 @@ const initialState = {
 
 export const fetchAllPurchases = createAsyncThunk(
   'purchases/fetchAllPurchases',
-  async () => {
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(URL);
-      return response.data;
+      const { data } = await axios.get(URL);
+      return data;
     } catch (error) {
-      throw error;
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
 export const fetchPurchaseDetail = createAsyncThunk(
   'purchases/fetchPurchaseDetail',
-  async (purchaseId) => {
+  async (purchaseId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${URL}/${purchaseId}`);
-      return response.data;
+      const { data } = await axios.get(`${URL}/${purchaseId}`);
+      return data;
     } catch (error) {
-      throw error;
+      return rejectWithValue(error.response.data);
     }
   }
 );
