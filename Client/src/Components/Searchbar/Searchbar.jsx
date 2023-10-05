@@ -8,6 +8,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector } from 'react-redux';
 import ShoppingCart from '../ShoppingCart/ShoppingCart.jsx';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Microfono from '../../Components/microfono/microfono';
+
 
 const customModalStyles = {
   content: {
@@ -73,9 +75,7 @@ export const Searchbar = ({onSpeechRecognition}) => {
       </form>
       <div className={Style.iconsNavbar}>
         <button className={Style.guardado}>
-        <NavLink to="/favoritos" className={Style.link}>
-            <BookmarkBorderIcon />
-          </NavLink>
+          <BookmarkBorderIcon />
         </button>
         <button className={Style.carrito} onClick={openModal}>
           <div className={Style.shoppingCartContainer}>
