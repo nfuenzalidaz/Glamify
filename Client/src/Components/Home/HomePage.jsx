@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../Pagination/Pagination";
 import CardList from "../CardList/CardList";
@@ -10,6 +10,7 @@ import usePagination from "../../Hooks/usePagination";
 import { resetDetails } from "../../Redux/Features/productSlice";
 import { useSearchParams } from "react-router-dom";
 import PopUpCart from "../PopUp/PopUpCart";
+import PopUpFail from "../PopUpFail/PopUpFail";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,15 @@ const Home = () => {
     usePagination(allProducts);
 
   const popUp = searchParams.get("status");
+  const popUpFail = searchParams.get("status");
+
+  if (popUpFail === "rejected") {
+    return (
+      <div>
+        <PopUpFail />
+      </div>
+    );
+  }
 
   if (popUp === "approved") {
     return (
@@ -56,3 +66,4 @@ const Home = () => {
 };
 
 export default Home;
+

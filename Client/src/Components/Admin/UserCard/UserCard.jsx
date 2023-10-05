@@ -13,7 +13,7 @@ const UserCard = ({ id, name, email, blocked }) => {
 	const handleStatus = async () => {
 		await dispatch(updateUser({ id }));
 		await dispatch(fetchUsers());
-		setIsActive(!isActive); // Cambiar el estado del usuario
+		setIsActive(!isActive);
 	};
 
 	let status = isActive ? 'ACTIVO' : 'INACTIVO';
@@ -30,12 +30,18 @@ const UserCard = ({ id, name, email, blocked }) => {
 				<h5>{status}</h5>
 				<button className={styles.buttonStatus} onClick={handleStatus}>
 					{isActive ? (
-						<CancelPresentationIcon className={styles.iconStatus} titleAccess='Bloquear usuario'/>
+						<CancelPresentationIcon
+							className={styles.iconStatus}
+							titleAccess='Bloquear usuario'
+						/>
 					) : (
-						<CheckBoxOutlinedIcon className={styles.iconStatus} titleAccess='Desbloquear usuario'/>
+						<CheckBoxOutlinedIcon
+							className={styles.iconStatus}
+							titleAccess='Desbloquear usuario'
+						/>
 					)}
 				</button>
-				<button className={styles.modifyButton}>MODIFICAR</button>
+				{/* <button className={styles.modifyButton}>MODIFICAR</button> */}
 			</div>
 		</div>
 	);
