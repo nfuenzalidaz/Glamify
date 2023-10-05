@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styles from './AdminNavBar.module.css';
 import glamify from '../../../assets/Glamify-logo-negro.png';
-import Logged from '../../Logged/Logged';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -47,7 +46,9 @@ const AdminNavBar = () => {
 				>
 					USUARIOS
 				</NavLink>
-				<Logged />
+				<NavLink to='/home' className={styles.NavLink} title='IR A LA TIENDA'>
+					IR A LA TIENDA
+				</NavLink>
 			</div>
 		</div>
 	);

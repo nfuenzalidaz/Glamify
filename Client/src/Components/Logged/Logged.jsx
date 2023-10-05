@@ -39,8 +39,6 @@ const Logged = () => {
           open={Boolean(anchorEl)}
           onClose={handleMenuClose}
         >
-          <MenuItem onClick={handleMenuClose}>Favoritos</MenuItem>
-          <MenuItem onClick={handleMenuClose}>Configuración de Perfil</MenuItem>
           <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
         </Menu>
       </div>

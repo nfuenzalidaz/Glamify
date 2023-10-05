@@ -30,6 +30,11 @@ const CreateProduct = () => {
 			position: 'bottom-center',
 		});
 
+		const notifyErrorName = () =>
+		toast.error('Debe asignarle un nombre el producto', {
+			position: 'bottom-center',
+		});
+
 	const notifyErrorCat = () =>
 		toast.error('Seleccione una categoría', {
 			position: 'bottom-center',
@@ -37,6 +42,15 @@ const CreateProduct = () => {
 
 	const notifyErrorGen = () =>
 		toast.error('Seleccione un género', {
+			position: 'bottom-center',
+		});
+	
+	const notifyErrorDes = () =>
+		toast.error('Escriba una descripción', {
+			position: 'bottom-center',
+		});
+		const notifyErrorPrice = () =>
+		toast.error('Debe asignar un precio al producto', {
 			position: 'bottom-center',
 		});
 
@@ -66,6 +80,10 @@ const CreateProduct = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		if (input.name === '') {
+			notifyErrorName();
+			return;
+		}
 
 		if (input.category === '') {
 			notifyErrorCat();
@@ -73,6 +91,14 @@ const CreateProduct = () => {
 		}
 		if (input.gender === '') {
 			notifyErrorGen();
+			return;
+		}
+		if (input.description === '') {
+			notifyErrorDes();
+			return;
+		}
+		if (input.price === '') {
+			notifyErrorPrice();
 			return;
 		}
 
@@ -171,6 +197,7 @@ const CreateProduct = () => {
 							name='stock'
 							value={stockDisponible}
 							onChange={handleStockChange}
+							min= '1'
 						/>
 
 						<label className={styles.inputGropLabel} htmlFor='category'>

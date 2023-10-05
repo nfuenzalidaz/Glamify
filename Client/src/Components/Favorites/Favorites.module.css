@@ -4,13 +4,21 @@
 }
 
 .container {
-  background-image: url("https://res.cloudinary.com/dwyavlo8d/image/upload/v1695604709/GlamifyApp/boykf1nvsal2g3hcjezg.png");
+
+}
+
+.navBar {
+  background-image: url("https://res.cloudinary.com/dwyavlo8d/image/upload/v1696462193/GlamifyApp/kmunyo14z6it3wghofwp.png");
   background-size: cover;
   width: 100%;
   background-position: center;
   height: 34vh;
   font-family: "Adam-Bold", sans-serif;
   text-transform: uppercase;
+}
+
+.searchBar{
+	width: 100%;
 }
 
 .notFavorites {
