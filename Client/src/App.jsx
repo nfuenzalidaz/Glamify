@@ -29,15 +29,16 @@ function App() {
   const products = useSelector((state) => state.products);
   const [access, setAcces] = useState(false);
 
-  const login = (userData) => {
-    if (
-      userData.email === VITE_ADMIN_USER &&
-      userData.password === VITE_ADMIN_PASSWORD
-    ) {
-      setAcces(true);
-      navigate('/admin');
-    }
-  };
+	const login = (userData) => {
+		if (
+			userData.email === VITE_ADMIN_USER &&
+			userData.password === VITE_ADMIN_PASSWORD
+		) {
+			setAcces(true);
+			navigate('/admin');
+		}
+	};
+
 
   useEffect(() => {
     dispatch(fetchProducts());
