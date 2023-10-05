@@ -5,10 +5,8 @@ import styles from "./PopUpFail.module.css";
 
 function PopUpCart() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleAccept = () => {
-    dispatch(clearCart());
     navigate("/home");
   };
 
