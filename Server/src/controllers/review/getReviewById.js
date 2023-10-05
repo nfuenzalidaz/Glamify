@@ -1,23 +1,10 @@
-const { Review, Product } = require('../../db');
-const auth0ManagementClient = require('../../helpers/auth0ManagementClient');
+const { Review } = require('../../db');
 
 const getReviewByIdController = async (id) => {
-  try {
-    const user = await auth0ManagementClient.users.get({ id });
-
-    if (!user) {
-      throw new Error('Usuario no encontrado');
-    }
-
-    const reviews = await Review.findAll({
-      where: { userId: id },
-      include: Product,
-    });
-
-    return reviews;
-  } catch (error) {
-    throw new Error('Error al obtener las reseñas y/o información del usuario');
-  }
+  const reviews = await Review.findAll({
+    where: { ProductId: id },
+  });
+  return reviews;
 };
 
 module.exports = { getReviewByIdController };

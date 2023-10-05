@@ -38,10 +38,10 @@ const getAllReview = async (req, res) => {
 };
 
 const getReviewById = async (req, res) => {
-  const reviewId = req.params.id;
+  const {id} = req.params;
 
   try {
-    const review = await getReviewByIdController(reviewId);
+    const review = await getReviewByIdController(id);
     if (!review) {
       return res.status(404).json({ error: 'Reseña no encontrada' });
     }

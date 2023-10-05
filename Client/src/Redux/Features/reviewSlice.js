@@ -9,10 +9,10 @@ const initialState = {
     error: null
 }
 
-export const fetchReviewByUser = createAsyncThunk(
-    'review/fetchReviewByUser', async (userId, { rejectWithValue }) => {
+export const fetchReviewByProduct = createAsyncThunk(
+    'review/fetchReviewByProduct', async (ProductId, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get(`${URL}/${userId}`);
+            const { data } = await axios.get(`${URL}/${ProductId}`);
             return data;
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -70,19 +70,29 @@ const reviewSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(fetchReviewByUser.pending, (state) => {
+            .addCase(fetchReviewByProduct.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(fetchReviewByUser.fulfilled, (state, action) => {
+            .addCase(fetchReviewByProduct.fulfilled, (state, action) => {
                 state.loading = false;
                 state.reviews = action.payload;
             })
-            .addCase(fetchReviewByUser.rejected, (state, action) => {
+            .addCase(fetchReviewByProduct.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
+            .addCase(createReview.pending, (state) => {
+                state.loading = true;
+            })
             .addCase(createReview.fulfilled, (state, action) => {
                 state.reviews.push(action.payload);
+            })
+            .addCase(createReview.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(updateReview.pending, (state) => {
+                state.loading = true;
             })
             .addCase(updateReview.fulfilled, (state, action) => {
                 const updatedReview = action.payload;
@@ -91,9 +101,20 @@ const reviewSlice = createSlice({
                     state.reviews[index] = updatedReview;
                 }
             })
+            .addCase(updateReview.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(deleteReview.pending, (state) => {
+                state.loading = true;
+            })
             .addCase(deleteReview.fulfilled, (state, action) => {
                 const deletedReviewId = action.payload;
                 state.reviews = state.reviews.filter((review) => review.id !== deletedReviewId);
+            })
+            .addCase(deleteReview.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
             });
     },
 });

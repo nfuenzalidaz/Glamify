@@ -1,12 +1,8 @@
 const { Review } = require('../../db');
 
 const getAllReviewController = async () => {
-  try {
-    const reviews = await Review.findAll();
-    return reviews;
-  } catch (error) {
-    throw new Error('Error al obtener reseñas');
-  }
+  const reviews = await Review.findAll();
+  return reviews;
 };
 
 module.exports = { getAllReviewController };
