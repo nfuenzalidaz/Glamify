@@ -8,29 +8,30 @@ import UserReducer from './Features/userSlice';
 import reviewReducer from './Features/reviewSlice';
 import thunk from 'redux-thunk';
 import favoriteReducer from './Features/favoriteSlice';
-
+import purchaseReducer from './Features/purchaseSlice';
 
 const rootPersistConfig = {
-	key: 'root',
-	storage,
-	stateReconciler: autoMergeLevel2,
-	whitelist: ['cart'],
+  key: 'root',
+  storage,
+  stateReconciler: autoMergeLevel2,
+  whitelist: ['cart'],
 };
 
 const rootReducer = combineReducers({
-	product: productReducer,
-	cart: cartReducer,
-	user: UserReducer,
-	review:reviewReducer,
-	favorite: favoriteReducer,
+  product: productReducer,
+  cart: cartReducer,
+  user: UserReducer,
+  review: reviewReducer,
+  favorite: favoriteReducer,
+  purchases: purchaseReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const store = configureStore({
-	reducer: persistedReducer,
-	devTools: process.env.NODE_ENV !== 'production',
-	middleware: [thunk],
+  reducer: persistedReducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: [thunk],
 });
 
 export const persistor = persistStore(store);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../Pagination/Pagination";
 import CardList from "../CardList/CardList";
@@ -66,3 +66,4 @@ const Home = () => {
 };
 
 export default Home;
+
