@@ -57,6 +57,19 @@ export const deleteProduct = createAsyncThunk(
     }
   }
 );
+export const updateProduct = createAsyncThunk(
+  'product/updateProduct',
+  async ({ id, data }, { rejectWithValue, dispatch }) => {
+    try {
+      const { data: updatedProduct } = await axios.put(`${URL}/${id}`, data);
+      // Despachar la acción de búsqueda después de una actualización exitosa
+      dispatch(searchProductsById(id));
+      return updatedProduct;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const productSlice = createSlice({
   name: 'product',
@@ -81,7 +94,7 @@ const productSlice = createSlice({
     resetFilters: (state) => {
       state.allProducts = state.productsCopy;
     },
-    
+
     //Resetear detalles de producto
     resetDetails: (state) => {
       state.productDetail = [];
@@ -161,9 +174,30 @@ const productSlice = createSlice({
       state.loading = false;
       state.error = action.payload.error;
     });
+    builder.addCase(updateProduct.pending, (state) => {
+      state.loading = true;
+    });
+
+    builder.addCase(updateProduct.fulfilled, (state, action) => {
+      state.loading = false;
+      // Actualiza el producto en el estado con los datos actualizados
+      const updatedProduct = action.payload;
+      state.productDetail = updatedProduct;
+      // También puedes actualizar otros estados si es necesario
+      state.allProducts = state.allProducts.map((product) =>
+        product.id === updatedProduct.id ? updatedProduct : product
+      );
+      state.error = '';
+    });
+
+    builder.addCase(updateProduct.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
   },
 });
 
 export default productSlice.reducer;
 
-export const { productSort, resetFilters, resetDetails, productType } = productSlice.actions;
+export const { productSort, resetFilters, resetDetails, productType } =
+  productSlice.actions;
