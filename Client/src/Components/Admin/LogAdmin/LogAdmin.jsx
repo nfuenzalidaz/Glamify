@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
+import { useLocalStorage } from '../../../Hooks/useLocalStorage';
 
 const Login = ({ login }) => {
 	// const [errors, setErrors] = useState({});
-	const [userData, setUserdata] = useState({
+	const [userData, setUserData] = useLocalStorage('userData', {
 		email: '',
 		password: '',
-	});
+	  });
 
-	const handlerChange = (e) => {
-		setUserdata({
-			...userData,
-			[e.target.name]: e.target.value,
+	  const handlerChange = (e) => {
+		setUserData({
+		  ...userData,
+		  [e.target.name]: e.target.value,
 		});
-	};
+	  };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

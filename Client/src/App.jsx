@@ -23,7 +23,7 @@ axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
 
 
 const validEmail = 'admin@gmail.com';
-const validPassword = 'admin123';
+const validPassword = 'admin123@';
 
 
 function App() {

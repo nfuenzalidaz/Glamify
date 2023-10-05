@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import glamify from '../../../assets/Glamify-logo-negro.png';
-import Logged from '../../Logged/Logged';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -30,13 +29,13 @@ const NavBar = () => {
 				<NavLink to='/admin/create' className={styles.NavLink} title='HOMBRE'>
 					CREAR
 				</NavLink>
-				<NavLink to='/admin/venta' className={styles.NavLink} title='MUJER'>
+				<NavLink to='/admin/venta' className={styles.NavLink} title='VENTAS'>
 					VENTAS
 				</NavLink>
 				<NavLink
 					to='/admin/productos'
 					className={styles.NavLink}
-					title='ACCESORIOS'
+					title='PRODUCTOS'
 				>
 					PRODUCTOS
 				</NavLink>
@@ -47,7 +46,9 @@ const NavBar = () => {
 				>
 					USUARIOS
 				</NavLink>
-				<Logged />
+				<NavLink to='/home' className={styles.NavLink} title='IR A LA TIENDA'>
+					IR A LA TIENDA
+				</NavLink>
 			</div>
 		</div>
 	);
