@@ -56,6 +56,10 @@ const Purchase_Detail = sequelize.define(
 
 Product.belongsToMany(Purchase, { through: Purchase_Detail });
 Purchase.belongsToMany(Product, { through: Purchase_Detail });
+Product.hasMany(Purchase_Detail);
+Purchase_Detail.belongsTo(Product);
+Purchase.hasMany(Purchase_Detail);
+Purchase_Detail.belongsTo(Purchase);
 
 // Relación Product - Favorite
 Product.hasMany(Favorite);

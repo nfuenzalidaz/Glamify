@@ -1,4 +1,4 @@
-const { Product, Review, Purchase } = require('../../db');
+const { Product, Review, Purchase, Purchase_Detail } = require('../../db');
 const auth0ManagementClient = require('../../helpers/auth0ManagementClient');
 
 const createReviewController = async (rating, comment, ProductId, userId) => {
@@ -21,12 +21,24 @@ const createReviewController = async (rating, comment, ProductId, userId) => {
       throw new Error('El usuario sólo puede enviar una única reseña por producto');
     }
 
-    const purchase = await Purchase.findOne({
+    const purchase = await Purchase_Detail.findOne({
+      attributes: ["ProductId"],
       where: {
-        ProductId,
-        userId,
+        ProductId: ProductId
       },
-    });
+      include: [
+        {
+          model: Purchase,
+          attributes: [],
+          where: {
+            userId: userId
+          }
+        }
+      ],
+      group: ["ProductId"]
+    })
+
+    console.log(purchase);
 
     if (!purchase) {
       throw new Error('El usuario debe comprar el producto antes de realizar una reseña');
@@ -35,12 +47,11 @@ const createReviewController = async (rating, comment, ProductId, userId) => {
     const review = await Review.create({
       rating,
       comment,
-      name: user.name,
-      image: user.image,
+      name: user.data.name,
+      userId: userId
     });
 
-    await review.setUser(userId);
-    await review.setProduct(product);
+    await review.setProduct(ProductId);
 
     return review;
   } catch (error) {
