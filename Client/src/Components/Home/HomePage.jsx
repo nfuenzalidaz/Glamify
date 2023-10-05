@@ -30,7 +30,7 @@ const Home = () => {
   const popUpFail = searchParams.get("status");
   const popUpUserBlock = searchParams.get("error");
 
-  if (popUpUserBlock === "uanuthorized") {
+  if (popUpUserBlock === "unauthorized") {
     return (
       <div>
         <PopUpUserBlock />
