@@ -22,7 +22,7 @@ import UserList from './Components/Admin/UserList/UserList.jsx';
 import Favorites from './Components/Favorites/Favorites.jsx';
 
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL;
-const { VITE_ADMIN_USER, VITE_ADMIN_PASSWORD } = import.meta.env
+const { VITE_ADMIN_USER, VITE_ADMIN_PASSWORD } = import.meta.env;
 
 function App() {
 	const navigate = useNavigate();
@@ -31,7 +31,10 @@ function App() {
 	const [access, setAcces] = useState(false);
 
 	const login = (userData) => {
-		if (userData.email === VITE_ADMIN_USER && userData.password === VITE_ADMIN_PASSWORD) {
+		if (
+			userData.email === VITE_ADMIN_USER &&
+			userData.password === VITE_ADMIN_PASSWORD
+		) {
 			setAcces(true);
 			navigate('/admin');
 		}
