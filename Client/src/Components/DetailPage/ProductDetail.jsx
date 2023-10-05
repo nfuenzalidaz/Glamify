@@ -19,7 +19,7 @@ const ProductDetail = () => {
   const favorites = useSelector((state) => state.favorite.favorites);
   const { id } = useParams();
   const products = useSelector((state) => state.product.productDetail);
-  const productReviews = useSelector((state) => state.reviews.productReviews); // Obtén las reseñas del producto desde el estado
+  // const productReviews = useSelector((state) => state.reviews.productReviews); 
   const { isAuthenticated, user, loginWithRedirect } = useAuth0();
 
   // Obtener el ID de usuario del objeto user
@@ -117,9 +117,9 @@ const ProductDetail = () => {
           <p>STOCK: {products.stock}</p>
         </div>
       </div>
-      <Review ProductId={id} onSave={handleReviewSave} className={styles.DetailsTextTwo} />
-      {/* Renderiza las reseñas aquí */}
-      <div className={styles.Reviews}>
+      {/* <Review ProductId={id} onSave={handleReviewSave} className={styles.DetailsTextTwo} />
+      Renderiza las reseñas aquí */}
+      {/* <div className={styles.Reviews}>
         <h3>Reseñas del producto</h3>
         <ul>
           {productReviews.map((review) => (
@@ -129,7 +129,7 @@ const ProductDetail = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
       <Toaster
         toastOptions={{
           className: "",
