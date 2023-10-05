@@ -11,6 +11,7 @@ import { resetDetails } from "../../Redux/Features/productSlice";
 import { useSearchParams } from "react-router-dom";
 import PopUpCart from "../PopUp/PopUpCart";
 import PopUpFail from "../PopUpFail/PopUpFail";
+import PopUpUserBlock from "../PopUpUserBlock/PopUpUserBlock";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,15 @@ const Home = () => {
 
   const popUp = searchParams.get("status");
   const popUpFail = searchParams.get("status");
+  const popUpUserBlock = searchParams.get("error");
+
+  if (popUpUserBlock === "unauthorized") {
+    return (
+      <div>
+        <PopUpUserBlock />
+      </div>
+    );
+  }
 
   if (popUpFail === "rejected") {
     return (
