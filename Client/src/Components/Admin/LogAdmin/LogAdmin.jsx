@@ -4,7 +4,7 @@ import styles from './LogAdmin.module.css';
 
 const Login = ({ login }) => {
   // const [errors, setErrors] = useState({});
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useLocalStorage('userData', {
     email: '',
     password: '',
   });
