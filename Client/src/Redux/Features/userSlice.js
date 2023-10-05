@@ -29,7 +29,7 @@ export const searchUsersByName = createAsyncThunk(
 	'user/searchUsersByName',
 	async (name, { rejectWithValue }) => {
 		try {
-			const { data } = await axios.get(`${URL}?name=${name}`);
+			const { data } = await axios.get(`${URL}/name?name=${name}`);
 			return data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -52,7 +52,9 @@ export const updateUser = createAsyncThunk(
 const userSlice = createSlice({
 	name: 'user',
 	initialState,
-	reducers: {},
+	reducers: {
+
+	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchUsers.pending, (state) => {
 			state.loading = true;
