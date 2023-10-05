@@ -1,0 +1,60 @@
+@font-face {
+	font-family: 'Adam-Bold';
+	src: url('../../assets/fonts/Adam-Bold.ttf') format('truetype');
+}
+
+.mainContainer {
+	display: flex;
+	/* justify-content: space-evenly; */
+	/* align-items: center; */
+	/* gap: 1rem; */
+	border: 2px solid rgb(0, 0, 0);
+	font-family: 'Adam-Bold', sans-serif;
+}
+
+.nameContainer {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 40%;
+	margin-left: 1rem;
+	font-size: 10px;
+}
+
+.emailContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40%;
+	margin-right: 2rem;
+}
+
+.buttonsContainer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-direction: row;
+	gap: 1rem;
+	width: 20%;
+	margin-right: 1rem;
+}
+
+.buttonStatus {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.modifyButton {
+	border: 2px solid rgb(0, 0, 0);
+	background-color: transparent;
+	color: black;
+	font-family: 'Adam-Bold', sans-serif;
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modifyButton:hover {
+	background-color: rgb(0, 0, 0);
+	color: white;
+}

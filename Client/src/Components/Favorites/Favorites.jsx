@@ -33,8 +33,14 @@ const Favorites = () => {
 
   return (
     <div className={styles.container}>
-      <NavBar />
-      <Searchbar />
+    <div className={styles.searchNavContainer}>
+      <div className={styles.navBar}>
+        <NavBar />
+      </div>
+    </div>
+      <div className={styles.searchBar}>
+        <Searchbar />
+      </div>
       {dataProducts.length > 0 && <FilterFavorites />}
       {isLoading ? (
         <div className={styles.loaderDiv}>
