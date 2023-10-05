@@ -53,12 +53,12 @@ const CardList = () => {
   return (
     <div className={styles.CardsListcontainer}>
       <div className={styles.cardslisttitles}>
-        <div>Nombre</div>
-        <div> Descripcion </div>
-        <div> Precio </div>
-        <div> stock </div>
-        <div> categoria</div>
-        <div> Genero </div>
+        <div>NOMBRE</div>
+        <div>DESCRIPCION</div>
+        <div>PRECIO</div>
+        <div>STOCK</div>
+        <div>CATEGORIA</div>
+        <div>GENERO</div>
       </div>
       <ul className={styles.CardsUlContainer}>
         {allProducts.map((product) => (
@@ -69,7 +69,7 @@ const CardList = () => {
             <div> {product.stock}</div>
             <div> {product.category}</div>
             <div> {product.gender}</div>
-            <button onClick={() => openEditModal(product)}>Editar</button>
+            <button className={styles.buttonEdit}onClick={() => openEditModal(product)}>EDITAR</button>
           </li>
         ))}
       </ul>
@@ -80,64 +80,67 @@ const CardList = () => {
         contentLabel='Editar Producto'
         className={styles.modal}
       >
+        <form className={styles.formContainer}onSubmit={handleEditSubmit}>
         <h2>Editar Producto</h2>
-        <form onSubmit={handleEditSubmit}>
-          <label htmlFor='name'>Nombre:</label>
-          <input
+          <label className={styles.labels}htmlFor='name'>NOMBRE:</label>
+          <input className={styles.inputs}
             type='text'
             name='name'
             value={editedProduct.name || ''}
             onChange={handleEditInputChange}
             required
           />
-          <label htmlFor='description'>Descripción:</label>
-          <input
+          <label className={styles.labels} htmlFor='description'>DESCRIPCION:</label>
+          <input className={styles.inputs}
             type='text'
             name='description'
             value={editedProduct.description || ''}
             onChange={handleEditInputChange}
           />
-          <label htmlFor='category'>Categoría:</label>
-          <input
+          <label className={styles.labels} htmlFor='category'>CATEGORIA:</label>
+          <input className={styles.inputs}
             type='text'
             name='category'
             value={editedProduct.category || ''}
             onChange={handleEditInputChange}
           />
-          <label htmlFor='price'>Precio:</label>
-          <input
+          <label className={styles.labels} htmlFor='price'>PRECIO:</label>
+          <input className={styles.inputs}
             type='text'
             name='price'
             value={editedProduct.price || ''}
             onChange={handleEditInputChange}
             required
           />
-          <label htmlFor='stock'>Stock:</label>
-          <input
+          <label className={styles.labels} htmlFor='stock'>STOCK:</label>
+          <input className={styles.inputs}
             type='text'
             name='stock'
             value={editedProduct.stock || ''}
             onChange={handleEditInputChange}
             required
           />
-          <label htmlFor='stock'>Genero:</label>
-          <input
+          <label className={styles.labels} htmlFor='stock'>GENERO:</label>
+          <input className={styles.inputs}
             type='text'
             name='gender'
             value={editedProduct.gender || ''}
             onChange={handleEditInputChange}
             required
           />
-          <button type='submit' disabled={isSubmitting}>
-            Guardar Cambios
+          <div className={styles.buttonsContainer}>
+          <button className={styles.button1}type='submit' disabled={isSubmitting}>
+            GUARDAR
           </button>
           <button
+          className={styles.button2}
             onClick={closeEditModal}
             type='button'
             disabled={isSubmitting}
           >
-            Cancelar
+            CERRAR
           </button>
+          </div>
         </form>
       </Modal>
     </div>

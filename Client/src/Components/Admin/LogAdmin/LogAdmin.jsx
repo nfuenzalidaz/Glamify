@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { useLocalStorage } from '../../../Hooks/useLocalStorage';
-import styles from './LogAdmin.module.css';
+import { useState } from "react";
+import styles from "./LogAdmin.module.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Login = ({ login }) => {
   // const [errors, setErrors] = useState({});
-  const [userData, setUserData] = useLocalStorage('userData', {
-    email: '',
-    password: '',
+  const [showPassword, setShowPassword] = useState(false);
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
   });
 
   const handlerChange = (e) => {
@@ -21,34 +23,51 @@ const Login = ({ login }) => {
     login(userData);
   };
 
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className={styles.formContainer}>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h2 className={styles.logInMsg}>Inicio de Sesión</h2>
+        <h2 className={styles.logInMsg}>INICIAR SESION</h2>
         <div className={styles.emailContainer}>
-          <label htmlFor='email'>Correo Electrónico:</label>
+          <label className={styles.labels} htmlFor="email">
+            USUARIO:
+          </label>
           <input
-            type='email'
-            id='email'
-            name='email'
+            className={styles.Inputs}
+            type="email"
+            id="email"
+            name="email"
             value={userData.email}
             onChange={handlerChange}
             required
           />
         </div>
         <div className={styles.passwordContainer}>
-          <label htmlFor='password'>Contraseña:</label>
+          <label className={styles.labels} htmlFor="password">
+            CONTRASEÑA:
+          </label>
           <input
-            type='password'
-            id='password'
-            name='password'
+            className={styles.Inputs}
+            type={showPassword ? "text" : "password"}
+            id="password"
+            name="password"
             value={userData.password}
             onChange={handlerChange}
             required
           />
+		  <div className={styles.ShowMain}>
+          <button className={styles.showPassword}
+            type="button"
+            onClick={handleTogglePasswordVisibility}>
+            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+          </button>
+		  </div>
         </div>
-        <button type='submit' className={styles.button}>
-          Iniciar Sesión
+        <button className={styles.buttonLog} type="submit">
+          INICIAR SESION
         </button>
       </form>
     </div>
